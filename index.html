@@ -6,6 +6,9 @@
   <title>HKDSE Physics KMS — Browser Only</title>
 
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
   <style>
     :root{
@@ -463,8 +466,845 @@
       margin-bottom:.75rem;
     }
 
+    /* ------------------------------------------------------------
+       Big Report PDF Export
+       ------------------------------------------------------------ */
+
+    .br-print-wrapper{
+      width:100%;
+    }
+
+    .br-report-layout{
+      display:grid;
+      grid-template-columns:370px minmax(0,1fr);
+      gap:1rem;
+      align-items:start;
+    }
+
+    .br-controls{
+      position:sticky;
+      top:1rem;
+      align-self:start;
+    }
+
+    .br-button-stack{
+      display:grid;
+      gap:.55rem;
+      margin-top:1rem;
+    }
+
+    .br-check{
+      display:flex;
+      gap:.55rem;
+      align-items:flex-start;
+      border:1px solid var(--line);
+      background:#0b1220;
+      border-radius:12px;
+      padding:.65rem;
+      margin:.45rem 0;
+    }
+
+    .br-check input{
+      width:auto;
+      margin-top:.18rem;
+      accent-color:#38bdf8;
+    }
+
+    .br-inline-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:.6rem;
+    }
+
+    .br-report-stage{
+      background:#02061799;
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:1rem;
+      overflow:auto;
+      box-shadow:inset 0 1px 0 #ffffff12;
+    }
+
+    .br-stage-title{
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      align-items:flex-start;
+      margin-bottom:1rem;
+    }
+
+    .br-report-root{
+      width:max-content;
+      margin:0 auto;
+      color:#111827;
+    }
+
+    .br-pdf-page{
+      width:210mm;
+      height:297mm;
+      background:#ffffff;
+      color:#111827;
+      margin:0 auto 1rem;
+      padding:12mm;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 18px 55px #0009;
+      page-break-after:always;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;
+    }
+
+    .br-pdf-page:last-child{
+      margin-bottom:0;
+    }
+
+    .br-pdf-page table{
+      width:100%;
+      border-collapse:collapse;
+      color:#111827;
+      font-size:9.5px;
+    }
+
+    .br-pdf-page th,
+    .br-pdf-page td{
+      border-bottom:1px solid #e2e8f0;
+      padding:6px 7px;
+      text-align:left;
+      vertical-align:top;
+    }
+
+    .br-pdf-page th{
+      position:static;
+      top:auto;
+      z-index:auto;
+      color:#334155;
+      background:#f1f5f9;
+      font-weight:900;
+    }
+
+    .br-page-top{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      border-bottom:2px solid #e2e8f0;
+      padding-bottom:8px;
+      margin-bottom:11px;
+    }
+
+    .br-page-title{
+      margin:0;
+      font-size:18px;
+      line-height:1.18;
+      color:#0f172a;
+      letter-spacing:-.02em;
+    }
+
+    .br-page-subtitle{
+      margin:3px 0 0;
+      color:#64748b;
+      font-size:10px;
+      line-height:1.4;
+    }
+
+    .br-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      padding:5px 8px;
+      border-radius:999px;
+      background:#e0f2fe;
+      color:#075985;
+      border:1px solid #bae6fd;
+      font-size:9px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .br-badge.green{
+      background:#dcfce7;
+      color:#166534;
+      border-color:#bbf7d0;
+    }
+
+    .br-badge.amber{
+      background:#fef3c7;
+      color:#92400e;
+      border-color:#fde68a;
+    }
+
+    .br-badge.red{
+      background:#fee2e2;
+      color:#991b1b;
+      border-color:#fecaca;
+    }
+
+    .br-badge.purple{
+      background:#ede9fe;
+      color:#5b21b6;
+      border-color:#ddd6fe;
+    }
+
+    .br-cover-hero{
+      min-height:172px;
+      border-radius:24px;
+      padding:23px;
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 18% 18%,rgba(255,255,255,.9) 0 10%,transparent 11%),
+        linear-gradient(135deg,#0ea5e9 0%,#4f46e5 50%,#7c3aed 100%);
+      box-shadow:0 18px 44px rgba(14,165,233,.28);
+    }
+
+    .br-cover-hero:after{
+      content:"Φ";
+      position:absolute;
+      right:18px;
+      bottom:-18px;
+      font-size:118px;
+      opacity:.14;
+      font-weight:1000;
+    }
+
+    .br-cover-hero h1{
+      margin:0;
+      font-size:34px;
+      line-height:1.05;
+      letter-spacing:-.04em;
+    }
+
+    .br-cover-hero p{
+      margin:8px 0 0;
+      opacity:.92;
+      font-size:12px;
+    }
+
+    .br-cover-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    .br-card{
+      border:1px solid #e2e8f0;
+      border-radius:16px;
+      background:#ffffff;
+      padding:11px;
+      color:#111827;
+    }
+
+    .br-card.soft{
+      background:#f8fafc;
+    }
+
+    .br-section-heading{
+      display:flex;
+      gap:7px;
+      align-items:center;
+      margin:12px 0 8px;
+      font-size:14px;
+      font-weight:950;
+      color:#0f172a;
+    }
+
+    .br-section-heading:before{
+      content:"";
+      width:7px;
+      height:19px;
+      border-radius:999px;
+      background:#0ea5e9;
+      display:inline-block;
+      flex:0 0 auto;
+    }
+
+    .br-info-table th{
+      width:36%;
+      color:#64748b;
+      background:#fff;
+    }
+
+    .br-info-table th,
+    .br-info-table td{
+      font-size:10px;
+      padding:5.5px 4px;
+    }
+
+    .br-big-score{
+      min-height:150px;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      border-radius:18px;
+      background:linear-gradient(135deg,#f0f9ff,#eef2ff);
+      border:1px solid #c7d2fe;
+    }
+
+    .br-big-score .num{
+      font-size:52px;
+      font-weight:1000;
+      line-height:1;
+      color:#1d4ed8;
+      letter-spacing:-.06em;
+    }
+
+    .br-big-score .label{
+      margin-top:5px;
+      color:#64748b;
+      font-size:10px;
+      font-weight:850;
+    }
+
+    .br-big-score .grade{
+      margin-top:8px;
+      display:inline-flex;
+      padding:5px 10px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid #bfdbfe;
+      color:#1d4ed8;
+      font-size:11px;
+      font-weight:950;
+    }
+
+    .br-metric-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+    }
+
+    .br-metric-grid.three{
+      grid-template-columns:repeat(3,1fr);
+    }
+
+    .br-metric{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:13px;
+      padding:9px;
+      min-height:62px;
+    }
+
+    .br-metric .name{
+      color:#64748b;
+      font-size:9px;
+      font-weight:850;
+      margin-bottom:4px;
+    }
+
+    .br-metric .value{
+      color:#0f172a;
+      font-size:18px;
+      line-height:1.08;
+      font-weight:1000;
+      letter-spacing:-.03em;
+    }
+
+    .br-comment{
+      margin-top:10px;
+      padding:10px;
+      background:#f8fafc;
+      border:1px solid #dbeafe;
+      border-left:5px solid #0ea5e9;
+      border-radius:14px;
+      color:#1e293b;
+      font-size:10.5px;
+      line-height:1.55;
+    }
+
+    .br-area-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:9px;
+    }
+
+    .br-area-card{
+      min-height:140px;
+    }
+
+    .br-area-head{
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      align-items:flex-start;
+      margin-bottom:7px;
+    }
+
+    .br-area-name{
+      font-weight:1000;
+      font-size:11px;
+      line-height:1.25;
+    }
+
+    .br-area-en{
+      color:#64748b;
+      font-size:9px;
+      margin-top:2px;
+      font-weight:750;
+    }
+
+    .br-bar{
+      width:100%;
+      height:8px;
+      border-radius:999px;
+      background:#e2e8f0;
+      overflow:hidden;
+      margin:7px 0 8px;
+    }
+
+    .br-bar span{
+      display:block;
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg,#0ea5e9,#22c55e);
+      width:0%;
+    }
+
+    .br-bar span.amber{
+      background:linear-gradient(90deg,#f59e0b,#fbbf24);
+    }
+
+    .br-bar span.red{
+      background:linear-gradient(90deg,#ef4444,#fb7185);
+    }
+
+    .br-bar span.purple{
+      background:linear-gradient(90deg,#7c3aed,#0ea5e9);
+    }
+
+    .br-two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:7px;
+    }
+
+    .br-mini-box{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:11px;
+      padding:7px;
+    }
+
+    .br-mini-box h4{
+      margin:0 0 4px;
+      font-size:9px;
+      color:#475569;
+    }
+
+    .br-mini-box ul{
+      margin:0;
+      padding-left:14px;
+      font-size:8.8px;
+      line-height:1.42;
+      color:#334155;
+    }
+
+    .br-character-grid{
+      display:grid;
+      grid-template-columns:.95fr 1.05fr;
+      gap:11px;
+    }
+
+    .br-avatar{
+      border-radius:22px;
+      padding:15px;
+      min-height:214px;
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 22% 18%,rgba(255,255,255,.3) 0 12%,transparent 13%),
+        linear-gradient(135deg,#0f172a,#2563eb 55%,#7c3aed);
+    }
+
+    .br-avatar:after{
+      content:"★";
+      position:absolute;
+      right:22px;
+      bottom:10px;
+      font-size:78px;
+      opacity:.15;
+    }
+
+    .br-avatar-label{
+      font-size:9px;
+      opacity:.78;
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+    }
+
+    .br-avatar-name{
+      margin:8px 0 2px;
+      font-size:23px;
+      line-height:1.08;
+      font-weight:1000;
+      letter-spacing:-.04em;
+    }
+
+    .br-avatar-type{
+      font-size:11px;
+      opacity:.9;
+      font-weight:850;
+    }
+
+    .br-avatar-stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:7px;
+      margin-top:17px;
+    }
+
+    .br-avatar-stat{
+      background:rgba(255,255,255,.13);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:13px;
+      padding:8px;
+    }
+
+    .br-avatar-stat strong{
+      display:block;
+      font-size:17px;
+      line-height:1;
+    }
+
+    .br-avatar-stat span{
+      display:block;
+      margin-top:4px;
+      opacity:.82;
+      font-size:8.5px;
+      font-weight:750;
+    }
+
+    .br-ability-list{
+      display:grid;
+      gap:7px;
+    }
+
+    .br-ability{
+      background:#fff;
+      border:1px solid #e2e8f0;
+      border-radius:13px;
+      padding:8px 9px;
+    }
+
+    .br-ability-row{
+      display:grid;
+      grid-template-columns:1.15fr 62px;
+      gap:8px;
+      align-items:center;
+    }
+
+    .br-ability-title{
+      font-size:10px;
+      font-weight:1000;
+    }
+
+    .br-ability-desc{
+      font-size:8.4px;
+      color:#64748b;
+      margin-top:2px;
+      line-height:1.35;
+    }
+
+    .br-ability-score{
+      text-align:right;
+      color:#1d4ed8;
+      font-size:12px;
+      line-height:1.3;
+      font-weight:1000;
+    }
+
+    .br-skill-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+      margin-bottom:10px;
+    }
+
+    .br-skill-card{
+      min-height:92px;
+      padding:9px;
+    }
+
+    .br-skill-icon{
+      font-size:17px;
+      line-height:1;
+    }
+
+    .br-skill-name{
+      margin-top:5px;
+      font-size:9.4px;
+      font-weight:1000;
+      line-height:1.25;
+    }
+
+    .br-skill-topic{
+      color:#64748b;
+      font-size:8.6px;
+      margin-top:2px;
+      min-height:23px;
+      line-height:1.3;
+    }
+
+    .br-topic-table th,
+    .br-topic-table td{
+      font-size:8.8px;
+      padding:5.5px 6px;
+    }
+
+    .br-rank{
+      display:inline-grid;
+      place-items:center;
+      width:21px;
+      height:21px;
+      border-radius:50%;
+      background:#e0f2fe;
+      color:#075985;
+      border:1px solid #bae6fd;
+      font-weight:1000;
+      font-size:9px;
+    }
+
+    .br-gap-grid{
+      display:grid;
+      gap:8px;
+    }
+
+    .br-gap-card{
+      padding:9px;
+    }
+
+    .br-gap-head{
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      align-items:flex-start;
+      margin-bottom:6px;
+    }
+
+    .br-gap-title{
+      font-size:10px;
+      font-weight:1000;
+      line-height:1.3;
+    }
+
+    .br-gap-detail{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:6px;
+      margin-bottom:6px;
+    }
+
+    .br-gap-mini{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:10px;
+      padding:6px;
+      font-size:8.4px;
+      color:#64748b;
+    }
+
+    .br-gap-mini strong{
+      display:block;
+      margin-top:3px;
+      font-size:11px;
+      color:#111827;
+    }
+
+    .br-small-text{
+      font-size:9.2px;
+      line-height:1.48;
+      color:#334155;
+      margin:0;
+    }
+
+    .br-revision-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:9px;
+    }
+
+    .br-revision-card{
+      min-height:204px;
+    }
+
+    .br-revision-card h3{
+      margin:7px 0 5px;
+      font-size:11.5px;
+      line-height:1.25;
+    }
+
+    .br-revision-card ul{
+      margin:7px 0 0;
+      padding-left:15px;
+      color:#334155;
+      font-size:8.9px;
+      line-height:1.48;
+    }
+
+    .br-chip-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:4px;
+      margin-top:7px;
+    }
+
+    .br-chip{
+      border-radius:999px;
+      background:#f1f5f9;
+      border:1px solid #e2e8f0;
+      padding:3px 6px;
+      font-size:8.4px;
+      font-weight:800;
+      color:#334155;
+    }
+
+    .br-empty{
+      border:1px dashed #cbd5e1;
+      background:#f8fafc;
+      border-radius:14px;
+      padding:16px;
+      text-align:center;
+      color:#64748b;
+      font-size:10.5px;
+      line-height:1.55;
+    }
+
+    .br-footer{
+      position:absolute;
+      left:12mm;
+      right:12mm;
+      bottom:8mm;
+      border-top:1px solid #e2e8f0;
+      padding-top:5px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      color:#64748b;
+      font-size:8.7px;
+    }
+
+    .br-quick-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:.75rem;
+    }
+
+    .br-quick-card{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#0b1220;
+      padding:.9rem;
+    }
+
+    .br-quick-card .label{
+      color:var(--muted);
+      font-size:.78rem;
+      font-weight:800;
+      margin-bottom:.35rem;
+    }
+
+    .br-quick-card .value{
+      font-size:1.55rem;
+      font-weight:1000;
+      line-height:1.1;
+    }
+
+    .br-quick-card .sub{
+      color:var(--muted);
+      font-size:.78rem;
+      margin-top:.25rem;
+    }
+
+    .br-busy-overlay{
+      position:fixed;
+      inset:0;
+      z-index:300;
+      background:#020617cc;
+      display:grid;
+      place-items:center;
+      padding:1rem;
+      backdrop-filter:blur(8px);
+    }
+
+    .br-busy-card{
+      width:min(460px,100%);
+      background:linear-gradient(145deg,#172033,#0f172a);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:1.4rem;
+      box-shadow:0 22px 70px #000d;
+      text-align:center;
+    }
+
+    .br-spinner{
+      width:42px;
+      height:42px;
+      margin:0 auto 1rem;
+      border-radius:50%;
+      border:4px solid #334155;
+      border-top-color:#38bdf8;
+      animation:brSpin .9s linear infinite;
+    }
+
+    @keyframes brSpin{
+      to{transform:rotate(360deg)}
+    }
+
+    .br-busy-bar{
+      height:9px;
+      background:#020617;
+      border:1px solid var(--line);
+      border-radius:999px;
+      overflow:hidden;
+      margin-top:1rem;
+    }
+
+    .br-busy-bar span{
+      display:block;
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,#38bdf8,#a78bfa);
+      transition:width .2s ease;
+    }
+
+    .br-report-root.br-bw .br-cover-hero,
+    .br-report-root.br-bw .br-avatar{
+      background:#ffffff!important;
+      color:#111827!important;
+      border:2px solid #111827!important;
+      box-shadow:none!important;
+    }
+
+    .br-report-root.br-bw .br-cover-hero:after,
+    .br-report-root.br-bw .br-avatar:after{
+      display:none!important;
+    }
+
+    .br-report-root.br-bw .br-badge,
+    .br-report-root.br-bw .br-chip,
+    .br-report-root.br-bw .br-rank,
+    .br-report-root.br-bw .br-big-score{
+      background:#ffffff!important;
+      color:#111827!important;
+      border-color:#111827!important;
+    }
+
+    .br-report-root.br-bw .br-bar span,
+    .br-report-root.br-bw .br-bar span.amber,
+    .br-report-root.br-bw .br-bar span.red,
+    .br-report-root.br-bw .br-bar span.purple,
+    .br-report-root.br-bw .br-section-heading:before{
+      background:#111827!important;
+    }
+
     @media (max-width:1200px){
       .grid-5,.grid-4,.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .br-report-layout{grid-template-columns:1fr}
+      .br-controls{position:static}
+      .br-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
 
     @media (max-width:900px){
@@ -472,6 +1312,77 @@
       aside{position:relative;height:auto}
       .grid-5,.grid-4,.grid-3,.grid-2,.form-row{grid-template-columns:1fr}
       .topbar{display:block}
+      .br-inline-grid,
+      .br-quick-grid{grid-template-columns:1fr}
+    }
+
+    @media print{
+      @page{
+        size:A4 portrait;
+        margin:0;
+      }
+
+      body.br-printing{
+        background:#fff!important;
+      }
+
+      body.br-printing #toastHost,
+      body.br-printing #modalHost,
+      body.br-printing #brBusyOverlay,
+      body.br-printing #lockScreen,
+      body.br-printing aside,
+      body.br-printing .topbar,
+      body.br-printing .br-no-print,
+      body.br-printing .br-controls,
+      body.br-printing .br-quick-summary,
+      body.br-printing .br-stage-title{
+        display:none!important;
+      }
+
+      body.br-printing #appShell{
+        display:block!important;
+      }
+
+      body.br-printing main{
+        padding:0!important;
+        max-width:none!important;
+        margin:0!important;
+        width:auto!important;
+      }
+
+      body.br-printing #view > *:not(.br-print-wrapper){
+        display:none!important;
+      }
+
+      body.br-printing .br-report-layout{
+        display:block!important;
+      }
+
+      body.br-printing .br-report-stage{
+        border:0!important;
+        border-radius:0!important;
+        padding:0!important;
+        background:#fff!important;
+        overflow:visible!important;
+        box-shadow:none!important;
+      }
+
+      body.br-printing .br-report-root{
+        width:auto!important;
+        margin:0!important;
+      }
+
+      body.br-printing .br-pdf-page{
+        width:210mm!important;
+        height:297mm!important;
+        margin:0!important;
+        box-shadow:none!important;
+        page-break-after:always!important;
+      }
+
+      body.br-printing .br-pdf-page:last-child{
+        page-break-after:auto!important;
+      }
     }
   </style>
 </head>
@@ -479,6 +1390,17 @@
 <body>
   <div id="toastHost" class="toast-host"></div>
   <div id="modalHost"></div>
+
+  <div id="brBusyOverlay" class="br-busy-overlay hidden">
+    <div class="br-busy-card" role="status" aria-live="polite">
+      <div class="br-spinner" aria-hidden="true"></div>
+      <h2 id="brBusyTitle" style="margin:.2rem 0">正在產生報告</h2>
+      <p id="brBusyText" class="muted" style="margin:.4rem 0 0">請稍候，系統正在整理學生數據。</p>
+      <div class="br-busy-bar">
+        <span id="brBusyBar"></span>
+      </div>
+    </div>
+  </div>
 
   <section id="lockScreen" class="lock">
     <div class="lock-card">
@@ -521,6 +1443,7 @@
       <nav>
         <button data-view="dashboard" onclick="showView('dashboard')">總覽 Dashboard</button>
         <button data-view="students" onclick="showView('students')">學生 Students</button>
+        <button data-view="reports" onclick="showView('reports')">Big Report PDF</button>
         <button data-view="upload" onclick="showView('upload')">上載中心 Upload Centre</button>
         <button data-view="unmatched" onclick="showView('unmatched')">未配對 Unmatched</button>
         <button data-view="imports" onclick="showView('imports')">匯入紀錄 Imports</button>
@@ -636,7 +1559,18 @@ const state = {
   studentSearch:"",
   profileTab:"overview",
   profileFilters:{area:"",type:"",diagnosisPriority:"",diagnosisArea:""},
-  assessmentSort:"date_desc"
+  assessmentSort:"date_desc",
+  bigReport:{
+    studentId:"",
+    periodStart:"",
+    periodEnd:"",
+    theme:"color",
+    includeFiveAreas:true,
+    includeBest8:true,
+    includeCharacter:true,
+    includeCognitive:true,
+    includeRevision:true
+  }
 };
 
 function uid(prefix="id"){
@@ -2122,6 +3056,7 @@ async function showView(view){
   const titles = {
     dashboard:"總覽 Dashboard",
     students:"學生 Students",
+    reports:"Big Report PDF",
     upload:"上載中心 Upload Centre",
     unmatched:"未配對問卷 Unmatched",
     imports:"匯入紀錄 Import History",
@@ -2133,6 +3068,7 @@ async function showView(view){
 
   if(view === "dashboard") return renderDashboard();
   if(view === "students") return renderStudents();
+  if(view === "reports") return renderBigReports();
   if(view === "upload") return renderUpload();
   if(view === "unmatched") return renderUnmatched();
   if(view === "imports") return renderImports();
@@ -2674,6 +3610,7 @@ async function renderStudentProfile(){
       `).join("")}
       <button class="ghost" onclick="showView('students')">返回學生列表</button>
       <button class="ghost" onclick="exportStudentCsv('${esc(s.student_id)}')">匯出學生 CSV</button>
+      <button class="ghost" onclick="openBigReportForStudent('${esc(s.student_id)}')">Big Report PDF</button>
     </div>
 
     <div id="profileTab"></div>
@@ -4187,10 +5124,11 @@ async function renderBackup(){
     </div>
 
     <div class="card" style="margin-top:1rem">
-      <h2>CSV 匯出 / CSV Exports</h2>
+      <h2>CSV / PDF 匯出 / Exports</h2>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap">
         <button onclick="exportClassCsv()">匯出全班成績 CSV</button>
         <button class="secondary" onclick="showView('students')">選擇個別學生匯出</button>
+        <button class="secondary" onclick="showView('reports')">Big Report PDF Export</button>
       </div>
     </div>
   `;
@@ -4403,6 +5341,1268 @@ async function exportStudentCsv(studentId){
   }
 
   downloadText(`${p.student.normalized_student_code || "student"}_export_${todayIso()}.csv`, toCsv(rows), "text/csv;charset=utf-8");
+}
+
+/* ------------------------------------------------------------
+   Big Report PDF Export Functions
+   ------------------------------------------------------------ */
+
+function brMonthStartIso(){
+  const d = new Date();
+  d.setDate(1);
+  return d.toISOString().slice(0,10);
+}
+
+function brEnsureDefaults(students=[]){
+  if(!state.bigReport.periodStart) state.bigReport.periodStart = brMonthStartIso();
+  if(!state.bigReport.periodEnd) state.bigReport.periodEnd = todayIso();
+  if(!state.bigReport.studentId){
+    state.bigReport.studentId = state.currentStudentId || (students[0] ? students[0].student_id : "");
+  }
+  if(!students.some(s => s.student_id === state.bigReport.studentId)){
+    state.bigReport.studentId = students[0] ? students[0].student_id : "";
+  }
+}
+
+function brOptions(){
+  return {
+    studentId:state.bigReport.studentId,
+    periodStart:state.bigReport.periodStart,
+    periodEnd:state.bigReport.periodEnd,
+    theme:state.bigReport.theme || "color",
+    includeFiveAreas:state.bigReport.includeFiveAreas !== false,
+    includeBest8:state.bigReport.includeBest8 !== false,
+    includeCharacter:state.bigReport.includeCharacter !== false,
+    includeCognitive:state.bigReport.includeCognitive !== false,
+    includeRevision:state.bigReport.includeRevision !== false
+  };
+}
+
+async function renderBigReports(){
+  const students = (await idbGetAll("students"))
+    .filter(s => s.active_status === "active")
+    .sort((a,b) => String(a.normalized_student_code).localeCompare(String(b.normalized_student_code)));
+
+  brEnsureDefaults(students);
+  const options = brOptions();
+
+  if(!students.length){
+    qs("#view").innerHTML = `
+      <div class="card">
+        <h2>Big Report PDF</h2>
+        <p class="muted">暫未有學生資料。請先匯入名冊、成績或載入虛構示範資料。</p>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button onclick="showView('upload')">前往上載中心</button>
+          <button class="secondary" onclick="seedDemoData()">載入虛構示範資料</button>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  qs("#view").innerHTML = `
+    <div class="br-print-wrapper">
+      <div class="br-report-layout">
+        <section class="card br-controls br-no-print">
+          <h2>Big Report PDF</h2>
+          <p class="muted small">使用目前 IndexedDB 內的學生、評估、自評、診斷及教師備註，產生 A4 PDF 報告。</p>
+
+          <label>選擇學生 Student</label>
+          <select id="brStudentSelect" onchange="state.bigReport.studentId=this.value;brRefreshPreview()">
+            ${students.map(s => `
+              <option value="${esc(s.student_id)}" ${s.student_id === options.studentId ? "selected" : ""}>
+                ${esc(s.normalized_student_code || "")} ${esc(studentDisplayName(s))}
+              </option>
+            `).join("")}
+          </select>
+
+          <label>報告涵蓋時段 Report period</label>
+          <div class="br-inline-grid">
+            <input id="brPeriodStart" type="date" value="${esc(options.periodStart)}" onchange="state.bigReport.periodStart=this.value;brRefreshPreview()">
+            <input id="brPeriodEnd" type="date" value="${esc(options.periodEnd)}" onchange="state.bigReport.periodEnd=this.value;brRefreshPreview()">
+          </div>
+
+          <label>PDF 顏色模式</label>
+          <select id="brThemeSelect" onchange="state.bigReport.theme=this.value;brRefreshPreview()">
+            <option value="color" ${options.theme === "color" ? "selected" : ""}>彩色版 Color</option>
+            <option value="bw" ${options.theme === "bw" ? "selected" : ""}>黑白列印版 Black & White</option>
+          </select>
+
+          <label>Report Sections</label>
+          <label class="br-check">
+            <input type="checkbox" ${options.includeFiveAreas ? "checked" : ""} onchange="state.bigReport.includeFiveAreas=this.checked;brRefreshPreview()">
+            <span>包含 5 個 Area Report</span>
+          </label>
+          <label class="br-check">
+            <input type="checkbox" ${options.includeBest8 ? "checked" : ""} onchange="state.bigReport.includeBest8=this.checked;brRefreshPreview()">
+            <span>包含 Best 8 Topics Performance</span>
+          </label>
+          <label class="br-check">
+            <input type="checkbox" ${options.includeCharacter ? "checked" : ""} onchange="state.bigReport.includeCharacter=this.checked;brRefreshPreview()">
+            <span>包含遊戲角色能力表 Character Status</span>
+          </label>
+          <label class="br-check">
+            <input type="checkbox" ${options.includeCognitive ? "checked" : ""} onchange="state.bigReport.includeCognitive=this.checked;brRefreshPreview()">
+            <span>包含認知落差分析 Cognitive Gap</span>
+          </label>
+          <label class="br-check">
+            <input type="checkbox" ${options.includeRevision ? "checked" : ""} onchange="state.bigReport.includeRevision=this.checked;brRefreshPreview()">
+            <span>包含個人化溫習建議 Revision Plan</span>
+          </label>
+
+          <div class="br-button-stack">
+            <button class="secondary" onclick="brRefreshPreview()">Preview Big Report</button>
+            <button onclick="brDownloadCurrentStudentPdf()">Download Student PDF</button>
+            <button class="success" onclick="brPrintCurrentReport()">Print Current Report</button>
+            <button class="ghost" onclick="brExportWholeClassZip()">Export Whole Class ZIP</button>
+          </div>
+
+          <div class="privacy small">
+            PDF 以瀏覽器前端產生，不會自動上載學生資料。若 CDN 被學校網絡阻擋，PDF / ZIP 功能可能需要可連線狀態才可載入 library。
+          </div>
+        </section>
+
+        <section class="grid">
+          <section class="card br-quick-summary br-no-print">
+            <div class="section-title">
+              <div>
+                <h2 id="brQuickTitle" style="margin:0">Big Report Preview</h2>
+                <div id="brQuickSubtitle" class="muted small">正在載入...</div>
+              </div>
+              <span class="pill blue">A4 PDF Ready</span>
+            </div>
+            <div id="brQuickStats" class="br-quick-grid"></div>
+          </section>
+
+          <section class="br-report-stage">
+            <div class="br-stage-title br-no-print">
+              <div>
+                <h2 style="margin:.1rem 0">PDF Preview</h2>
+                <div class="small muted">以下白色 A4 頁面會直接輸出成 PDF。</div>
+              </div>
+              <span class="pill purple">Big Report</span>
+            </div>
+            <div id="brReportPreview" class="br-report-root"></div>
+          </section>
+        </section>
+      </div>
+    </div>
+  `;
+
+  await brRefreshPreview();
+}
+
+async function openBigReportForStudent(studentId){
+  state.bigReport.studentId = studentId;
+  state.currentStudentId = studentId;
+  await showView("reports");
+}
+
+async function brRefreshPreview(){
+  const root = qs("#brReportPreview");
+  if(!root) return;
+
+  const options = brOptions();
+  if(!options.studentId){
+    root.innerHTML = `<div class="br-pdf-page"><div class="br-empty">暫未有學生資料。</div></div>`;
+    return;
+  }
+
+  try{
+    const profile = await getStudentProfile(options.studentId);
+    const report = await brBuildReportData(profile, options);
+
+    const quickTitle = qs("#brQuickTitle");
+    const quickSubtitle = qs("#brQuickSubtitle");
+    const quickStats = qs("#brQuickStats");
+
+    if(quickTitle) quickTitle.textContent = `${report.displayName} — Big Report`;
+    if(quickSubtitle) quickSubtitle.textContent = `${report.student.normalized_student_code || ""}｜${report.student.academic_year || ""}｜${brPeriodLabel(options)}`;
+    if(quickStats) quickStats.innerHTML = brRenderQuickStats(report);
+
+    root.className = `br-report-root ${options.theme === "bw" ? "br-bw" : ""}`;
+    root.innerHTML = brRenderReportPages(report, options);
+  }catch(err){
+    console.error(err);
+    root.innerHTML = `
+      <div class="br-pdf-page">
+        ${brRenderPageTop("Big Report PDF", "Error")}
+        <div class="br-empty">產生 Big Report 時發生錯誤：${esc(err.message || err)}</div>
+        ${brRenderFooter("Error",1,1)}
+      </div>
+    `;
+  }
+}
+
+async function brBuildReportData(profile, options){
+  const periodResults = profile.results.filter(r => brDateInRange(r.assessment_date, options));
+  const periodQuestionnaires = profile.questionnaires.filter(q => brDateInRange(q.completion_date, options));
+  const periodDiagnosesRaw = profile.diagnoses.filter(d => {
+    const latestDate = d.latest_assessment_summary && d.latest_assessment_summary.date;
+    return !latestDate || brDateInRange(latestDate, options);
+  });
+
+  const areaStats = await brComputeAreaStatsForReport(profile, periodResults, periodQuestionnaires, periodDiagnosesRaw);
+  const presentResults = periodResults.filter(r => r.attendance_status === "present" && r.percentage != null);
+  const validScores = presentResults.map(r => Number(r.percentage)).filter(Number.isFinite);
+  const resultAverage = validScores.length ? brRound(validScores.reduce((s,x) => s + x,0) / validScores.length,1) : null;
+  const areaScores = areaStats.map(a => a.score).filter(x => x != null && Number.isFinite(Number(x)));
+  const areaAverage = areaScores.length ? brRound(areaScores.reduce((s,x) => s + Number(x),0) / areaScores.length,1) : null;
+  const overall = areaAverage != null ? Math.round(areaAverage) : resultAverage != null ? Math.round(resultAverage) : null;
+  const completionBase = periodResults.filter(r => r.attendance_status !== "invalid").length;
+  const completionRate = completionBase ? Math.round(presentResults.length / completionBase * 100) : null;
+
+  const topicStats = await brComputeTopicStats(periodResults);
+  const bestTopics = topicStats.filter(t => t.score != null).sort((a,b) => b.score - a.score || b.assessment_count - a.assessment_count).slice(0,8);
+  const weakTopics = topicStats.filter(t => t.score != null).sort((a,b) => a.score - b.score || b.assessment_count - a.assessment_count).slice(0,8);
+  const resolvedDiagnoses = await brResolveDiagnoses(periodDiagnosesRaw);
+
+  const strongestArea = areaStats.filter(a => a.score != null).sort((a,b) => b.score - a.score)[0] || null;
+  const weakestArea = areaStats.filter(a => a.score != null).sort((a,b) => a.score - b.score)[0] || null;
+  const character = brCharacterProfile(strongestArea, overall, profile.counts.assessment_records + profile.counts.questionnaire_responses);
+
+  return {
+    profile,
+    student:profile.student,
+    displayName:profile.display_name,
+    areaStats,
+    results:periodResults,
+    questionnaires:periodQuestionnaires,
+    diagnoses:resolvedDiagnoses,
+    notes:profile.notes,
+    presentResults,
+    resultAverage,
+    areaAverage,
+    overall,
+    completionRate,
+    topicStats,
+    bestTopics,
+    weakTopics,
+    strongestArea,
+    weakestArea,
+    character
+  };
+}
+
+async function brComputeAreaStatsForReport(profile, results, questionnaires, diagnoses){
+  const settings = await getSettings();
+  const qAreas = new Set(questionnaires.map(q => q.area_id));
+  const priorityRank = {"High priority":3,"Moderate priority":2,"Low priority":1,"Insufficient evidence":0};
+  const priorityByArea = {};
+
+  for(const d of diagnoses){
+    const old = priorityByArea[d.area_id] || "Insufficient evidence";
+    if((priorityRank[d.priority] || 0) > (priorityRank[old] || 0)){
+      priorityByArea[d.area_id] = d.priority;
+    }
+  }
+
+  const out = [];
+
+  for(const area of AREA_LIST){
+    const areaResults = results.filter(r => r.area_id === area.area_id);
+    const valid = areaResults.filter(r => r.attendance_status === "present" && r.percentage != null);
+    let score = null;
+
+    if(valid.length){
+      if(settings.aggregation_method === "simple"){
+        score = valid.reduce((s,r) => s + r.percentage,0) / valid.length;
+      }else if(settings.aggregation_method === "recency"){
+        const sorted = [...valid].sort((a,b) => String(b.assessment_date || "").localeCompare(String(a.assessment_date || "")));
+        score = weightedAverage(sorted.map((r,i) => ({pct:r.percentage,weight:(r.weight || 1) * Math.pow(.85,i)})));
+      }else{
+        score = weightedAverage(valid.map(r => ({pct:r.percentage,weight:r.weight || 1})));
+      }
+      score = brRound(score,1);
+    }
+
+    let stateText;
+    if(areaResults.length === 0 && !qAreas.has(area.area_id)){
+      stateText = "No period evidence / 本期未有資料";
+    }else if(valid.length){
+      stateText = "Assessed in period / 本期已評估";
+    }else{
+      stateText = "Self-assessment only / 只有自評";
+    }
+
+    const validSorted = [...valid].sort((a,b) => String(a.assessment_date || "").localeCompare(String(b.assessment_date || "")));
+    let trend = "—";
+    if(validSorted.length >= 2){
+      const diff = validSorted[validSorted.length-1].percentage - validSorted[validSorted.length-2].percentage;
+      trend = diff >= 5 ? "↑" : diff <= -5 ? "↓" : "→";
+    }
+
+    const latestDates = [];
+    areaResults.forEach(r => { if(r.assessment_date) latestDates.push(r.assessment_date); });
+    questionnaires.forEach(q => { if(q.area_id === area.area_id && q.completion_date) latestDates.push(q.completion_date); });
+
+    out.push({
+      ...area,
+      state:stateText,
+      score,
+      band:await bandFor(score),
+      assessment_count:valid.length,
+      trend,
+      gap_status:priorityByArea[area.area_id] || "Insufficient evidence",
+      latest_evidence_date:latestDates.length ? latestDates.sort().at(-1) : null,
+      original:profile.area_stats.find(x => x.area_id === area.area_id) || null
+    });
+  }
+
+  return out;
+}
+
+async function brComputeTopicStats(results){
+  const groups = new Map();
+
+  for(const r of results){
+    if(r.attendance_status !== "present" || r.percentage == null) continue;
+
+    const ids = Array.isArray(r.topic_ids) && r.topic_ids.length ? r.topic_ids : [`area:${r.area_id}`];
+
+    for(const id of ids){
+      if(!groups.has(id)){
+        groups.set(id, {
+          key:id,
+          topic_id:id.startsWith("area:") ? null : id,
+          area_id:r.area_id,
+          values:[],
+          assessment_titles:new Set(),
+          latest_date:"",
+          latest_title:""
+        });
+      }
+
+      const g = groups.get(id);
+      g.values.push({pct:Number(r.percentage), weight:Number(r.weight || 1)});
+      g.assessment_titles.add(r.title || "");
+      if(String(r.assessment_date || "") >= String(g.latest_date || "")){
+        g.latest_date = r.assessment_date || "";
+        g.latest_title = r.title || "";
+      }
+    }
+  }
+
+  const out = [];
+  for(const g of groups.values()){
+    const score = g.values.length ? brRound(weightedAverage(g.values),1) : null;
+    let label;
+    if(g.key.startsWith("area:")){
+      const areaId = g.key.split(":")[1];
+      const area = AREA_BY_ID[areaId];
+      label = area ? `${area.label_zh} / ${area.label_en}` : "Area overall";
+    }else{
+      label = await topicLabel(g.key);
+    }
+
+    out.push({
+      ...g,
+      name:label,
+      score,
+      assessment_count:g.values.length,
+      assessment_title_count:g.assessment_titles.size
+    });
+  }
+
+  return out;
+}
+
+async function brResolveDiagnoses(diagnoses){
+  const out = [];
+  for(const d of diagnoses){
+    out.push({
+      ...d,
+      topic_label:await topicLabel(d.topic_id),
+      area_label:areaLabel(d.area_id)
+    });
+  }
+  return out;
+}
+
+function brDateInRange(dateValue, options){
+  const d = String(dateValue || "").slice(0,10);
+  if(!d) return true;
+  if(options.periodStart && d < options.periodStart) return false;
+  if(options.periodEnd && d > options.periodEnd) return false;
+  return true;
+}
+
+function brRound(value, decimals=1){
+  const n = Number(value);
+  if(!Number.isFinite(n)) return null;
+  const p = Math.pow(10,decimals);
+  return Math.round(n * p) / p;
+}
+
+function brScoreText(value){
+  if(value == null || !Number.isFinite(Number(value))) return "—";
+  return `${brRound(value,1)}%`;
+}
+
+function brGrade(score){
+  const n = Number(score);
+  if(!Number.isFinite(n)) return "N/A";
+  if(n >= 90) return "A+";
+  if(n >= 80) return "A";
+  if(n >= 65) return "B";
+  if(n >= 50) return "C";
+  if(n >= 35) return "D";
+  return "E";
+}
+
+function brBadgeKindFromScore(score){
+  const n = Number(score);
+  if(!Number.isFinite(n)) return "";
+  if(n >= 80) return "green";
+  if(n >= 50) return "amber";
+  return "red";
+}
+
+function brPriorityBadgeKind(priority){
+  if(priority === "High priority") return "red";
+  if(priority === "Moderate priority") return "amber";
+  if(priority === "Low priority") return "green";
+  return "";
+}
+
+function brPeriodLabel(options){
+  return `${options.periodStart || "N/A"} 至 ${options.periodEnd || "N/A"}`;
+}
+
+function brCharacterProfile(strongestArea, overall, evidenceCount){
+  const key = strongestArea ? strongestArea.area_id : "IV";
+  const map = {
+    I:{type:"Thermal Alchemist", title:"熱學鍊金師", icon:"🔥"},
+    II:{type:"Motion Knight", title:"力學騎士", icon:"⚔️"},
+    III:{type:"Wave Ranger", title:"波動遊俠", icon:"🌊"},
+    IV:{type:"Field Mage", title:"電磁法師", icon:"⚡"},
+    V:{type:"Nuclear Guardian", title:"核能守護者", icon:"☢️"}
+  };
+  const profile = map[key] || map.IV;
+  const level = Math.max(1, Math.min(99, Math.round((Number(overall || 0) / 5) + Number(evidenceCount || 0) / 4)));
+  return {...profile, level};
+}
+
+function brRenderQuickStats(report){
+  const best = report.bestTopics[0];
+  const weak = report.weakTopics[0];
+
+  return `
+    <div class="br-quick-card">
+      <div class="label">整體掌握度</div>
+      <div class="value">${report.overall == null ? "—" : report.overall + "%"}</div>
+      <div class="sub">Grade ${brGrade(report.overall)}</div>
+    </div>
+    <div class="br-quick-card">
+      <div class="label">本期評估記錄</div>
+      <div class="value">${report.presentResults.length}</div>
+      <div class="sub">有效 assessed records</div>
+    </div>
+    <div class="br-quick-card">
+      <div class="label">最強 Topic / Area</div>
+      <div class="value" style="font-size:1rem">${esc(best ? best.name : report.strongestArea ? report.strongestArea.label_zh : "—")}</div>
+      <div class="sub">${best ? brScoreText(best.score) : report.strongestArea ? brScoreText(report.strongestArea.score) : "暫未有足夠數據"}</div>
+    </div>
+    <div class="br-quick-card">
+      <div class="label">優先改善</div>
+      <div class="value" style="font-size:1rem">${esc(weak ? weak.name : report.weakestArea ? report.weakestArea.label_zh : "—")}</div>
+      <div class="sub">${weak ? brScoreText(weak.score) : report.weakestArea ? brScoreText(report.weakestArea.score) : "暫未有足夠數據"}</div>
+    </div>
+  `;
+}
+
+function brRenderReportPages(report, options){
+  const pages = [];
+
+  pages.push({
+    cover:true,
+    title:"Student Big Report",
+    subtitle:"Overall learning evidence summary",
+    html:brRenderCoverPage(report, options)
+  });
+
+  if(options.includeFiveAreas){
+    pages.push({
+      title:"5 Area Report",
+      subtitle:"HKDSE Physics core areas — Heat, Mechanics, Waves, E&M, Nuclear",
+      html:brRenderFiveAreaPage(report)
+    });
+  }
+
+  if(options.includeCharacter || options.includeBest8){
+    pages.push({
+      title:"Character Status & Best 8 Topics",
+      subtitle:"Student-friendly strengths profile and topic performance",
+      html:brRenderCharacterBest8Page(report, options)
+    });
+  }
+
+  if(options.includeCognitive || options.includeRevision){
+    pages.push({
+      title:"Cognitive Gap & Revision Plan",
+      subtitle:"Evidence-based support signals and personalized next steps",
+      html:brRenderCognitiveRevisionPage(report, options)
+    });
+  }
+
+  return pages.map((page,index) => `
+    <article class="br-pdf-page">
+      ${page.cover ? "" : brRenderPageTop(page.title,page.subtitle)}
+      ${page.html}
+      ${brRenderFooter(report.displayName,index+1,pages.length)}
+    </article>
+  `).join("");
+}
+
+function brRenderPageTop(title, subtitle){
+  return `
+    <div class="br-page-top">
+      <div>
+        <h1 class="br-page-title">${esc(title)}</h1>
+        <p class="br-page-subtitle">${esc(subtitle || "")}</p>
+      </div>
+      <span class="br-badge">Big Report PDF</span>
+    </div>
+  `;
+}
+
+function brRenderFooter(studentName, current, total){
+  return `
+    <div class="br-footer">
+      <span>${esc(studentName)}｜HKDSE Physics KMS｜Teacher-only confidential report</span>
+      <span>Page ${current} / ${total}</span>
+    </div>
+  `;
+}
+
+function brRenderCoverPage(report, options){
+  const s = report.student;
+  const latestNote = report.notes[0];
+  const latestQ = report.questionnaires[0];
+  const best = report.bestTopics[0];
+  const weak = report.weakTopics[0];
+
+  return `
+    <div class="br-cover-hero">
+      <h1>HKDSE Physics<br>Student Big Report</h1>
+      <p>成長導向・證據連結・角色狀態表｜Teacher-only confidential report</p>
+    </div>
+
+    <div class="br-cover-grid">
+      <div class="br-card">
+        <div class="br-section-heading" style="margin-top:0">學生資料 Student Information</div>
+        <table class="br-info-table">
+          <tr><th>學生姓名</th><td>${esc(report.displayName)}</td></tr>
+          <tr><th>班別學號</th><td>${esc(s.normalized_student_code || "—")}</td></tr>
+          <tr><th>班別</th><td>${esc(s.class_code || "—")} #${esc(s.class_number || "—")}</td></tr>
+          <tr><th>學年</th><td>${esc(s.academic_year || "—")}</td></tr>
+          <tr><th>報告時段</th><td>${esc(brPeriodLabel(options))}</td></tr>
+          <tr><th>產生日期</th><td>${esc(todayIso())}</td></tr>
+        </table>
+      </div>
+
+      <div class="br-card">
+        <div class="br-big-score">
+          <div>
+            <div class="num">${report.overall == null ? "—" : report.overall}</div>
+            <div class="label">Overall Mastery</div>
+            <div class="grade">Grade ${brGrade(report.overall)}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="br-section-heading">整體學習表現 Summary</div>
+
+    <div class="br-metric-grid">
+      <div class="br-metric">
+        <div class="name">本期評估記錄</div>
+        <div class="value">${report.results.length}</div>
+      </div>
+      <div class="br-metric">
+        <div class="name">有效成績平均</div>
+        <div class="value">${brScoreText(report.resultAverage)}</div>
+      </div>
+      <div class="br-metric">
+        <div class="name">完成率</div>
+        <div class="value">${report.completionRate == null ? "—" : report.completionRate + "%"}</div>
+      </div>
+      <div class="br-metric">
+        <div class="name">本期問卷</div>
+        <div class="value">${report.questionnaires.length}</div>
+      </div>
+    </div>
+
+    <div class="br-metric-grid" style="margin-top:8px">
+      <div class="br-metric">
+        <div class="name">最強 Area</div>
+        <div class="value" style="font-size:13px">${esc(report.strongestArea ? report.strongestArea.label_zh : "—")}</div>
+      </div>
+      <div class="br-metric">
+        <div class="name">改善 Area</div>
+        <div class="value" style="font-size:13px">${esc(report.weakestArea ? report.weakestArea.label_zh : "—")}</div>
+      </div>
+      <div class="br-metric">
+        <div class="name">Best Topic</div>
+        <div class="value" style="font-size:12px">${esc(best ? best.name : "—")}</div>
+      </div>
+      <div class="br-metric">
+        <div class="name">Priority Topic</div>
+        <div class="value" style="font-size:12px">${esc(weak ? weak.name : "—")}</div>
+      </div>
+    </div>
+
+    <div class="br-comment">
+      <strong>老師摘要 Teacher Summary：</strong>
+      ${esc(brOverallComment(report))}
+      ${latestNote ? `<br><strong>最新教師備註：</strong>${esc(latestNote.note_text)}` : ""}
+      ${latestQ ? `<br><strong>最新自評：</strong>${esc(latestQ.title)}｜Green ${latestQ.summary.Green} / Yellow ${latestQ.summary.Yellow} / Red ${latestQ.summary.Red}` : ""}
+    </div>
+
+    <div class="br-section-heading">Included Sections</div>
+
+    <div class="br-metric-grid">
+      <div class="br-metric"><div class="name">5 Area Report</div><div class="value" style="font-size:14px">${options.includeFiveAreas ? "Included" : "Off"}</div></div>
+      <div class="br-metric"><div class="name">Best 8 Topics</div><div class="value" style="font-size:14px">${options.includeBest8 ? "Included" : "Off"}</div></div>
+      <div class="br-metric"><div class="name">Character Status</div><div class="value" style="font-size:14px">${options.includeCharacter ? "Included" : "Off"}</div></div>
+      <div class="br-metric"><div class="name">Revision Plan</div><div class="value" style="font-size:14px">${options.includeRevision ? "Included" : "Off"}</div></div>
+    </div>
+  `;
+}
+
+function brOverallComment(report){
+  if(report.overall == null){
+    return "本期未有足夠已評估成績產生整體掌握度。建議先安排基礎題、小測或自評問卷，以建立初步證據。";
+  }
+
+  const overall =
+    report.overall >= 80
+      ? "整體表現良好，學生在本期證據中顯示出穩定掌握。"
+      : report.overall >= 50
+        ? "學生已有部分基礎，但不同範疇及課題之間仍有差異，需要針對性鞏固。"
+        : "本期證據顯示學生需要更有結構的支援，宜先由核心概念及基本題重建信心。";
+
+  const strong = report.strongestArea ? `最強範疇為「${report.strongestArea.label_zh}」，` : "";
+  const weak = report.weakestArea ? `建議優先跟進「${report.weakestArea.label_zh}」。` : "";
+
+  return `${overall}${strong}${weak}`;
+}
+
+function brRenderFiveAreaPage(report){
+  if(!report.areaStats.length){
+    return `<div class="br-empty">暫未有足夠數據產生 5 Area Report。</div>`;
+  }
+
+  return `
+    <div class="br-section-heading" style="margin-top:0">HKDSE Physics 5 個主要範疇</div>
+    <div class="br-comment" style="margin-bottom:9px">
+      此頁根據所選報告時段內的成績及自評證據，整理五個主範疇的掌握度、證據量、趨勢及支援需要。
+      若某範疇顯示「本期未有資料」，代表該時段內未有相關評估或自評，而不是代表學生能力不足。
+    </div>
+    <div class="br-area-grid">
+      ${report.areaStats.map(a => brRenderAreaCard(a, report)).join("")}
+    </div>
+  `;
+}
+
+function brRenderAreaCard(area, report){
+  const width = area.score == null ? 0 : Math.max(0,Math.min(100,Number(area.score)));
+  const barKind = width >= 80 ? "" : width >= 50 ? "amber" : "red";
+  const areaTopics = report.topicStats.filter(t => t.area_id === area.area_id).sort((a,b) => b.score - a.score).slice(0,2);
+  const areaGaps = report.diagnoses.filter(d => d.area_id === area.area_id && d.priority !== "Low priority").slice(0,2);
+
+  return `
+    <div class="br-card br-area-card">
+      <div class="br-area-head">
+        <div>
+          <div class="br-area-name">${esc(area.area_id)}. ${esc(area.label_zh)}</div>
+          <div class="br-area-en">${esc(area.label_en)}</div>
+        </div>
+        <span class="br-badge ${brBadgeKindFromScore(area.score)}">${area.score == null ? "No Data" : brScoreText(area.score)}</span>
+      </div>
+
+      <div class="br-bar"><span class="${barKind}" style="width:${width}%"></span></div>
+
+      <div class="br-two-col">
+        <div class="br-mini-box">
+          <h4>狀態 / Evidence</h4>
+          <ul>
+            <li>${esc(area.state)}</li>
+            <li>評估記錄：${area.assessment_count}</li>
+            <li>趨勢：${esc(area.trend)}</li>
+          </ul>
+        </div>
+        <div class="br-mini-box">
+          <h4>Band / Priority</h4>
+          <ul>
+            <li>${esc(area.band.label_zh)} / ${esc(area.band.label_en)}</li>
+            <li>Gap：${esc(area.gap_status)}</li>
+            <li>最新：${esc(area.latest_evidence_date || "—")}</li>
+          </ul>
+        </div>
+        <div class="br-mini-box">
+          <h4>強項線索</h4>
+          <ul>
+            ${area.score == null ? `<li>暫未有足夠本期成績</li>` : area.score >= 80 ? `<li>本期掌握度穩定</li><li>可加入高階應用題</li>` : `<li>已有部分基礎</li><li>適合用短題鞏固</li>`}
+            ${areaTopics.length ? areaTopics.map(t => `<li>${esc(t.name)} ${brScoreText(t.score)}</li>`).join("") : ""}
+          </ul>
+        </div>
+        <div class="br-mini-box">
+          <h4>跟進建議</h4>
+          <ul>
+            ${areaGaps.length ? areaGaps.map(d => `<li>${esc(d.topic_label)}：${esc(d.priority)}</li>`).join("") : `<li>維持練習及定期重溫</li>`}
+            ${area.score != null && area.score < 50 ? `<li>先重教核心概念及基本題</li>` : `<li>用錯題簿追蹤常見失誤</li>`}
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function brRenderCharacterBest8Page(report, options){
+  const sections = [];
+
+  if(options.includeCharacter){
+    sections.push(brRenderCharacterStatus(report));
+  }
+
+  if(options.includeBest8){
+    sections.push(brRenderBest8Topics(report));
+  }
+
+  if(!sections.length){
+    return `<div class="br-empty">Character Status 及 Best 8 Topics 未有被選取。</div>`;
+  }
+
+  return sections.join("");
+}
+
+function brRenderCharacterStatus(report){
+  return `
+    <div class="br-section-heading" style="margin-top:0">Student Character Status</div>
+
+    <div class="br-character-grid">
+      <div class="br-avatar">
+        <div class="br-avatar-label">Character Class</div>
+        <div class="br-avatar-name">${esc(report.character.icon)} ${esc(report.character.title)}</div>
+        <div class="br-avatar-type">${esc(report.character.type)}</div>
+
+        <div class="br-avatar-stats">
+          <div class="br-avatar-stat">
+            <strong>Lv.${report.character.level}</strong>
+            <span>Learning Level</span>
+          </div>
+          <div class="br-avatar-stat">
+            <strong>${brGrade(report.overall)}</strong>
+            <span>Overall Rank</span>
+          </div>
+          <div class="br-avatar-stat">
+            <strong>${report.overall == null ? "—" : report.overall}</strong>
+            <span>Power Score</span>
+          </div>
+        </div>
+
+        <p style="font-size:9.8px;line-height:1.55;margin:17px 0 0;opacity:.9">
+          角色狀態表以學生最突出的物理範疇作為角色類型，幫助學生知道自己目前的強項，
+          同時看見下一步需要升級的能力。
+        </p>
+      </div>
+
+      <div class="br-ability-list">
+        ${report.areaStats.map(a => brRenderAbilityRow(a)).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function brRenderAbilityRow(area){
+  const score = area.score == null ? 0 : Math.round(area.score);
+  const barKind = score >= 80 ? "" : score >= 50 ? "amber" : "red";
+
+  return `
+    <div class="br-ability">
+      <div class="br-ability-row">
+        <div>
+          <div class="br-ability-title">${esc(area.area_id)}. ${esc(area.label_zh)} Power</div>
+          <div class="br-ability-desc">${esc(area.label_en)}｜${esc(area.state)}</div>
+          <div class="br-bar"><span class="${barKind}" style="width:${score}%"></span></div>
+        </div>
+        <div class="br-ability-score">${area.score == null ? "—" : score + "/100"}<br>${brGrade(area.score)}</div>
+      </div>
+    </div>
+  `;
+}
+
+function brRenderBest8Topics(report){
+  if(!report.bestTopics.length){
+    return `
+      <div class="br-section-heading">Best 8 Topics Performance</div>
+      <div class="br-empty">本期暫未有足夠 topic-level 成績數據產生 Best 8 Topics Performance。</div>
+    `;
+  }
+
+  return `
+    <div class="br-section-heading">Best 8 Topics Performance</div>
+
+    <div class="br-skill-grid">
+      ${report.bestTopics.map((t,i) => brRenderSkillCard(t,i)).join("")}
+    </div>
+
+    <table class="br-topic-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Topic / Area</th>
+          <th>Score</th>
+          <th>Evidence</th>
+          <th>Latest</th>
+          <th>Mastery</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${report.bestTopics.map((t,i) => `
+          <tr>
+            <td><span class="br-rank">${i+1}</span></td>
+            <td><strong>${esc(t.name)}</strong></td>
+            <td>${brScoreText(t.score)}</td>
+            <td>${t.assessment_count}</td>
+            <td>${esc(t.latest_date || "—")}<br>${esc(t.latest_title || "")}</td>
+            <td><span class="br-badge ${brBadgeKindFromScore(t.score)}">${esc(brMasteryLabel(t.score))}</span></td>
+            <td>${esc(brTopicComment(t))}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
+}
+
+function brRenderSkillCard(topic, index){
+  const meta = brSkillMeta(index);
+  const score = topic.score == null ? 0 : Math.round(topic.score);
+  const barKind = score >= 80 ? "" : score >= 50 ? "amber" : "red";
+
+  return `
+    <div class="br-card br-skill-card">
+      <div class="br-skill-icon">${meta.icon}</div>
+      <div class="br-skill-name">${esc(meta.name)}</div>
+      <div class="br-skill-topic">${esc(topic.name)}</div>
+      <div class="br-bar"><span class="${barKind}" style="width:${score}%"></span></div>
+      <span class="br-badge ${brBadgeKindFromScore(topic.score)}">${esc(brMasteryLabel(topic.score))}</span>
+    </div>
+  `;
+}
+
+function brSkillMeta(index){
+  const list = [
+    {icon:"⚡",name:"Field Control"},
+    {icon:"🧠",name:"Concept Core"},
+    {icon:"🚀",name:"Motion Boost"},
+    {icon:"🌊",name:"Wave Sense"},
+    {icon:"🔥",name:"Thermal Power"},
+    {icon:"🛡️",name:"Accuracy Shield"},
+    {icon:"🔍",name:"Evidence Vision"},
+    {icon:"☢️",name:"Nuclear Focus"}
+  ];
+  return list[index] || {icon:"⭐",name:"Physics Skill"};
+}
+
+function brMasteryLabel(score){
+  const n = Number(score);
+  if(!Number.isFinite(n)) return "No Data";
+  if(n >= 80) return "Mastery";
+  if(n >= 65) return "Secure";
+  if(n >= 50) return "Developing";
+  if(n >= 35) return "Foundation";
+  return "Priority";
+}
+
+function brTopicComment(topic){
+  const n = Number(topic.score);
+  if(!Number.isFinite(n)) return "暫未有足夠數據。";
+  if(n >= 80) return "表現穩定，可嘗試高階及跨課題題目。";
+  if(n >= 65) return "掌握大致穩定，建議加入變式題提高遷移能力。";
+  if(n >= 50) return "已有基礎，但仍需重溫概念及典型題型。";
+  return "需要重點支援，宜先由基本概念及短題開始。";
+}
+
+function brRenderCognitiveRevisionPage(report, options){
+  const sections = [];
+
+  if(options.includeCognitive){
+    sections.push(brRenderCognitiveSection(report));
+  }
+
+  if(options.includeRevision){
+    sections.push(brRenderRevisionSection(report));
+  }
+
+  if(!sections.length){
+    return `<div class="br-empty">Cognitive Gap 及 Revision Plan 未有被選取。</div>`;
+  }
+
+  return sections.join("");
+}
+
+function brRenderCognitiveSection(report){
+  const gaps = report.diagnoses
+    .filter(d => d.priority !== "Low priority" || d.gap_magnitude != null)
+    .sort((a,b) => {
+      const rank = {"High priority":1,"Moderate priority":2,"Insufficient evidence":3,"Low priority":4};
+      return (rank[a.priority] || 9) - (rank[b.priority] || 9) || Number(b.gap_magnitude || 0) - Number(a.gap_magnitude || 0);
+    })
+    .slice(0,4);
+
+  if(!gaps.length){
+    return `
+      <div class="br-section-heading" style="margin-top:0">認知落差分析 Cognitive Gap</div>
+      <div class="br-empty">本期暫未有足夠評估與自評配對證據產生認知落差分析。</div>
+    `;
+  }
+
+  return `
+    <div class="br-section-heading" style="margin-top:0">認知落差分析 Cognitive Gap</div>
+
+    <div class="br-comment" style="margin-bottom:8px">
+      系統比較學生自評信心與實際評估表現。此分析只作教學支援訊號，不是學生能力標籤，亦不代表最終 DSE 成績預測。
+    </div>
+
+    <div class="br-gap-grid">
+      ${gaps.map(d => {
+        const counts = d.confidence_counts || {Green:0,Yellow:0,Red:0};
+        const latest = d.latest_assessment_summary;
+        return `
+          <div class="br-card br-gap-card">
+            <div class="br-gap-head">
+              <div>
+                <div class="br-gap-title">${esc(d.topic_label)}</div>
+                <div class="br-area-en">${esc(d.area_label)}</div>
+              </div>
+              <span class="br-badge ${brPriorityBadgeKind(d.priority)}">${esc(d.priority)}</span>
+            </div>
+
+            <div class="br-gap-detail">
+              <div class="br-gap-mini">
+                評估表現
+                <strong>${d.performance_percentage == null ? "—" : brScoreText(d.performance_percentage)}</strong>
+              </div>
+              <div class="br-gap-mini">
+                自評信心
+                <strong>${d.confidence_score == null ? "—" : d.confidence_score + "/3"}</strong>
+              </div>
+              <div class="br-gap-mini">
+                Gap
+                <strong>${d.gap_magnitude == null ? "—" : d.gap_magnitude}</strong>
+              </div>
+            </div>
+
+            <p class="br-small-text">${esc(d.explanation)}</p>
+            <p class="br-small-text" style="margin-top:5px"><strong>建議：</strong>${esc(d.suggested_action)}</p>
+            <p class="br-small-text" style="margin-top:4px">
+              自評分佈：Green ${counts.Green || 0}｜Yellow ${counts.Yellow || 0}｜Red ${counts.Red || 0}
+              ${latest ? `｜Latest assessment: ${esc(latest.title)} (${esc(latest.date || "")})` : ""}
+            </p>
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+function brRenderRevisionSection(report){
+  const groups = brRevisionGroups(report);
+
+  return `
+    <div class="br-section-heading">個人化溫習建議 Personalized Revision Plan</div>
+
+    <div class="br-revision-grid">
+      <div class="br-card br-revision-card">
+        <span class="br-badge red">Priority 1</span>
+        <h3>必須優先處理</h3>
+        <p class="br-small-text">先處理最低掌握度或高優先診斷項目，集中重建概念及基本題步驟。</p>
+        ${brRenderChips(groups.priority1)}
+        <ul>
+          <li>每日 15–20 分鐘短練習。</li>
+          <li>先重溫核心公式、定義及單位。</li>
+          <li>每題寫出已知量、所求量、公式及代入。</li>
+          <li>重做錯題，確認錯因是否消失。</li>
+        </ul>
+      </div>
+
+      <div class="br-card br-revision-card">
+        <span class="br-badge amber">Priority 2</span>
+        <h3>需要鞏固</h3>
+        <p class="br-small-text">針對中等掌握但未穩定的課題，透過變式題及混合練習提升遷移能力。</p>
+        ${brRenderChips(groups.priority2)}
+        <ul>
+          <li>每星期 2–3 次 topic mixed practice。</li>
+          <li>加入圖像題、數據題及概念解釋題。</li>
+          <li>用限時短測改善速度及穩定度。</li>
+          <li>每星期檢查一次錯題簿。</li>
+        </ul>
+      </div>
+
+      <div class="br-card br-revision-card">
+        <span class="br-badge green">Priority 3</span>
+        <h3>保持優勢</h3>
+        <p class="br-small-text">已掌握得好的課題可作高階延伸，幫助學生由熟練走向靈活應用。</p>
+        ${brRenderChips(groups.priority3)}
+        <ul>
+          <li>每星期簡短重溫一次。</li>
+          <li>挑戰 structured questions 及跨課題題目。</li>
+          <li>嘗試向同學講解概念。</li>
+          <li>維持成功感及學習節奏。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="br-comment">
+      <strong>建議流程：</strong>
+      先完成 Priority 1 的基礎重建，再用 Priority 2 鞏固穩定性，最後透過 Priority 3 保持強項。
+      若學生出現「高信心但低表現」，建議以診斷題拆解錯因；若出現「低信心但表現不錯」，可給予具體正面回饋建立證據化自信。
+    </div>
+  `;
+}
+
+function brRevisionGroups(report){
+  const highDiag = report.diagnoses.filter(d => d.priority === "High priority").map(d => ({
+    name:d.topic_label || d.area_label,
+    score:d.performance_percentage
+  }));
+
+  const moderateDiag = report.diagnoses.filter(d => d.priority === "Moderate priority").map(d => ({
+    name:d.topic_label || d.area_label,
+    score:d.performance_percentage
+  }));
+
+  const weak = report.weakTopics.slice(0,4).map(t => ({name:t.name, score:t.score}));
+  const middle = report.topicStats.filter(t => t.score != null && t.score >= 50 && t.score < 80).slice(0,4).map(t => ({name:t.name, score:t.score}));
+  const strong = report.bestTopics.slice(0,4).map(t => ({name:t.name, score:t.score}));
+
+  return {
+    priority1:brUniqueChips([...highDiag,...weak]).slice(0,5),
+    priority2:brUniqueChips([...moderateDiag,...middle]).slice(0,5),
+    priority3:brUniqueChips(strong).slice(0,5)
+  };
+}
+
+function brUniqueChips(items){
+  const seen = new Set();
+  const out = [];
+  for(const item of items){
+    const key = item.name || "";
+    if(!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+  }
+  return out;
+}
+
+function brRenderChips(items){
+  if(!items.length){
+    return `<div class="br-chip-list"><span class="br-chip">暫未有足夠數據</span></div>`;
+  }
+
+  return `
+    <div class="br-chip-list">
+      ${items.map(item => `<span class="br-chip">${esc(item.name)}${item.score == null ? "" : " " + brScoreText(item.score)}</span>`).join("")}
+    </div>
+  `;
+}
+
+async function brDownloadCurrentStudentPdf(){
+  if(!state.bigReport.studentId){
+    toast("請先選擇學生。","warn");
+    return;
+  }
+
+  if(!window.html2canvas || !window.jspdf){
+    toast("PDF library 尚未載入完成，請稍後再試。若一直失敗，請檢查 CDN 是否被封鎖。","bad",7000);
+    return;
+  }
+
+  try{
+    brSetBusy(true,"正在產生學生 PDF","正在整理報告頁面...",8);
+    await brRefreshPreview();
+    await brWaitForRender();
+
+    const profile = await getStudentProfile(state.bigReport.studentId);
+    const blob = await brCreatePdfBlobFromPreview(progress => {
+      brSetBusy(true,"正在產生學生 PDF",`正在處理第 ${progress.current}/${progress.total} 頁...`,progress.percent);
+    });
+
+    brDownloadBlob(blob, `${brSafeFileName(profile.student.normalized_student_code || "student")}_${brSafeFileName(profile.display_name)}_Big_Report.pdf`);
+
+    brSetBusy(false);
+    toast("Big Report PDF 已成功下載。");
+  }catch(err){
+    console.error(err);
+    brSetBusy(false);
+    toast("產生 PDF 時發生錯誤：" + esc(err.message || err),"bad",7000);
+  }
+}
+
+async function brPrintCurrentReport(){
+  try{
+    await brRefreshPreview();
+    await brWaitForRender();
+    document.body.classList.add("br-printing");
+
+    const cleanup = () => document.body.classList.remove("br-printing");
+    window.addEventListener("afterprint", cleanup, {once:true});
+    window.print();
+    setTimeout(cleanup, 1600);
+  }catch(err){
+    toast("列印時發生錯誤：" + esc(err.message || err),"bad",7000);
+  }
+}
+
+async function brExportWholeClassZip(){
+  if(!window.html2canvas || !window.jspdf || !window.JSZip){
+    toast("PDF / ZIP library 尚未載入完成，請稍後再試。若一直失敗，請檢查 CDN 是否被封鎖。","bad",7000);
+    return;
+  }
+
+  const students = (await idbGetAll("students"))
+    .filter(s => s.active_status === "active")
+    .sort((a,b) => String(a.normalized_student_code).localeCompare(String(b.normalized_student_code)));
+
+  if(!students.length){
+    toast("暫未有學生資料，未能輸出全班 ZIP。","warn");
+    return;
+  }
+
+  const originalStudentId = state.bigReport.studentId;
+  const zip = new JSZip();
+
+  try{
+    brSetBusy(true,"正在輸出全班報告","準備產生每位學生的 Big Report PDF...",3);
+
+    for(let i=0;i<students.length;i++){
+      const student = students[i];
+      state.bigReport.studentId = student.student_id;
+
+      await brRefreshPreview();
+      await brWaitForRender();
+
+      const baseProgress = Math.round((i / students.length) * 92);
+      brSetBusy(true,"正在輸出全班報告",`正在產生 ${studentDisplayName(student)} (${i+1}/${students.length})...`,baseProgress);
+
+      const pdfBlob = await brCreatePdfBlobFromPreview(pageProgress => {
+        const portion = 92 / students.length;
+        const percent = Math.min(96,baseProgress + Math.round(pageProgress.percent / 100 * portion));
+        brSetBusy(true,"正在輸出全班報告",`正在處理 ${studentDisplayName(student)}：第 ${pageProgress.current}/${pageProgress.total} 頁...`,percent);
+      });
+
+      zip.file(
+        `${brSafeFileName(student.normalized_student_code || "student")}_${brSafeFileName(studentDisplayName(student))}_Big_Report.pdf`,
+        pdfBlob
+      );
+    }
+
+    brSetBusy(true,"正在輸出全班報告","正在壓縮 ZIP 檔案...",98);
+    const zipBlob = await zip.generateAsync({type:"blob"});
+    brDownloadBlob(zipBlob, `Physics_KMS_Whole_Class_Big_Reports_${todayIso()}.zip`);
+
+    state.bigReport.studentId = originalStudentId;
+    await brRefreshPreview();
+
+    brSetBusy(false);
+    toast("全班 Big Report ZIP 已成功下載。");
+  }catch(err){
+    console.error(err);
+    state.bigReport.studentId = originalStudentId;
+    await brRefreshPreview();
+    brSetBusy(false);
+    toast("輸出全班 ZIP 時發生錯誤：" + esc(err.message || err),"bad",7000);
+  }
+}
+
+async function brCreatePdfBlobFromPreview(onProgress){
+  const root = qs("#brReportPreview");
+  if(!root) throw new Error("Report preview not found.");
+
+  const pages = Array.from(root.querySelectorAll(".br-pdf-page"));
+  if(!pages.length) throw new Error("No PDF pages found.");
+
+  if(document.fonts && document.fonts.ready){
+    await document.fonts.ready;
+  }
+
+  const {jsPDF} = window.jspdf;
+  const pdf = new jsPDF({
+    orientation:"portrait",
+    unit:"mm",
+    format:"a4",
+    compress:true
+  });
+
+  for(let i=0;i<pages.length;i++){
+    const page = pages[i];
+
+    if(typeof onProgress === "function"){
+      onProgress({
+        current:i+1,
+        total:pages.length,
+        percent:Math.round((i+1) / pages.length * 100)
+      });
+    }
+
+    const canvas = await html2canvas(page, {
+      scale:2,
+      useCORS:true,
+      backgroundColor:"#ffffff",
+      logging:false,
+      windowWidth:page.scrollWidth,
+      windowHeight:page.scrollHeight
+    });
+
+    const imageData = canvas.toDataURL("image/jpeg",0.98);
+    if(i > 0) pdf.addPage();
+    pdf.addImage(imageData,"JPEG",0,0,210,297);
+  }
+
+  return pdf.output("blob");
+}
+
+function brWaitForRender(){
+  return new Promise(resolve => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  });
+}
+
+function brSetBusy(isBusy, title="", text="", percent=0){
+  const overlay = qs("#brBusyOverlay");
+  const titleEl = qs("#brBusyTitle");
+  const textEl = qs("#brBusyText");
+  const barEl = qs("#brBusyBar");
+
+  if(!overlay) return;
+
+  overlay.classList.toggle("hidden",!isBusy);
+
+  if(titleEl && title) titleEl.textContent = title;
+  if(textEl && text) textEl.textContent = text;
+  if(barEl) barEl.style.width = `${Math.max(0,Math.min(100,Number(percent || 0)))}%`;
+}
+
+function brDownloadBlob(blob, fileName){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url),1000);
+}
+
+function brSafeFileName(value){
+  return String(value || "report")
+    .trim()
+    .replace(/[\\/:*?"<>|]+/g,"_")
+    .replace(/\s+/g,"_")
+    .slice(0,90);
 }
 
 async function seedDemoData(){
