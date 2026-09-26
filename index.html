@@ -1384,6 +1384,74 @@
         page-break-after:auto!important;
       }
     }
+
+
+    /* Character-card radar: standalone SVG, no chart library or new storage. */
+    .rpg-sheet{--rpg-cyan:#22d3ee;--rpg-gold:#fbbf24;--rpg-purple:#c4b5fd;
+      border:1px solid #4759a7;border-radius:22px;background:radial-gradient(circle at 10% 12%,#213983 0%,transparent 33%),linear-gradient(130deg,#10152e,#151332 70%,#0b2033);color:#f8fafc;box-shadow:0 16px 45px #0006;overflow:hidden;margin-bottom:1rem}
+    .rpg-head{padding:17px 20px 11px;border-bottom:1px solid #7795db55;background:linear-gradient(90deg,#12234a,#37306455)}
+    .rpg-eyebrow{font-size:10px;letter-spacing:.18em;font-weight:900;color:#a5b4fc}
+    .rpg-headline{font-weight:1000;font-size:22px;margin:4px 0 2px;color:white;line-height:1.15}
+    .rpg-headline span{font-size:11px;letter-spacing:.07em;color:#67e8f9}
+    .rpg-sub{font-size:11px;color:#cbd5e1;line-height:1.4}
+    .rpg-body{display:grid;grid-template-columns:minmax(240px,1.08fr) minmax(270px,1fr);gap:12px;padding:15px}
+    .rpg-hero{grid-column:1 / -1;display:flex;align-items:center;gap:14px;border:1px solid #67e8f955;border-radius:17px;background:#a5b4fc13;padding:10px 16px}
+    .rpg-avatar{width:66px;height:66px;flex:0 0 66px;position:relative;display:grid;place-items:center;clip-path:polygon(50% 0%,94% 23%,94% 77%,50% 100%,6% 77%,6% 23%);background:linear-gradient(135deg,#fbbf24,#22d3ee 55%,#a78bfa);color:#0f172a}
+    .rpg-avatar-symbol{font-size:35px;font-weight:1000;line-height:1;margin-top:-9px}
+    .rpg-avatar-level{position:absolute;bottom:5px;font-size:9px;font-weight:1000}
+    .rpg-classname{color:#67e8f9;font-size:11px;font-weight:1000;letter-spacing:.15em}
+    .rpg-zh{font-size:19px;font-weight:1000;color:#fff;margin:2px 0}
+    .rpg-mini{font-size:11px;color:#dbeafe;line-height:1.5}
+    .rpg-map{text-align:center;min-width:0;align-self:center}
+    .rpg-radar-svg{display:block;width:100%;max-width:450px;height:auto;margin:auto;overflow:visible}
+    .rpg-legend{display:flex;justify-content:center;gap:8px 15px;flex-wrap:wrap;font-size:10px;color:#dbeafe}
+    .rpg-legend span{display:flex;align-items:center;gap:5px;white-space:nowrap}
+    .rpg-key{display:inline-block;width:21px;border-top:3px solid var(--rpg-cyan)}
+    .rpg-key.rpg-class{border-top:3px dotted var(--rpg-gold)}
+    .rpg-key.rpg-before{border-top:3px dashed var(--rpg-purple)}
+    .rpg-powers{display:grid;gap:7px;align-self:center}
+    .rpg-power{border:1px solid #67e8f936;background:#090e2599;border-radius:12px;padding:7px 10px}
+    .rpg-power-top{display:flex;align-items:center;gap:7px;font-size:10px}
+    .rpg-book{color:#67e8f9;font-size:9px;font-weight:900}
+    .rpg-book-name{font-weight:800;flex:1}
+    .rpg-rank{border:1px solid #fbbf2488;color:#fcd34d;border-radius:6px;padding:0 5px;font-weight:1000}
+    .rpg-power-score{display:flex;justify-content:space-between;align-items:center;gap:5px;margin:3px 0;font-size:11px;color:#cbd5e1}
+    .rpg-power-score strong{font-size:15px;color:white}
+    .rpg-gain{color:#86efac!important;font-weight:900}.rpg-loss{color:#fda4af!important;font-weight:900}
+    .rpg-meter{background:#334155;height:4px;border-radius:9px;overflow:hidden}
+    .rpg-meter span{display:block;height:100%;background:linear-gradient(90deg,#818cf8,#22d3ee);border-radius:9px}
+    .rpg-detail{font-size:9px;margin-top:4px;color:#cbd5e1}
+    .rpg-foot{font-size:10px;line-height:1.5;color:#cbd5e1;border-top:1px solid #7795db55;padding:9px 16px 12px}
+    .rpg-print{margin:0;background:#f5f7ff;color:#172033;border:1px solid #a5b4fc;border-radius:14px;box-shadow:none;--rpg-cyan:#0369a1;--rpg-gold:#a16207;--rpg-purple:#7e22ce}
+    .rpg-print .rpg-head{background:#e7edff;padding:9px 12px 7px;border-color:#cbd5e1}
+    .rpg-print .rpg-eyebrow{color:#4338ca;font-size:8px}
+    .rpg-print .rpg-headline{color:#172033;font-size:16px;margin:2px 0}
+    .rpg-print .rpg-headline span{color:#0369a1;font-size:9px}
+    .rpg-print .rpg-sub{color:#475569;font-size:9px}
+    .rpg-print .rpg-body{padding:8px;grid-template-columns:1.04fr .96fr;gap:5px 8px}
+    .rpg-print .rpg-hero{padding:5px 10px;border-color:#cbd5e1;background:#fff;gap:9px}
+    .rpg-print .rpg-avatar{width:44px;height:44px;flex-basis:44px}
+    .rpg-print .rpg-avatar-symbol{font-size:21px;margin-top:-6px}.rpg-print .rpg-avatar-level{font-size:7px;bottom:3px}
+    .rpg-print .rpg-classname{color:#4338ca;font-size:8px}
+    .rpg-print .rpg-zh{color:#0f172a;font-size:14px;margin:0}
+    .rpg-print .rpg-mini{font-size:8px;color:#475569}
+    .rpg-print .rpg-radar-svg{max-width:102mm}
+    .rpg-print .rpg-legend{font-size:8px;color:#334155;gap:4px 9px}
+    .rpg-print .rpg-key{width:15px}
+    .rpg-print .rpg-power{background:#fff;border-color:#dbe2f7;padding:4px 6px;border-radius:8px}
+    .rpg-print .rpg-power-top{font-size:8px;gap:5px}
+    .rpg-print .rpg-book{color:#0369a1;font-size:8px}.rpg-print .rpg-rank{color:#92400e;border-color:#fbbf24}
+    .rpg-print .rpg-power-score{margin:2px 0;font-size:8px;color:#475569}
+    .rpg-print .rpg-power-score strong{font-size:11px;color:#0f172a}
+    .rpg-print .rpg-detail{font-size:7.8px;margin-top:2px;color:#475569}
+    .rpg-print .rpg-gain{color:#166534!important}.rpg-print .rpg-loss{color:#991b1b!important}
+    .rpg-print .rpg-foot{font-size:8px;color:#475569;padding:6px 9px;border-color:#cbd5e1}
+    .br-report-root.br-bw .rpg-print{background:#fff!important;border-color:#333}
+    .br-report-root.br-bw .rpg-print .rpg-head{background:#eee!important}
+    .br-report-root.br-bw .rpg-print .rpg-avatar{background:#ddd!important}
+    .br-report-root.br-bw .rpg-radar-svg{filter:grayscale(1)}
+    @media(max-width:850px){.rpg-sheet:not(.rpg-print) .rpg-body{grid-template-columns:1fr}}
+
   </style>
 </head>
 
@@ -3649,11 +3717,13 @@ function areaCardHtml(a){
 }
 
 async function renderProfileOverview(p){
+  const rpgData = await rpgBuild(p.student);
   const top = p.diagnoses.filter(d => d.priority === "High priority" || d.priority === "Moderate priority").slice(0,3);
   const latestResults = p.results.slice(0,5);
   const latestQ = p.questionnaires[0];
 
   qs("#profileTab").innerHTML = `
+    ${rpgMarkup(rpgData,p.display_name)}
     <div class="grid grid-2">
       <div class="grid grid-2">
         ${p.area_stats.map(areaCardHtml).join("")}
@@ -5343,6 +5413,143 @@ async function exportStudentCsv(studentId){
   downloadText(`${p.student.normalized_student_code || "student"}_export_${todayIso()}.csv`, toCsv(rows), "text/csv;charset=utf-8");
 }
 
+/* Five-book character radar: student, same-class average, and pre-latest-test evidence. */
+function rpgValid(r){
+  const n=Number(r.percentage);
+  return r.attendance_status === "present" && r.percentage != null && Number.isFinite(n) && n >= 0 && n <= 100;
+}
+function rpgRound(n){return Math.round(n*10)/10;}
+function rpgMean(rows, method){
+  if(!rows.length) return null;
+  const sorted=method === "recency" ? [...rows].sort((a,b) =>
+    String(b.assessment_date || "").localeCompare(String(a.assessment_date || "")) ||
+    String(b.imported_at || "").localeCompare(String(a.imported_at || ""))) : rows;
+  if(method === "simple") return rpgRound(sorted.reduce((sum,r)=>sum+Number(r.percentage),0)/sorted.length);
+  let top=0, bottom=0;
+  sorted.forEach((r,i)=>{
+    const w=(Number(r.weight)>0 ? Number(r.weight) : 1)*(method === "recency" ? Math.pow(.85,i) : 1);
+    top+=Number(r.percentage)*w; bottom+=w;
+  });
+  return rpgRound(top/bottom);
+}
+function rpgBefore(rows, method){
+  if(rows.length < 2) return null;
+  const sorted=[...rows].sort((a,b) =>
+    String(b.imported_at || b.created_at || "").localeCompare(String(a.imported_at || a.created_at || "")) ||
+    String(b.assessment_date || "").localeCompare(String(a.assessment_date || "")) ||
+    String(b.assessment_id || "").localeCompare(String(a.assessment_id || "")));
+  const latest=sorted[0];
+  const batchIds=new Set(sorted.map(r=>r.source_import_id).filter(Boolean));
+  const earlier=latest.source_import_id && batchIds.size>1
+    ? rows.filter(r=>r.source_import_id !== latest.source_import_id)
+    : rows.filter(r=>r.assessment_id !== latest.assessment_id);
+  return rpgMean(earlier,method);
+}
+async function rpgBuild(student,options={}){
+  const [students,assessments,results,settings]=await Promise.all([
+    idbGetAll("students"),idbGetAll("assessments"),idbGetAll("assessmentResults"),getSettings()
+  ]);
+  const classStudents=students.filter(s=>s.active_status === "active" && s.academic_year === student.academic_year &&
+    (student.class_code ? s.class_code === student.class_code : s.student_id === student.student_id));
+  if(!classStudents.some(s=>s.student_id === student.student_id)) classStudents.push(student);
+  const peerIds=new Set(classStudents.map(s=>s.student_id));
+  const byAssessment=new Map(assessments.filter(a=>a.active_version).map(a=>[a.assessment_id,a]));
+  const grouped=new Map();
+  for(const r of results){
+    if(!peerIds.has(r.student_id) || !rpgValid(r)) continue;
+    const a=byAssessment.get(r.assessment_id);
+    if(!a || !AREA_BY_ID[a.area_id] || a.academic_year !== student.academic_year || !brDateInRange(a.assessment_date,options)) continue;
+    const key=r.student_id+"|"+a.area_id;
+    if(!grouped.has(key)) grouped.set(key,[]);
+    grouped.get(key).push({...r,weight:a.weight,assessment_date:a.assessment_date,
+      assessment_id:a.assessment_id,source_import_id:a.source_import_id,created_at:a.created_at});
+  }
+  const method=settings.aggregation_method || "weighted";
+  const books=AREA_LIST.map(a=>{
+    const rows=grouped.get(student.student_id+"|"+a.area_id) || [];
+    const current=rpgMean(rows,method);
+    const previous=rpgBefore(rows,method);
+    const values=classStudents.map(s=>rpgMean(grouped.get(s.student_id+"|"+a.area_id)||[],method)).filter(n=>n!==null);
+    const average=values.length?rpgRound(values.reduce((sum,n)=>sum+n,0)/values.length):null;
+    return {...a,current,previous,average,delta:current!==null && previous!==null?rpgRound(current-previous):null,
+      peers:values.length,evidence:rows.length};
+  });
+  const assessed=books.filter(a=>a.current!==null);
+  const overall=assessed.length?rpgRound(assessed.reduce((sum,a)=>sum+a.current,0)/assessed.length):null;
+  const strongest=assessed.slice().sort((a,b)=>b.current-a.current)[0];
+  const archetypes={I:["THERMAL ALCHEMIST","熱能鍊金師","♨"],II:["MOTION KNIGHT","力學騎士","➤"],
+    III:["WAVE RANGER","波動遊俠","≈"],IV:["FIELD MAGE","電磁法師","ϟ"],V:["NUCLEAR GUARDIAN","核能守護者","☢"]};
+  const hero=strongest?archetypes[strongest.area_id]:["PHYSICS EXPLORER","物理探險者","Φ"];
+  return {books,overall,hero,level:overall===null?null:Math.max(1,Math.min(10,Math.floor(overall/10)+1)),
+    evidence:books.reduce((sum,a)=>sum+a.evidence,0),covered:assessed.length,
+    className:student.class_code || "未有班別",academicYear:student.academic_year || "—",
+    scope:options.periodStart || options.periodEnd?brPeriodLabel(options):"學年所有有效評估",classSize:classStudents.length};
+}
+function rpgRank(score){return score===null?"UNKNOWN":score>=80?"S":score>=65?"A":score>=50?"B":score>=35?"C":"D";}
+function rpgPct(n){return n===null?"—":n.toFixed(1)+"%";}
+function rpgDelta(n){return n===null?"NEW / —":(n>0?"+":"")+n.toFixed(1)+" pp";}
+function rpgSvg(data,paper=false){
+  const cx=210,cy=185,r=126,fg=paper?"#334155":"#dbeafe",grid=paper?"#cbd5e1":"#344361";
+  const point=(i,v)=>{
+    const a=-Math.PI/2+Math.PI*2*i/5,d=r*Math.max(0,Math.min(100,Number(v)))/100;
+    return [(cx+d*Math.cos(a)).toFixed(1),(cy+d*Math.sin(a)).toFixed(1)];
+  };
+  const ring=[20,40,60,80,100].map(v=>`<polygon points="${data.books.map((_,i)=>point(i,v).join(",")).join(" ")}" fill="none" stroke="${grid}" stroke-width="1"/>`).join("");
+  const spoke=data.books.map((_,i)=>{
+    const [x,y]=point(i,100);return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${grid}"/>`;
+  }).join("");
+  const ticks=[20,40,60,80,100].map(v=>`<text x="${cx+5}" y="${(cy-r*v/100-4).toFixed(1)}" font-size="9" fill="${fg}" opacity=".75">${v}</text>`).join("");
+  const titles=data.books.map((a,i)=>{
+    const angle=-Math.PI/2+Math.PI*2*i/5;
+    const x=cx+Math.cos(angle)*(r+26),y=cy+Math.sin(angle)*(r+26);
+    const align=x<cx-12?"end":x>cx+12?"start":"middle";
+    return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${align}" dominant-baseline="middle" fill="${fg}" font-size="12" font-weight="800">BOOK ${esc(a.area_id)}</text>`;
+  }).join("");
+  const series=(key,color,dash,fill)=>{
+    const vals=data.books.map(a=>a[key]);
+    const width=key==="current"?3.6:2.6;
+    const stroke=`stroke="${color}" stroke-width="${width}" ${dash?`stroke-dasharray="${dash}"`:""}`;
+    let shape="";
+    if(vals.every(v=>v!==null)){
+      shape=`<polygon points="${vals.map((v,i)=>point(i,v).join(",")).join(" ")}" fill="${fill}" ${stroke} stroke-linejoin="round"/>`;
+    }else{
+      for(let i=0;i<5;i++){
+        const j=(i+1)%5;
+        if(vals[i]===null || vals[j]===null) continue;
+        const [x1,y1]=point(i,vals[i]),[x2,y2]=point(j,vals[j]);
+        shape+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" ${stroke}/>`;
+      }
+    }
+    return shape+vals.map((v,i)=>v===null?"":`<circle cx="${point(i,v)[0]}" cy="${point(i,v)[1]}" r="${key==='current'?4.5:3.5}" fill="${color}" stroke="${paper?'#fff':'#0b1633'}" stroke-width="1"><title>${esc(data.books[i].label_zh)} ${rpgPct(v)}</title></circle>`).join("");
+  };
+  return `<svg class="rpg-radar-svg" viewBox="0 0 420 375" role="img" aria-label="Five books performance radar, solid cyan student, dotted gold class average, dashed purple before last test"><title>五書角色雷達 Five-book character radar</title>${ring}${spoke}${ticks}${series("average",paper?"#a16207":"#fbbf24","2 6","none")}${series("previous",paper?"#7e22ce":"#c4b5fd","8 5","none")}${series("current",paper?"#0369a1":"#22d3ee","",paper?"rgba(14,165,233,.16)":"rgba(34,211,238,.19)")}${titles}</svg>`;
+}
+function rpgMarkup(data,studentName,paper=false){
+  const deltaClass=d=>d===null?"":d>0?"rpg-gain":d<0?"rpg-loss":"";
+  return `<section class="rpg-sheet ${paper?'rpg-print':''}" aria-label="五書角色雷達 Five-book character radar">
+    <div class="rpg-head"><div class="rpg-eyebrow">PHYSICS · CHARACTER PROFILE / 物理角色狀態</div>
+      <div class="rpg-headline">五書能力雷達 <span>FIVE-BOOK POWER RADAR</span></div>
+      <div class="rpg-sub">${esc(studentName)} · ${esc(data.className)} · ${esc(data.academicYear)} · ${esc(data.scope)}</div></div>
+    <div class="rpg-body">
+      <div class="rpg-hero">
+        <div class="rpg-avatar"><span class="rpg-avatar-symbol">${esc(data.hero[2])}</span><div class="rpg-avatar-level">${data.level===null?'LV —':'LV '+data.level}</div></div>
+        <div><div class="rpg-classname">${esc(data.hero[0])}</div><div class="rpg-zh">${esc(data.hero[1])}</div>
+        <div class="rpg-mini">綜合戰力 ${data.overall===null?'—':rpgPct(data.overall)} · 已解鎖 ${data.covered}/5 書 · 成績紀錄 ${data.evidence}</div></div>
+      </div>
+      <div class="rpg-map">${rpgSvg(data,paper)}<div class="rpg-legend">
+        <span><i class="rpg-key rpg-own"></i>學生 Student</span><span><i class="rpg-key rpg-class"></i>班平均 Class average</span>
+        <span><i class="rpg-key rpg-before"></i>上次測驗前 Before last upload</span></div></div>
+      <div class="rpg-powers">${data.books.map(a=>`<div class="rpg-power">
+        <div class="rpg-power-top"><span class="rpg-book">BOOK ${esc(a.area_id)}</span><span class="rpg-book-name">${esc(a.label_zh)}</span><span class="rpg-rank">${rpgRank(a.current)}</span></div>
+        <div class="rpg-power-score"><strong>${rpgPct(a.current)}</strong><span class="${deltaClass(a.delta)}">${rpgDelta(a.delta)}</span></div>
+        <div class="rpg-meter"><span style="width:${a.current===null?0:Math.max(0,Math.min(100,a.current))}%"></span></div>
+        <div class="rpg-detail">班平均 ${rpgPct(a.average)} (n=${a.peers}) · 上次前 ${rpgPct(a.previous)}</div>
+      </div>`).join("")}</div>
+    </div>
+    <div class="rpg-foot">分數為各書有效評估的${esc(data.scope)}成績平均（按原有加權設定）；班平均先計每位同班同學的書平均，再取平均，包括本學生。「上次前」剔除該書最近一批上載成績後重算（只有一批而有多份評估時則比較最後一份）。變化以百分點計；缺席、空白及未有舊成績顯示 —，不當作零分。等級及角色只作遊戲化展示，不是正式成績評級。</div>
+  </section>`;
+}
+
 /* ------------------------------------------------------------
    Big Report PDF Export Functions
    ------------------------------------------------------------ */
@@ -5560,6 +5767,7 @@ async function brBuildReportData(profile, options){
   const strongestArea = areaStats.filter(a => a.score != null).sort((a,b) => b.score - a.score)[0] || null;
   const weakestArea = areaStats.filter(a => a.score != null).sort((a,b) => a.score - b.score)[0] || null;
   const character = brCharacterProfile(strongestArea, overall, profile.counts.assessment_records + profile.counts.questionnaire_responses);
+  const rpgData = await rpgBuild(profile.student,options);
 
   return {
     profile,
@@ -5580,7 +5788,8 @@ async function brBuildReportData(profile, options){
     weakTopics,
     strongestArea,
     weakestArea,
-    character
+    character,
+    rpgData
   };
 }
 
@@ -5821,6 +6030,12 @@ function brRenderReportPages(report, options){
     html:brRenderCoverPage(report, options)
   });
 
+  pages.push({
+    title:"Five-Book Character Radar",
+    subtitle:"Current mastery, class average and change since the previous test upload",
+    html:brRenderRpgPage(report)
+  });
+
   if(options.includeFiveAreas){
     pages.push({
       title:"5 Area Report",
@@ -5852,6 +6067,10 @@ function brRenderReportPages(report, options){
       ${brRenderFooter(report.displayName,index+1,pages.length)}
     </article>
   `).join("");
+}
+
+function brRenderRpgPage(report){
+  return rpgMarkup(report.rpgData,report.displayName,true);
 }
 
 function brRenderPageTop(title, subtitle){
