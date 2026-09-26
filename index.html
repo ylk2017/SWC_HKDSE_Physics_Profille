@@ -425,7 +425,7 @@
     }
 
     .modal{
-      width:min(1100px,100%);
+      width:min(980px,100%);
       max-height:90vh;
       overflow:auto;
       background:linear-gradient(145deg,#172033,#0f172a);
@@ -464,120 +464,6 @@
       gap:1rem;
       align-items:center;
       margin-bottom:.75rem;
-    }
-
-    /* ------------------------------------------------------------
-       Progress / Improvement Tracking (screen UI)
-       ------------------------------------------------------------ */
-
-    .pg-kpi-grid{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:.75rem;
-    }
-
-    .pg-kpi{
-      border:1px solid var(--line);
-      border-radius:16px;
-      background:#0b1220;
-      padding:.9rem;
-    }
-
-    .pg-kpi .label{
-      color:var(--muted);
-      font-size:.78rem;
-      font-weight:800;
-      margin-bottom:.3rem;
-    }
-
-    .pg-kpi .value{
-      font-size:1.7rem;
-      font-weight:1000;
-      line-height:1.05;
-    }
-
-    .pg-kpi .sub{
-      color:var(--muted);
-      font-size:.78rem;
-      margin-top:.25rem;
-    }
-
-    .pg-up{color:#86efac}
-    .pg-down{color:#fca5a5}
-    .pg-flat{color:#cbd5e1}
-    .pg-newdata{color:#bae6fd}
-
-    .pg-chart{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
-    .pg-legend{
-      display:flex;
-      flex-wrap:wrap;
-      gap:.55rem;
-      margin-top:.45rem;
-      font-size:.8rem;
-      color:var(--muted);
-    }
-
-    .pg-key i{
-      display:inline-block;
-      width:12px;
-      height:12px;
-      border-radius:4px;
-      margin-right:.35rem;
-      vertical-align:-1px;
-    }
-
-    .pg-empty{
-      border:1px dashed var(--line);
-      border-radius:14px;
-      padding:1rem;
-      text-align:center;
-      color:var(--muted);
-      font-size:.9rem;
-      line-height:1.6;
-    }
-
-    .pg-track{
-      height:10px;
-      border-radius:999px;
-      background:#020617;
-      border:1px solid var(--line);
-      overflow:hidden;
-      margin:.22rem 0;
-    }
-
-    .pg-track span{
-      display:block;
-      height:100%;
-      width:0%;
-    }
-
-    .pg-track span.prev{background:linear-gradient(90deg,#475569,#94a3b8)}
-    .pg-track span.cur{background:linear-gradient(90deg,var(--blue),var(--green))}
-    .pg-track span.cur.down{background:linear-gradient(90deg,var(--amber),var(--red))}
-
-    .pg-area-card{
-      border:1px solid var(--line);
-      border-radius:18px;
-      background:linear-gradient(145deg,#172033,#0b1220);
-      padding:.9rem;
-    }
-
-    .pg-area-head{
-      display:flex;
-      justify-content:space-between;
-      gap:.5rem;
-      align-items:flex-start;
-    }
-
-    .pg-delta-big{
-      font-size:1.6rem;
-      font-weight:1000;
-      line-height:1.05;
     }
 
     /* ------------------------------------------------------------
@@ -882,12 +768,6 @@
       font-weight:950;
     }
 
-    .br-big-score .delta{
-      margin-top:6px;
-      font-size:11px;
-      font-weight:1000;
-    }
-
     .br-metric-grid{
       display:grid;
       grid-template-columns:repeat(4,1fr);
@@ -1018,59 +898,6 @@
       font-size:8.8px;
       line-height:1.42;
       color:#334155;
-    }
-
-    /* Progress page (PDF) */
-
-    .br-progress-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:7px;
-    }
-
-    .br-dual-row{
-      display:grid;
-      grid-template-columns:36px 1fr 50px;
-      gap:6px;
-      align-items:center;
-      font-size:8.4px;
-      color:#64748b;
-      margin-top:4px;
-    }
-
-    .br-dual-bar{
-      height:7px;
-      border-radius:999px;
-      background:#e2e8f0;
-      overflow:hidden;
-    }
-
-    .br-dual-bar span{
-      display:block;
-      height:100%;
-      border-radius:999px;
-      width:0%;
-    }
-
-    .br-dual-bar span.prev{background:#94a3b8}
-    .br-dual-bar span.cur{background:linear-gradient(90deg,#0ea5e9,#22c55e)}
-    .br-dual-bar span.cur.down{background:linear-gradient(90deg,#f59e0b,#ef4444)}
-
-    .br-dual-value{
-      text-align:right;
-      font-weight:900;
-      color:#111827;
-    }
-
-    .br-delta-up{color:#166534}
-    .br-delta-down{color:#991b1b}
-    .br-delta-flat{color:#475569}
-    .br-delta-new{color:#5b21b6}
-
-    .br-progress-table th,
-    .br-progress-table td{
-      font-size:8.5px;
-      padding:5px;
     }
 
     .br-character-grid{
@@ -1469,21 +1296,8 @@
     .br-report-root.br-bw .br-bar span.amber,
     .br-report-root.br-bw .br-bar span.red,
     .br-report-root.br-bw .br-bar span.purple,
-    .br-report-root.br-bw .br-section-heading:before,
-    .br-report-root.br-bw .br-dual-bar span.cur,
-    .br-report-root.br-bw .br-dual-bar span.cur.down{
+    .br-report-root.br-bw .br-section-heading:before{
       background:#111827!important;
-    }
-
-    .br-report-root.br-bw .br-dual-bar span.prev{
-      background:#cbd5e1!important;
-    }
-
-    .br-report-root.br-bw .br-delta-up,
-    .br-report-root.br-bw .br-delta-down,
-    .br-report-root.br-bw .br-delta-new,
-    .br-report-root.br-bw .br-delta-flat{
-      color:#111827!important;
     }
 
     @media (max-width:1200px){
@@ -1491,7 +1305,6 @@
       .br-report-layout{grid-template-columns:1fr}
       .br-controls{position:static}
       .br-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .pg-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
 
     @media (max-width:900px){
@@ -1500,8 +1313,7 @@
       .grid-5,.grid-4,.grid-3,.grid-2,.form-row{grid-template-columns:1fr}
       .topbar{display:block}
       .br-inline-grid,
-      .br-quick-grid,
-      .pg-kpi-grid{grid-template-columns:1fr}
+      .br-quick-grid{grid-template-columns:1fr}
     }
 
     @media print{
@@ -1631,7 +1443,6 @@
       <nav>
         <button data-view="dashboard" onclick="showView('dashboard')">總覽 Dashboard</button>
         <button data-view="students" onclick="showView('students')">學生 Students</button>
-        <button data-view="progress" onclick="showView('progress')">進度比較 Progress ↑</button>
         <button data-view="reports" onclick="showView('reports')">Big Report PDF</button>
         <button data-view="upload" onclick="showView('upload')">上載中心 Upload Centre</button>
         <button data-view="unmatched" onclick="showView('unmatched')">未配對 Unmatched</button>
@@ -1662,9 +1473,7 @@
 "use strict";
 
 const DB_NAME = "hkdse_physics_kms_browser_only_v1";
-const DB_VERSION = 2;
-
-const PROGRESS_STORE = "progressSnapshots";
+const DB_VERSION = 1;
 
 const STORE_NAMES = [
   "students",
@@ -1679,8 +1488,7 @@ const STORE_NAMES = [
   "imports",
   "unmatchedRecords",
   "settings",
-  "auditLogs",
-  PROGRESS_STORE
+  "auditLogs"
 ];
 
 const AREA_LIST = [
@@ -1692,17 +1500,6 @@ const AREA_LIST = [
 ];
 
 const AREA_BY_ID = Object.fromEntries(AREA_LIST.map(a => [a.area_id, a]));
-
-const AREA_COLORS = {
-  I:"#f59e0b",
-  II:"#38bdf8",
-  III:"#22c55e",
-  IV:"#a78bfa",
-  V:"#f472b6"
-};
-
-const DELTA_THRESHOLD = 1;
-const DELTA_SIGNIFICANT = 5;
 
 const DEFAULT_TOPICS = [
   ["gases","I","Gases","氣體"],
@@ -1749,8 +1546,7 @@ const DEFAULT_SETTINGS = {
   blank_result_rule:"no_result",
   absent_tokens:["abs","absent","缺席"],
   performance_bands:DEFAULT_BANDS,
-  current_academic_year:"2026/27",
-  auto_progress_snapshot:true
+  current_academic_year:"2026/27"
 };
 
 let db = null;
@@ -1764,14 +1560,12 @@ const state = {
   profileTab:"overview",
   profileFilters:{area:"",type:"",diagnosisPriority:"",diagnosisArea:""},
   assessmentSort:"date_desc",
-  progressFilters:{classCode:"",mode:"previous",batchId:"",sort:"delta_desc"},
   bigReport:{
     studentId:"",
     periodStart:"",
     periodEnd:"",
     theme:"color",
     includeFiveAreas:true,
-    includeProgress:true,
     includeBest8:true,
     includeCharacter:true,
     includeCognitive:true,
@@ -1833,7 +1627,7 @@ function confirmModal(title, body, yesText="確認", noText="取消"){
     const host = qs("#modalHost");
     host.innerHTML = `
       <div class="modal-backdrop">
-        <div class="modal" style="max-width:640px">
+        <div class="modal">
           <h2>${esc(title)}</h2>
           <p>${esc(body)}</p>
           <div style="display:flex;gap:.5rem;justify-content:flex-end;flex-wrap:wrap">
@@ -2065,12 +1859,6 @@ async function openKmsDb(){
       createStore("unmatchedRecords","unmatched_id",[
         ["resolution_status","resolution_status",{unique:false}],
         ["import_id","import_id",{unique:false}]
-      ]);
-
-      createStore(PROGRESS_STORE,"snapshot_id",[
-        ["student_id","student_id",{unique:false}],
-        ["captured_at","captured_at",{unique:false}],
-        ["batch_id","batch_id",{unique:false}]
       ]);
 
       createStore("settings","key",[]);
@@ -3047,7 +2835,6 @@ async function refreshDiagnoses(){
   }
 
   if(toPut.length) await idbPutMany("diagnoses", toPut);
-  pgInvalidateBulk();
 }
 
 function confidenceCategory(avg){
@@ -3172,18 +2959,6 @@ function weightedAverage(items){
   return items.reduce((s,x) => s + x.pct * Number(x.weight || 1),0) / total;
 }
 
-function aggregateAreaScore(items, method="weighted"){
-  if(!items || !items.length) return null;
-  if(method === "simple"){
-    return pgRound(items.reduce((s,x) => s + Number(x.pct),0) / items.length,1);
-  }
-  if(method === "recency"){
-    const sorted = [...items].sort((a,b) => String(b.date || "").localeCompare(String(a.date || "")));
-    return pgRound(weightedAverage(sorted.map((x,i) => ({pct:Number(x.pct), weight:Number(x.weight || 1) * Math.pow(.85,i)}))),1);
-  }
-  return pgRound(weightedAverage(items.map(x => ({pct:Number(x.pct), weight:Number(x.weight || 1)}))),1);
-}
-
 async function computeAreaStats(studentId){
   const settings = await getSettings();
   const assessments = (await idbGetAll("assessments")).filter(a => a.active_version);
@@ -3274,858 +3049,6 @@ async function computeAreaStats(studentId){
   return out;
 }
 
-/* ============================================================
-   NEW: Progress / Improvement tracking engine
-   每次老師上載新資料，系統會記錄快照並比較五個範疇及整體表現的變化
-   ============================================================ */
-
-function pgRound(value, dp=1){
-  const n = Number(value);
-  if(!Number.isFinite(n)) return null;
-  const p = Math.pow(10,dp);
-  return Math.round(n * p) / p;
-}
-
-function pgDelta(current, previous){
-  if(current == null || previous == null) return null;
-  const c = Number(current);
-  const p = Number(previous);
-  if(!Number.isFinite(c) || !Number.isFinite(p)) return null;
-  return pgRound(c - p,1);
-}
-
-function pgDeltaStatus(current, previous){
-  if(current == null && previous == null) return "none";
-  if(previous == null && current != null) return "new";
-  if(current == null && previous != null) return "missing";
-  const d = pgDelta(current,previous);
-  if(d == null) return "none";
-  if(d >= DELTA_THRESHOLD) return "improved";
-  if(d <= -DELTA_THRESHOLD) return "declined";
-  return "steady";
-}
-
-function pgDeltaText(delta, status){
-  if(status === "new") return "New data / 新增";
-  if(status === "missing") return "No data / 無資料";
-  if(status === "none" || delta == null) return "—";
-  if(delta > 0) return "▲ +" + pgRound(delta,1);
-  if(delta < 0) return "▼ " + pgRound(delta,1);
-  return "＝ 0.0";
-}
-
-function pgDeltaKind(status){
-  if(status === "improved") return "green";
-  if(status === "declined") return "red";
-  if(status === "new") return "blue";
-  if(status === "missing") return "amber";
-  return "grey";
-}
-
-function pgDeltaClass(status){
-  if(status === "improved") return "pg-up";
-  if(status === "declined") return "pg-down";
-  if(status === "new") return "pg-newdata";
-  return "pg-flat";
-}
-
-function pgDeltaPill(delta, status){
-  return pill(pgDeltaText(delta,status), pgDeltaKind(status));
-}
-
-function brDeltaClass(status){
-  if(status === "improved") return "br-delta-up";
-  if(status === "declined") return "br-delta-down";
-  if(status === "new") return "br-delta-new";
-  return "br-delta-flat";
-}
-
-function brDeltaBadgeKind(status){
-  if(status === "improved") return "green";
-  if(status === "declined") return "red";
-  if(status === "new") return "purple";
-  if(status === "missing") return "amber";
-  return "";
-}
-
-async function pgGetAllSnapshots(){
-  try{
-    return await idbGetAll(PROGRESS_STORE);
-  }catch(err){
-    console.warn("progressSnapshots store not ready", err);
-    return [];
-  }
-}
-
-let pgBulkCache = {data:null, at:0};
-
-function pgInvalidateBulk(){
-  pgBulkCache = {data:null, at:0};
-}
-
-async function loadProgressBulkData(){
-  const settings = await getSettings();
-  const students = (await idbGetAll("students")).filter(s => s.active_status === "active");
-  const assessments = (await idbGetAll("assessments")).filter(a => a.active_version);
-  const aById = Object.fromEntries(assessments.map(a => [a.assessment_id,a]));
-  const questionnaires = (await idbGetAll("questionnaires")).filter(q => q.active_status === "active");
-  const qById = Object.fromEntries(questionnaires.map(q => [q.questionnaire_id,q]));
-
-  const resultsByStudent = new Map();
-  for(const r of await idbGetAll("assessmentResults")){
-    if(!aById[r.assessment_id]) continue;
-    if(!resultsByStudent.has(r.student_id)) resultsByStudent.set(r.student_id,[]);
-    resultsByStudent.get(r.student_id).push(r);
-  }
-
-  const qrByStudent = new Map();
-  for(const r of await idbGetAll("questionnaireResponses")){
-    if(!qById[r.questionnaire_id]) continue;
-    if(!qrByStudent.has(r.student_id)) qrByStudent.set(r.student_id,[]);
-    qrByStudent.get(r.student_id).push(r);
-  }
-
-  const diagByStudent = new Map();
-  for(const d of await idbGetAll("diagnoses")){
-    if(!diagByStudent.has(d.student_id)) diagByStudent.set(d.student_id,[]);
-    diagByStudent.get(d.student_id).push(d);
-  }
-
-  return {settings,students,aById,qById,resultsByStudent,qrByStudent,diagByStudent};
-}
-
-async function pgBulk(force=false){
-  const now = Date.now();
-  if(!force && pgBulkCache.data && now - pgBulkCache.at < 4000) return pgBulkCache.data;
-  const data = await loadProgressBulkData();
-  pgBulkCache = {data, at:Date.now()};
-  return data;
-}
-
-function computeProgressPoint(studentId, bulk){
-  const {settings,aById,qById,resultsByStudent,qrByStudent,diagByStudent} = bulk;
-  const results = resultsByStudent.get(studentId) || [];
-  const responses = qrByStudent.get(studentId) || [];
-  const diags = diagByStudent.get(studentId) || [];
-
-  const area_scores = {};
-  const area_counts = {};
-  const area_confidence = {};
-  const validAll = [];
-
-  for(const area of AREA_LIST){
-    const items = [];
-    for(const r of results){
-      const a = aById[r.assessment_id];
-      if(!a || a.area_id !== area.area_id) continue;
-      if(r.attendance_status !== "present" || r.percentage == null) continue;
-      items.push({pct:Number(r.percentage), weight:Number(a.weight || 1), date:a.assessment_date || ""});
-      validAll.push(Number(r.percentage));
-    }
-
-    area_scores[area.area_id] = aggregateAreaScore(items, settings.aggregation_method);
-    area_counts[area.area_id] = items.length;
-
-    const lights = [];
-    for(const r of responses){
-      const q = qById[r.questionnaire_id];
-      if(!q || q.area_id !== area.area_id) continue;
-      if(r.light_score == null) continue;
-      lights.push(Number(r.light_score));
-    }
-    area_confidence[area.area_id] = lights.length ? pgRound(lights.reduce((s,x) => s + x,0) / lights.length,2) : null;
-  }
-
-  const areaVals = AREA_LIST.map(a => area_scores[a.area_id]).filter(v => v != null);
-
-  return {
-    area_scores,
-    area_counts,
-    area_confidence,
-    overall: areaVals.length ? pgRound(areaVals.reduce((s,v) => s + Number(v),0) / areaVals.length,1) : null,
-    assessment_average: validAll.length ? pgRound(validAll.reduce((s,v) => s + v,0) / validAll.length,1) : null,
-    total_results:results.length,
-    valid_results:validAll.length,
-    total_questionnaires:new Set(responses.map(r => r.questionnaire_id)).size,
-    high_priority_count:diags.filter(d => d.priority === "High priority").length,
-    areas_with_data:areaVals.length
-  };
-}
-
-function pgSignature(point){
-  return JSON.stringify({
-    a:AREA_LIST.map(x => (point.area_scores || {})[x.area_id] ?? null),
-    c:AREA_LIST.map(x => (point.area_counts || {})[x.area_id] ?? null),
-    o:point.overall ?? null,
-    r:point.total_results ?? 0,
-    q:point.total_questionnaires ?? 0
-  });
-}
-
-function pgPointFromSnapshot(s){
-  return {
-    snapshot_id:s.snapshot_id,
-    batch_id:s.batch_id,
-    captured_at:s.captured_at,
-    label:s.label,
-    trigger:s.trigger,
-    import_id:s.import_id || null,
-    note:s.note || "",
-    area_scores:s.area_scores || {},
-    area_counts:s.area_counts || {},
-    area_confidence:s.area_confidence || {},
-    overall:s.overall ?? null,
-    assessment_average:s.assessment_average ?? null,
-    total_results:s.total_results || 0,
-    valid_results:s.valid_results || 0,
-    total_questionnaires:s.total_questionnaires || 0,
-    high_priority_count:s.high_priority_count || 0,
-    is_live:false
-  };
-}
-
-function pgLivePoint(point){
-  return {
-    ...point,
-    snapshot_id:null,
-    batch_id:"live",
-    captured_at:nowIso(),
-    label:"目前狀態 Current (live)",
-    trigger:"live",
-    is_live:true
-  };
-}
-
-function buildChangeEntry(student, prev, current){
-  const areas = AREA_LIST.map(area => {
-    const cur = (current.area_scores || {})[area.area_id] ?? null;
-    const before = prev ? ((prev.area_scores || {})[area.area_id] ?? null) : null;
-    const status = pgDeltaStatus(cur,before);
-    return {...area, previous:before, current:cur, delta:pgDelta(cur,before), status};
-  });
-
-  return {
-    student_id:student.student_id,
-    code:student.normalized_student_code || "",
-    name:studentDisplayName(student),
-    class_code:student.class_code || "",
-    previous_label:prev ? prev.label : null,
-    previous_at:prev ? prev.captured_at : null,
-    previous_overall:prev ? (prev.overall ?? null) : null,
-    current_overall:current.overall ?? null,
-    overall_delta:pgDelta(current.overall, prev ? prev.overall : null),
-    overall_status:pgDeltaStatus(current.overall, prev ? prev.overall : null),
-    areas,
-    improved:areas.filter(a => a.status === "improved").length,
-    declined:areas.filter(a => a.status === "declined").length,
-    new_areas:areas.filter(a => a.status === "new").length,
-    new_results:(current.total_results || 0) - (prev ? (prev.total_results || 0) : 0),
-    is_first:!prev
-  };
-}
-
-async function captureProgressSnapshots({label="",trigger="manual",import_id=null,note="",force=false} = {}){
-  const bulk = await pgBulk(true);
-  const captured_at = nowIso();
-  const batch_id = uid("batch");
-  const finalLabel = label || `Snapshot ${captured_at.slice(0,16).replace("T"," ")}`;
-
-  const existing = (await pgGetAllSnapshots()).sort((a,b) => String(a.captured_at).localeCompare(String(b.captured_at)));
-  const lastByStudent = new Map();
-  existing.forEach(s => lastByStudent.set(s.student_id,s));
-
-  const rows = [];
-  const changes = [];
-
-  for(const student of bulk.students){
-    const point = computeProgressPoint(student.student_id,bulk);
-    const prev = lastByStudent.get(student.student_id) || null;
-    const hasEvidence = point.total_results > 0 || point.total_questionnaires > 0;
-
-    if(!hasEvidence && !prev) continue;
-    if(!force && prev && pgSignature(prev) === pgSignature(point)) continue;
-
-    const row = {
-      snapshot_id:uid("snap"),
-      batch_id,
-      student_id:student.student_id,
-      captured_at,
-      label:finalLabel,
-      trigger,
-      import_id,
-      note,
-      ...point
-    };
-
-    rows.push(row);
-    changes.push(buildChangeEntry(student,prev,row));
-  }
-
-  if(rows.length) await idbPutMany(PROGRESS_STORE, rows);
-  await logAction("capture_progress_snapshot","progress",batch_id,{label:finalLabel,trigger,count:rows.length,import_id});
-
-  return {
-    batch_id,
-    captured_at,
-    label:finalLabel,
-    trigger,
-    import_id,
-    count:rows.length,
-    changes
-  };
-}
-
-async function pgAutoCapture(opts){
-  const settings = await getSettings();
-  if(settings.auto_progress_snapshot === false) return null;
-  return captureProgressSnapshots(opts);
-}
-
-async function pgEnsureBaseline(label){
-  const settings = await getSettings();
-  if(settings.auto_progress_snapshot === false) return null;
-
-  const existing = await pgGetAllSnapshots();
-  if(existing.length) return null;
-
-  const students = (await idbGetAll("students")).filter(s => s.active_status === "active");
-  if(!students.length) return null;
-
-  return captureProgressSnapshots({
-    label:label || "上載前基準 Baseline before upload",
-    trigger:"baseline",
-    force:true
-  });
-}
-
-async function getStudentProgressPoints(studentId, bulk=null){
-  const snaps = (await pgGetAllSnapshots())
-    .filter(s => s.student_id === studentId)
-    .sort((a,b) => String(a.captured_at).localeCompare(String(b.captured_at)))
-    .map(pgPointFromSnapshot);
-
-  const b = bulk || await pgBulk();
-  const live = pgLivePoint(computeProgressPoint(studentId,b));
-  const last = snaps[snaps.length - 1];
-  const hasEvidence = live.total_results > 0 || live.total_questionnaires > 0;
-
-  if(hasEvidence && (!last || pgSignature(last) !== pgSignature(live))){
-    snaps.push(live);
-  }
-
-  return snaps;
-}
-
-function pgPickBaseline(points, opts={}){
-  if(points.length < 2) return null;
-  const mode = opts.mode || "previous";
-  const latest = points[points.length - 1];
-
-  if(mode === "first") return points[0];
-
-  if(mode === "batch" && opts.batchId){
-    const found = [...points].reverse().find(p => p.batch_id === opts.batchId && p !== latest);
-    return found || points[0];
-  }
-
-  return points[points.length - 2];
-}
-
-function computeProgressDeltas(points, opts={}){
-  const list = Array.isArray(points) ? points : [];
-  const latest = list.length ? list[list.length - 1] : null;
-  const baseline = pgPickBaseline(list,opts);
-  const first = list.length ? list[0] : null;
-
-  const areas = AREA_LIST.map(area => {
-    const cur = latest ? ((latest.area_scores || {})[area.area_id] ?? null) : null;
-    const before = baseline ? ((baseline.area_scores || {})[area.area_id] ?? null) : null;
-    const firstVal = first ? ((first.area_scores || {})[area.area_id] ?? null) : null;
-
-    return {
-      ...area,
-      current:cur,
-      previous:before,
-      first:firstVal,
-      delta:pgDelta(cur,before),
-      status:pgDeltaStatus(cur,before),
-      total_delta:pgDelta(cur,firstVal),
-      total_status:pgDeltaStatus(cur,firstVal),
-      history:list.map(p => (p.area_scores || {})[area.area_id] ?? null),
-      count:latest ? ((latest.area_counts || {})[area.area_id] ?? 0) : 0,
-      confidence:latest ? ((latest.area_confidence || {})[area.area_id] ?? null) : null
-    };
-  });
-
-  const improved = areas.filter(a => a.status === "improved");
-  const declined = areas.filter(a => a.status === "declined");
-  const newAreas = areas.filter(a => a.status === "new");
-  const deltaVals = areas.map(a => a.delta).filter(v => v != null);
-
-  return {
-    points:list,
-    latest,
-    baseline,
-    first,
-    hasComparison:!!(latest && baseline),
-    overall:latest ? (latest.overall ?? null) : null,
-    overallPrevious:baseline ? (baseline.overall ?? null) : null,
-    overallDelta:pgDelta(latest ? latest.overall : null, baseline ? baseline.overall : null),
-    overallStatus:pgDeltaStatus(latest ? latest.overall : null, baseline ? baseline.overall : null),
-    overallFirst:first ? (first.overall ?? null) : null,
-    overallTotalDelta:pgDelta(latest ? latest.overall : null, first ? first.overall : null),
-    overallTotalStatus:pgDeltaStatus(latest ? latest.overall : null, first ? first.overall : null),
-    areas,
-    improved,
-    declined,
-    newAreas,
-    averageAreaDelta:deltaVals.length ? pgRound(deltaVals.reduce((s,v) => s + v,0) / deltaVals.length,1) : null,
-    bestImprovement:[...improved].sort((a,b) => b.delta - a.delta)[0] || null,
-    biggestDrop:[...declined].sort((a,b) => a.delta - b.delta)[0] || null,
-    overallHistory:list.map(p => p.overall ?? null),
-    snapshotCount:list.filter(p => !p.is_live).length
-  };
-}
-
-async function getStudentProgress(studentId, opts={}){
-  const points = await getStudentProgressPoints(studentId, opts.bulk || null);
-  return computeProgressDeltas(points, opts);
-}
-
-function progressSummaryText(pg){
-  if(!pg || !pg.latest){
-    return "尚未有進度紀錄。上載成績或自評資料後，系統會自動建立第一個進度快照。";
-  }
-
-  if(!pg.hasComparison){
-    return `目前只有一次進度紀錄（整體 ${pg.overall == null ? "—" : pg.overall + "%"}）。當老師再上載新一批成績時，系統會自動比較五個範疇及整體表現的變化。`;
-  }
-
-  const parts = [];
-
-  if(pg.overallDelta == null){
-    parts.push("整體掌握度暫未有可比較的數據。");
-  }else if(pg.overallDelta >= DELTA_SIGNIFICANT){
-    parts.push(`整體表現由 ${pg.overallPrevious}% 上升至 ${pg.overall}%，明顯進步 +${pg.overallDelta} 個百分點。`);
-  }else if(pg.overallDelta >= DELTA_THRESHOLD){
-    parts.push(`整體表現由 ${pg.overallPrevious}% 上升至 ${pg.overall}%（+${pg.overallDelta}），呈穩定改善。`);
-  }else if(pg.overallDelta <= -DELTA_SIGNIFICANT){
-    parts.push(`整體表現由 ${pg.overallPrevious}% 下降至 ${pg.overall}%（${pg.overallDelta}），建議即時跟進。`);
-  }else if(pg.overallDelta <= -DELTA_THRESHOLD){
-    parts.push(`整體表現由 ${pg.overallPrevious}% 輕微下降至 ${pg.overall}%（${pg.overallDelta}）。`);
-  }else{
-    parts.push(`整體表現維持在 ${pg.overall}% 左右（變化 ${pg.overallDelta}）。`);
-  }
-
-  if(pg.improved.length){
-    parts.push(`進步範疇：${pg.improved.map(a => `${a.label_zh} +${a.delta}`).join("、")}。`);
-  }
-  if(pg.declined.length){
-    parts.push(`需要跟進：${pg.declined.map(a => `${a.label_zh} ${a.delta}`).join("、")}。`);
-  }
-  if(pg.newAreas.length){
-    parts.push(`本期新增證據範疇：${pg.newAreas.map(a => a.label_zh).join("、")}。`);
-  }
-  if(!pg.improved.length && !pg.declined.length){
-    parts.push("五個範疇未見明顯升跌，可維持練習節奏並加入變式題提升穩定性。");
-  }
-
-  return parts.join("");
-}
-
-function pgChartSvg(pg){
-  const points = (pg && pg.points) || [];
-
-  if(points.length < 2){
-    return `
-      <div class="pg-empty">
-        需要至少兩次進度紀錄才能繪製趨勢圖。<br>
-        Upload one more batch of results (or press「記錄快照」) to see the improvement trend.
-      </div>
-    `;
-  }
-
-  const W = 780, H = 310, padL = 40, padR = 16, padT = 16, padB = 52;
-  const innerW = W - padL - padR;
-  const innerH = H - padT - padB;
-  const n = points.length;
-  const xAt = i => n === 1 ? padL + innerW / 2 : padL + innerW * i / (n - 1);
-  const yAt = v => padT + innerH * (1 - Math.max(0,Math.min(100,Number(v))) / 100);
-
-  const grid = [0,25,50,75,100].map(v => `
-    <line x1="${padL}" x2="${W - padR}" y1="${yAt(v).toFixed(1)}" y2="${yAt(v).toFixed(1)}" stroke="#334155" stroke-width="1" stroke-dasharray="3 5"></line>
-    <text x="${padL - 8}" y="${(yAt(v) + 4).toFixed(1)}" fill="#94a3b8" font-size="11" text-anchor="end">${v}</text>
-  `).join("");
-
-  const series = [{color:"#e2e8f0",width:3.2,values:points.map(p => p.overall ?? null)}]
-    .concat(AREA_LIST.map(a => ({
-      color:AREA_COLORS[a.area_id],
-      width:1.9,
-      values:points.map(p => (p.area_scores || {})[a.area_id] ?? null)
-    })));
-
-  const drawn = series.map(s => {
-    let path = "";
-    let dots = "";
-    let open = false;
-
-    s.values.forEach((v,i) => {
-      if(v == null){
-        open = false;
-        return;
-      }
-      const x = xAt(i).toFixed(1);
-      const y = yAt(v).toFixed(1);
-      path += open ? ` L ${x} ${y}` : ` M ${x} ${y}`;
-      open = true;
-      dots += `<circle cx="${x}" cy="${y}" r="${s.width > 3 ? 3.6 : 2.7}" fill="${s.color}"></circle>`;
-    });
-
-    if(!path) return "";
-    return `<path d="${path.trim()}" fill="none" stroke="${s.color}" stroke-width="${s.width}" stroke-linecap="round" stroke-linejoin="round" opacity="${s.width > 3 ? 1 : .9}"></path>${dots}`;
-  }).join("");
-
-  const step = Math.max(1,Math.ceil(n / 8));
-  const xLabels = points.map((p,i) => {
-    if(i % step !== 0 && i !== n - 1) return "";
-    const x = xAt(i).toFixed(1);
-    return `
-      <text x="${x}" y="${H - padB + 20}" fill="#94a3b8" font-size="10" text-anchor="middle">${esc(String(p.captured_at || "").slice(0,10))}</text>
-      <text x="${x}" y="${H - padB + 34}" fill="#64748b" font-size="9" text-anchor="middle">${p.is_live ? "Now" : "#" + (i + 1)}</text>
-    `;
-  }).join("");
-
-  return `
-    <svg class="pg-chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Progress trend chart">
-      ${grid}
-      <line x1="${padL}" x2="${padL}" y1="${padT}" y2="${padT + innerH}" stroke="#475569" stroke-width="1"></line>
-      <line x1="${padL}" x2="${W - padR}" y1="${padT + innerH}" y2="${padT + innerH}" stroke="#475569" stroke-width="1"></line>
-      ${drawn}
-      ${xLabels}
-    </svg>
-    <div class="pg-legend">
-      <span class="pg-key"><i style="background:#e2e8f0"></i>Overall 整體</span>
-      ${AREA_LIST.map(a => `<span class="pg-key"><i style="background:${AREA_COLORS[a.area_id]}"></i>${a.area_id}. ${esc(a.label_zh)}</span>`).join("")}
-    </div>
-  `;
-}
-
-function pgCompareBars(previous, current, status){
-  const p = previous == null ? 0 : Math.max(0,Math.min(100,Number(previous)));
-  const c = current == null ? 0 : Math.max(0,Math.min(100,Number(current)));
-
-  return `
-    <div class="tiny muted">上次 Before ${previous == null ? "—" : previous + "%"}</div>
-    <div class="pg-track"><span class="prev" style="width:${p}%"></span></div>
-    <div class="tiny muted">現在 Now ${current == null ? "—" : current + "%"}</div>
-    <div class="pg-track"><span class="cur ${status === "declined" ? "down" : ""}" style="width:${c}%"></span></div>
-  `;
-}
-
-function pgCell(current, previous){
-  const status = pgDeltaStatus(current,previous);
-  const delta = pgDelta(current,previous);
-  return `
-    ${current == null ? "—" : current + "%"}
-    <div class="tiny ${pgDeltaClass(status)}">${esc(pgDeltaText(delta,status))}</div>
-  `;
-}
-
-async function computeClassProgress(filters={}){
-  const bulk = await pgBulk();
-  const snaps = (await pgGetAllSnapshots()).sort((a,b) => String(a.captured_at).localeCompare(String(b.captured_at)));
-
-  const byStudent = new Map();
-  for(const s of snaps){
-    if(!byStudent.has(s.student_id)) byStudent.set(s.student_id,[]);
-    byStudent.get(s.student_id).push(pgPointFromSnapshot(s));
-  }
-
-  const batchMap = new Map();
-  for(const s of snaps){
-    if(!batchMap.has(s.batch_id)){
-      batchMap.set(s.batch_id,{batch_id:s.batch_id,label:s.label,captured_at:s.captured_at,trigger:s.trigger,count:0});
-    }
-    batchMap.get(s.batch_id).count++;
-  }
-  const batches = [...batchMap.values()].sort((a,b) => String(b.captured_at).localeCompare(String(a.captured_at)));
-
-  const rows = [];
-  for(const student of bulk.students){
-    if(filters.classCode && student.class_code !== filters.classCode) continue;
-
-    const list = (byStudent.get(student.student_id) || []).slice();
-    const live = pgLivePoint(computeProgressPoint(student.student_id,bulk));
-    const last = list[list.length - 1];
-    const hasEvidence = live.total_results > 0 || live.total_questionnaires > 0;
-
-    if(hasEvidence && (!last || pgSignature(last) !== pgSignature(live))) list.push(live);
-    if(!list.length) continue;
-
-    rows.push({
-      student,
-      pg:computeProgressDeltas(list,{mode:filters.mode || "previous", batchId:filters.batchId || ""})
-    });
-  }
-
-  const sortKey = filters.sort || "delta_desc";
-  rows.sort((a,b) => {
-    const ad = a.pg.overallDelta;
-    const bd = b.pg.overallDelta;
-    if(sortKey === "delta_asc") return (ad == null ? 9999 : ad) - (bd == null ? 9999 : bd);
-    if(sortKey === "code") return String(a.student.normalized_student_code).localeCompare(String(b.student.normalized_student_code));
-    if(sortKey === "overall_desc") return (b.pg.overall ?? -1) - (a.pg.overall ?? -1);
-    return (bd == null ? -9999 : bd) - (ad == null ? -9999 : ad);
-  });
-
-  const comparable = rows.filter(r => r.pg.overallDelta != null);
-  const improvedRows = comparable.filter(r => r.pg.overallDelta >= DELTA_THRESHOLD);
-  const declinedRows = comparable.filter(r => r.pg.overallDelta <= -DELTA_THRESHOLD);
-
-  const areaAverages = AREA_LIST.map(area => {
-    const cells = rows.map(r => r.pg.areas.find(a => a.area_id === area.area_id) || {});
-    const vals = cells.map(c => c.delta).filter(v => v != null);
-    return {
-      ...area,
-      delta:vals.length ? pgRound(vals.reduce((s,v) => s + v,0) / vals.length,1) : null,
-      count:vals.length,
-      improved:cells.filter(c => c.status === "improved").length,
-      declined:cells.filter(c => c.status === "declined").length
-    };
-  });
-
-  return {
-    rows,
-    batches,
-    allStudents:bulk.students,
-    snapshotCount:snaps.length,
-    summary:{
-      students:rows.length,
-      compared:comparable.length,
-      improved:improvedRows.length,
-      declined:declinedRows.length,
-      steady:comparable.length - improvedRows.length - declinedRows.length,
-      averageOverallDelta:comparable.length ? pgRound(comparable.reduce((s,r) => s + r.pg.overallDelta,0) / comparable.length,1) : null,
-      areaAverages,
-      topImprovements:[...improvedRows].sort((a,b) => b.pg.overallDelta - a.pg.overallDelta).slice(0,5),
-      topDeclines:[...declinedRows].sort((a,b) => a.pg.overallDelta - b.pg.overallDelta).slice(0,5)
-    }
-  };
-}
-
-function showChangeReportModal(summary, contextLabel=""){
-  const changes = [...(summary.changes || [])].sort((a,b) => {
-    const av = a.overall_delta == null ? -9999 : a.overall_delta;
-    const bv = b.overall_delta == null ? -9999 : b.overall_delta;
-    return bv - av;
-  });
-
-  const comparable = changes.filter(c => c.overall_delta != null);
-  const improved = comparable.filter(c => c.overall_delta >= DELTA_THRESHOLD);
-  const declined = comparable.filter(c => c.overall_delta <= -DELTA_THRESHOLD);
-  const steady = comparable.length - improved.length - declined.length;
-  const avg = comparable.length ? pgRound(comparable.reduce((s,c) => s + c.overall_delta,0) / comparable.length,1) : null;
-  const firstTime = changes.filter(c => c.is_first).length;
-
-  const areaAverages = AREA_LIST.map(area => {
-    const cells = changes.map(c => (c.areas || []).find(a => a.area_id === area.area_id) || {});
-    const vals = cells.map(c => c.delta).filter(v => v != null);
-    return {
-      ...area,
-      delta:vals.length ? pgRound(vals.reduce((s,v) => s + v,0) / vals.length,1) : null,
-      improved:cells.filter(c => c.status === "improved").length,
-      declined:cells.filter(c => c.status === "declined").length
-    };
-  });
-
-  const html = `
-    <p class="small muted" style="margin-top:0">
-      ${esc(contextLabel || summary.label || "新上載資料")}｜快照時間 ${esc(String(summary.captured_at || "").slice(0,16).replace("T"," "))}
-      ｜已更新 ${summary.count} 位學生紀錄
-    </p>
-
-    <div class="pg-kpi-grid">
-      <div class="pg-kpi">
-        <div class="label">可比較學生</div>
-        <div class="value">${comparable.length}</div>
-        <div class="sub">首次建立紀錄 ${firstTime}</div>
-      </div>
-      <div class="pg-kpi">
-        <div class="label">整體進步</div>
-        <div class="value pg-up">${improved.length}</div>
-        <div class="sub">≥ +${DELTA_THRESHOLD} 百分點</div>
-      </div>
-      <div class="pg-kpi">
-        <div class="label">整體下降</div>
-        <div class="value pg-down">${declined.length}</div>
-        <div class="sub">維持 ${steady}</div>
-      </div>
-      <div class="pg-kpi">
-        <div class="label">平均整體變化</div>
-        <div class="value ${avg == null ? "pg-flat" : avg > 0 ? "pg-up" : avg < 0 ? "pg-down" : "pg-flat"}">${avg == null ? "—" : (avg > 0 ? "+" : "") + avg}</div>
-        <div class="sub">percentage points</div>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:1rem">
-      <h3 style="margin-top:0">五個範疇的平均變化 / Average change by area</h3>
-      <div>
-        ${areaAverages.map(a => pill(
-          `${a.area_id}. ${a.label_zh} ${a.delta == null ? "—" : (a.delta > 0 ? "+" : "") + a.delta}（↑${a.improved} ↓${a.declined}）`,
-          a.delta == null ? "grey" : a.delta >= DELTA_THRESHOLD ? "green" : a.delta <= -DELTA_THRESHOLD ? "red" : "grey"
-        )).join(" ")}
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:1rem">
-      <h3 style="margin-top:0">逐位學生的變化 / Student-by-student change</h3>
-      <div style="overflow:auto;max-height:46vh">
-        <table>
-          <thead>
-            <tr>
-              <th>學生</th>
-              <th>之前</th>
-              <th>現在</th>
-              <th>整體變化</th>
-              <th>五個範疇變化</th>
-              <th>新增成績</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${changes.map(c => `
-              <tr class="clickable" onclick="closeModal(); openStudent('${esc(c.student_id)}','progress')">
-                <td><span class="code">${esc(c.code)}</span><br>${esc(c.name)}</td>
-                <td>${c.previous_overall == null ? "—" : c.previous_overall + "%"}</td>
-                <td><strong>${c.current_overall == null ? "—" : c.current_overall + "%"}</strong></td>
-                <td>${pgDeltaPill(c.overall_delta,c.overall_status)}</td>
-                <td>${(c.areas || []).filter(a => a.status !== "none").map(a => pill(`${a.area_id} ${pgDeltaText(a.delta,a.status)}`,pgDeltaKind(a.status))).join(" ") || `<span class="muted small">—</span>`}</td>
-                <td>${c.new_results > 0 ? "+" + c.new_results : c.new_results}</td>
-              </tr>
-            `).join("") || `<tr><td colspan="6" class="muted">此次上載未造成分數變化。</td></tr>`}
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;justify-content:flex-end">
-      <button class="secondary" onclick="closeModal(); showView('progress')">前往進度比較 Progress view</button>
-      <button onclick="closeModal()">完成 Done</button>
-    </div>
-  `;
-
-  infoModal("上載後的變化 / Change After New Upload", html);
-}
-
-async function pgRerender(){
-  if(qs("#profileTab") && state.currentStudentId) return renderStudentProfile();
-  return showView(state.view);
-}
-
-async function captureSnapshotNow(label){
-  const summary = await captureProgressSnapshots({
-    label:label || `手動快照 Manual ${nowIso().slice(0,16).replace("T"," ")}`,
-    trigger:"manual"
-  });
-
-  if(!summary.count){
-    toast("資料自上次快照後沒有變化，未新增紀錄。","warn");
-    return;
-  }
-
-  toast(`已記錄 ${summary.count} 位學生的進度快照。`);
-  if(summary.changes.some(c => c.overall_delta != null)){
-    showChangeReportModal(summary,"手動快照 Manual snapshot");
-  }
-  await pgRerender();
-}
-
-async function deleteProgressSnapshot(snapshotId){
-  const ok = await confirmModal("刪除進度快照","刪除此快照後，相關的變化比較會重新以其他快照計算。","刪除 Delete");
-  if(!ok) return;
-  await idbDelete(PROGRESS_STORE,snapshotId);
-  await logAction("delete_progress_snapshot","progress",snapshotId,{});
-  pgInvalidateBulk();
-  toast("已刪除快照。");
-  await pgRerender();
-}
-
-async function clearProgressSnapshots(){
-  const ok = await confirmModal("清除所有進度快照","這會刪除所有進步比較的歷史紀錄（不影響成績及問卷資料）。","清除 Clear");
-  if(!ok) return;
-  await idbClear(PROGRESS_STORE);
-  await logAction("clear_progress_snapshots","progress","all",{});
-  pgInvalidateBulk();
-  toast("已清除所有進度快照。","warn");
-  await pgRerender();
-}
-
-async function exportStudentProgressCsv(studentId){
-  const student = await idbGet("students",studentId);
-  const points = await getStudentProgressPoints(studentId);
-
-  const rows = [[
-    "captured_at","label","trigger","overall",
-    ...AREA_LIST.map(a => `area_${a.area_id}`),
-    ...AREA_LIST.map(a => `delta_${a.area_id}`),
-    "valid_results","questionnaires"
-  ]];
-
-  points.forEach((p,i) => {
-    const prev = i > 0 ? points[i-1] : null;
-    rows.push([
-      p.captured_at,
-      p.label,
-      p.trigger,
-      p.overall,
-      ...AREA_LIST.map(a => (p.area_scores || {})[a.area_id] ?? ""),
-      ...AREA_LIST.map(a => pgDelta((p.area_scores || {})[a.area_id] ?? null, prev ? ((prev.area_scores || {})[a.area_id] ?? null) : null) ?? ""),
-      p.valid_results,
-      p.total_questionnaires
-    ]);
-  });
-
-  downloadText(`${(student && student.normalized_student_code) || "student"}_progress_${todayIso()}.csv`, toCsv(rows), "text/csv;charset=utf-8");
-}
-
-async function exportClassProgressCsv(){
-  const cp = await computeClassProgress({
-    classCode:state.progressFilters.classCode,
-    mode:state.progressFilters.mode,
-    batchId:state.progressFilters.batchId
-  });
-
-  const rows = [[
-    "student_code","name","class","baseline_label","baseline_overall","latest_overall","overall_delta",
-    ...AREA_LIST.map(a => `${a.area_id}_before`),
-    ...AREA_LIST.map(a => `${a.area_id}_now`),
-    ...AREA_LIST.map(a => `${a.area_id}_delta`),
-    "improved_areas","declined_areas"
-  ]];
-
-  for(const r of cp.rows){
-    rows.push([
-      r.student.normalized_student_code,
-      studentDisplayName(r.student),
-      r.student.class_code,
-      r.pg.baseline ? r.pg.baseline.label : "",
-      r.pg.overallPrevious,
-      r.pg.overall,
-      r.pg.overallDelta,
-      ...r.pg.areas.map(a => a.previous ?? ""),
-      ...r.pg.areas.map(a => a.current ?? ""),
-      ...r.pg.areas.map(a => a.delta ?? ""),
-      r.pg.improved.length,
-      r.pg.declined.length
-    ]);
-  }
-
-  downloadText(`physics_kms_class_progress_${todayIso()}.csv`, toCsv(rows), "text/csv;charset=utf-8");
-}
-
-/* ============================================================
-   Views
-   ============================================================ */
-
 async function showView(view){
   state.view = view;
   qsa("nav button[data-view]").forEach(b => b.classList.toggle("active", b.dataset.view === view));
@@ -4133,7 +3056,6 @@ async function showView(view){
   const titles = {
     dashboard:"總覽 Dashboard",
     students:"學生 Students",
-    progress:"進度比較 Progress & Improvement",
     reports:"Big Report PDF",
     upload:"上載中心 Upload Centre",
     unmatched:"未配對問卷 Unmatched",
@@ -4146,7 +3068,6 @@ async function showView(view){
 
   if(view === "dashboard") return renderDashboard();
   if(view === "students") return renderStudents();
-  if(view === "progress") return renderProgressView();
   if(view === "reports") return renderBigReports();
   if(view === "upload") return renderUpload();
   if(view === "unmatched") return renderUnmatched();
@@ -4207,6 +3128,7 @@ async function renderDashboard(){
   const studentById = Object.fromEntries(activeStudents.map(s => [s.student_id,s]));
   const activeAssessments = data.assessments.filter(a => a.active_version);
   const activeQuestionnaires = data.questionnaires.filter(q => q.active_status === "active");
+  const assessmentById = Object.fromEntries(activeAssessments.map(a => [a.assessment_id,a]));
 
   const classes = uniqueSorted(activeStudents.map(s => s.class_code));
   const forms = uniqueSorted(activeStudents.map(s => s.current_form).map(String));
@@ -4266,13 +3188,11 @@ async function renderDashboard(){
   }
   assessmentSummaries.sort((x,y) => String(y.assessment.assessment_date || "").localeCompare(String(x.assessment.assessment_date || "")));
 
-  const cp = await computeClassProgress({classCode:state.dashboardFilters.classCode, mode:"previous"});
-
   qs("#view").innerHTML = `
     ${activeStudents.length === 0 ? `
       <div class="card">
         <h2>尚未有資料 / No data yet</h2>
-        <p class="muted">你可以立即上載 CSV/XLSX，或先載入虛構示範資料測試功能（示範資料已包含進步比較的基準快照）。</p>
+        <p class="muted">你可以立即上載 CSV/XLSX，或先載入虛構示範資料測試功能。</p>
         <button onclick="seedDemoData()">載入虛構示範資料 Load Fictional Demo Data</button>
       </div>
     ` : ""}
@@ -4312,81 +3232,6 @@ async function renderDashboard(){
       <div class="card"><div class="muted">最近有新資料</div><div class="kpi">${recentIds.size}</div><div class="small">Updated in 30 days</div></div>
       <div class="card"><div class="muted">未配對問卷列</div><div class="kpi">${unresolved}</div><div class="small">Unmatched rows</div></div>
       <div class="card"><div class="muted">不完整/無效列</div><div class="kpi">${invalidRows}</div><div class="small">Invalid import rows</div></div>
-    </div>
-
-    <div class="card" style="margin-top:1rem">
-      <div class="section-title">
-        <div>
-          <h2 style="margin:0">學習進步追蹤 / Change Since Last Upload</h2>
-          <div class="small muted">每次上載新成績後，系統自動比較五個範疇及整體表現的變化。</div>
-        </div>
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-          <button class="secondary" onclick="showView('progress')">詳細比較 Details</button>
-          <button class="ghost" onclick="captureSnapshotNow()">記錄快照 Snapshot now</button>
-        </div>
-      </div>
-
-      ${cp.summary.compared ? `
-        <div class="pg-kpi-grid">
-          <div class="pg-kpi">
-            <div class="label">可比較學生</div>
-            <div class="value">${cp.summary.compared}</div>
-            <div class="sub">共 ${cp.summary.students} 位有紀錄</div>
-          </div>
-          <div class="pg-kpi">
-            <div class="label">整體進步人數</div>
-            <div class="value pg-up">${cp.summary.improved}</div>
-            <div class="sub">維持 ${cp.summary.steady}</div>
-          </div>
-          <div class="pg-kpi">
-            <div class="label">整體下降人數</div>
-            <div class="value pg-down">${cp.summary.declined}</div>
-            <div class="sub">建議優先跟進</div>
-          </div>
-          <div class="pg-kpi">
-            <div class="label">平均整體變化</div>
-            <div class="value ${cp.summary.averageOverallDelta == null ? "pg-flat" : cp.summary.averageOverallDelta > 0 ? "pg-up" : cp.summary.averageOverallDelta < 0 ? "pg-down" : "pg-flat"}">
-              ${cp.summary.averageOverallDelta == null ? "—" : (cp.summary.averageOverallDelta > 0 ? "+" : "") + cp.summary.averageOverallDelta}
-            </div>
-            <div class="sub">percentage points</div>
-          </div>
-        </div>
-
-        <div style="margin-top:.9rem">
-          ${cp.summary.areaAverages.map(a => pill(
-            `${a.area_id}. ${a.label_zh} ${a.delta == null ? "—" : (a.delta > 0 ? "+" : "") + a.delta}（↑${a.improved} ↓${a.declined}）`,
-            a.delta == null ? "grey" : a.delta >= DELTA_THRESHOLD ? "green" : a.delta <= -DELTA_THRESHOLD ? "red" : "grey"
-          )).join(" ")}
-        </div>
-
-        <div class="grid grid-2" style="margin-top:1rem">
-          <div>
-            <h3 style="margin:.2rem 0">最大進步 / Top improvements</h3>
-            ${cp.summary.topImprovements.length ? cp.summary.topImprovements.map(r => `
-              <div class="timeline-item clickable" onclick="openStudent('${esc(r.student.student_id)}','progress')">
-                <strong>${esc(studentDisplayName(r.student))}</strong> <span class="code small">${esc(r.student.normalized_student_code)}</span>
-                <div class="small">${r.pg.overallPrevious == null ? "—" : r.pg.overallPrevious + "%"} → <strong>${r.pg.overall == null ? "—" : r.pg.overall + "%"}</strong> ${pgDeltaPill(r.pg.overallDelta,r.pg.overallStatus)}</div>
-                <div class="tiny muted">${(r.pg.improved || []).map(a => `${a.label_zh} +${a.delta}`).join("、") || "—"}</div>
-              </div>
-            `).join("") : `<p class="muted small">未有明顯進步紀錄。</p>`}
-          </div>
-          <div>
-            <h3 style="margin:.2rem 0">需要關注 / Watchlist</h3>
-            ${cp.summary.topDeclines.length ? cp.summary.topDeclines.map(r => `
-              <div class="timeline-item clickable" onclick="openStudent('${esc(r.student.student_id)}','progress')">
-                <strong>${esc(studentDisplayName(r.student))}</strong> <span class="code small">${esc(r.student.normalized_student_code)}</span>
-                <div class="small">${r.pg.overallPrevious == null ? "—" : r.pg.overallPrevious + "%"} → <strong>${r.pg.overall == null ? "—" : r.pg.overall + "%"}</strong> ${pgDeltaPill(r.pg.overallDelta,r.pg.overallStatus)}</div>
-                <div class="tiny muted">${(r.pg.declined || []).map(a => `${a.label_zh} ${a.delta}`).join("、") || "—"}</div>
-              </div>
-            `).join("") : `<p class="muted small">未有明顯下降紀錄。</p>`}
-          </div>
-        </div>
-      ` : `
-        <div class="pg-empty">
-          目前只有 ${cp.snapshotCount} 個進度快照，未能比較。<br>
-          再上載一批新的成績或自評資料後，系統就會自動顯示五個範疇及整體表現的變化。
-        </div>
-      `}
     </div>
 
     <div class="grid grid-2" style="margin-top:1rem">
@@ -4471,159 +3316,6 @@ async function renderDashboard(){
     <div class="card" style="margin-top:1rem">
       <h2>尚未教授 / Not Yet Taught</h2>
       ${notYet.length ? notYet.map(a => pill(`${a.label_zh} / ${a.label_en}`,"grey")).join(" ") : `<span class="muted">目前所有主範疇均已有某些資料。</span>`}
-    </div>
-  `;
-}
-
-async function renderProgressView(){
-  const cp = await computeClassProgress({
-    classCode:state.progressFilters.classCode,
-    mode:state.progressFilters.mode,
-    batchId:state.progressFilters.batchId,
-    sort:state.progressFilters.sort
-  });
-
-  const classes = uniqueSorted(cp.allStudents.map(s => s.class_code));
-
-  qs("#view").innerHTML = `
-    <div class="card">
-      <div class="section-title">
-        <div>
-          <h2 style="margin:0">進度比較 / Progress & Improvement</h2>
-          <div class="small muted">
-            每次老師上載新的成績或自評資料，系統會自動建立進度快照，並比較五個範疇及整體表現的變化。
-            共有 ${cp.snapshotCount} 個快照紀錄、${cp.batches.length} 個批次。
-          </div>
-        </div>
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-          <button onclick="captureSnapshotNow()">記錄快照 Snapshot now</button>
-          <button class="secondary" onclick="exportClassProgressCsv()">匯出進度 CSV</button>
-          <button class="ghost" onclick="showView('upload')">上載新資料 Upload</button>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div>
-          <label>班別 Class</label>
-          <select onchange="state.progressFilters.classCode=this.value; renderProgressView()">
-            <option value="">All / 全部</option>
-            ${classes.map(c => `<option value="${esc(c)}" ${state.progressFilters.classCode === c ? "selected" : ""}>${esc(c)}</option>`).join("")}
-          </select>
-        </div>
-        <div>
-          <label>比較基準 Compare with</label>
-          <select onchange="state.progressFilters.mode=this.value; renderProgressView()">
-            <option value="previous" ${state.progressFilters.mode === "previous" ? "selected" : ""}>上一次紀錄 Previous snapshot</option>
-            <option value="first" ${state.progressFilters.mode === "first" ? "selected" : ""}>最初紀錄 First snapshot</option>
-            <option value="batch" ${state.progressFilters.mode === "batch" ? "selected" : ""}>指定批次 Selected batch</option>
-          </select>
-        </div>
-        <div>
-          <label>指定批次 Snapshot batch</label>
-          <select onchange="state.progressFilters.batchId=this.value; state.progressFilters.mode='batch'; renderProgressView()">
-            <option value="">-- 選擇批次 --</option>
-            ${cp.batches.map(b => `
-              <option value="${esc(b.batch_id)}" ${state.progressFilters.batchId === b.batch_id ? "selected" : ""}>
-                ${esc(String(b.captured_at).slice(0,16).replace("T"," "))}｜${esc(b.label)}（${b.count}）
-              </option>
-            `).join("")}
-          </select>
-        </div>
-        <div>
-          <label>排序 Sort</label>
-          <select onchange="state.progressFilters.sort=this.value; renderProgressView()">
-            <option value="delta_desc" ${state.progressFilters.sort === "delta_desc" ? "selected" : ""}>整體進步最多 Most improved</option>
-            <option value="delta_asc" ${state.progressFilters.sort === "delta_asc" ? "selected" : ""}>整體下降最多 Most declined</option>
-            <option value="overall_desc" ${state.progressFilters.sort === "overall_desc" ? "selected" : ""}>目前整體最高</option>
-            <option value="code" ${state.progressFilters.sort === "code" ? "selected" : ""}>班別學號 Student code</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    ${cp.summary.compared ? `
-      <div class="card" style="margin-top:1rem">
-        <h2>班級變化摘要 / Class Change Summary</h2>
-        <div class="pg-kpi-grid">
-          <div class="pg-kpi">
-            <div class="label">可比較學生</div>
-            <div class="value">${cp.summary.compared}</div>
-            <div class="sub">共 ${cp.summary.students} 位有紀錄</div>
-          </div>
-          <div class="pg-kpi">
-            <div class="label">整體進步</div>
-            <div class="value pg-up">${cp.summary.improved}</div>
-            <div class="sub">≥ +${DELTA_THRESHOLD} 百分點</div>
-          </div>
-          <div class="pg-kpi">
-            <div class="label">整體下降</div>
-            <div class="value pg-down">${cp.summary.declined}</div>
-            <div class="sub">維持 ${cp.summary.steady}</div>
-          </div>
-          <div class="pg-kpi">
-            <div class="label">平均整體變化</div>
-            <div class="value ${cp.summary.averageOverallDelta == null ? "pg-flat" : cp.summary.averageOverallDelta > 0 ? "pg-up" : cp.summary.averageOverallDelta < 0 ? "pg-down" : "pg-flat"}">
-              ${cp.summary.averageOverallDelta == null ? "—" : (cp.summary.averageOverallDelta > 0 ? "+" : "") + cp.summary.averageOverallDelta}
-            </div>
-            <div class="sub">percentage points</div>
-          </div>
-        </div>
-
-        <h3 style="margin-top:1rem">五個範疇的平均變化</h3>
-        <div class="grid grid-5">
-          ${cp.summary.areaAverages.map(a => `
-            <div class="pg-area-card">
-              <div class="small"><strong>${esc(a.area_id)}. ${esc(a.label_zh)}</strong></div>
-              <div class="tiny muted">${esc(a.label_en)}</div>
-              <div class="pg-delta-big ${a.delta == null ? "pg-flat" : a.delta > 0 ? "pg-up" : a.delta < 0 ? "pg-down" : "pg-flat"}">
-                ${a.delta == null ? "—" : (a.delta > 0 ? "+" : "") + a.delta}
-              </div>
-              <div class="tiny muted">↑ 進步 ${a.improved}｜↓ 下降 ${a.declined}｜比較 ${a.count}</div>
-            </div>
-          `).join("")}
-        </div>
-      </div>
-    ` : `
-      <div class="card" style="margin-top:1rem">
-        <div class="pg-empty">
-          目前未有足夠快照作比較。<br>
-          請按「記錄快照 Snapshot now」建立第一個基準，或直接上載新一批成績（系統會自動記錄並比較）。
-        </div>
-      </div>
-    `}
-
-    <div class="card" style="margin-top:1rem">
-      <h2>逐位學生的變化 / Student Change Table</h2>
-      <div style="overflow:auto;max-height:70vh">
-        <table>
-          <thead>
-            <tr>
-              <th>學生</th>
-              <th>整體 Before</th>
-              <th>整體 Now</th>
-              <th>整體變化</th>
-              ${AREA_LIST.map(a => `<th>${a.area_id}. ${esc(a.label_zh)}</th>`).join("")}
-              <th>快照</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${cp.rows.map(r => `
-              <tr class="student-row" onclick="openStudent('${esc(r.student.student_id)}','progress')">
-                <td><span class="code">${esc(r.student.normalized_student_code)}</span><br>${esc(studentDisplayName(r.student))}</td>
-                <td>${r.pg.overallPrevious == null ? "—" : r.pg.overallPrevious + "%"}</td>
-                <td><strong>${r.pg.overall == null ? "—" : r.pg.overall + "%"}</strong></td>
-                <td>${pgDeltaPill(r.pg.overallDelta,r.pg.overallStatus)}</td>
-                ${r.pg.areas.map(a => `<td>${pgCell(a.current,a.previous)}</td>`).join("")}
-                <td>${r.pg.snapshotCount}</td>
-              </tr>
-            `).join("") || `<tr><td colspan="${AREA_LIST.length + 5}" class="muted">未有進度紀錄。</td></tr>`}
-          </tbody>
-        </table>
-      </div>
-      <p class="tiny muted" style="margin-bottom:0">
-        變化以「百分點」表示；|Δ| ≥ ${DELTA_THRESHOLD} 視為有變化，|Δ| ≥ ${DELTA_SIGNIFICANT} 視為明顯變化。
-        「New data / 新增」代表該範疇之前未有成績證據。
-      </p>
     </div>
   `;
 }
@@ -4716,16 +3408,13 @@ async function renderStudents(){
   const activeQuestionnaires = (await idbGetAll("questionnaires")).filter(q => q.active_status === "active");
   const activeQIds = new Set(activeQuestionnaires.map(q => q.questionnaire_id));
   const diagnoses = await idbGetAll("diagnoses");
-  const cp = await computeClassProgress({mode:"previous"});
-  const progressByStudent = new Map(cp.rows.map(r => [r.student.student_id,r.pg]));
 
   const rows = students.map(s => ({
     ...s,
     display_name:studentDisplayName(s),
     assessment_count:results.filter(r => r.student_id === s.student_id && activeAssessmentIds.has(r.assessment_id)).length,
     questionnaire_count:new Set(qResponses.filter(r => r.student_id === s.student_id && activeQIds.has(r.questionnaire_id)).map(r => r.questionnaire_id)).size,
-    high_priority_count:diagnoses.filter(d => d.student_id === s.student_id && d.priority === "High priority").length,
-    pg:progressByStudent.get(s.student_id) || null
+    high_priority_count:diagnoses.filter(d => d.student_id === s.student_id && d.priority === "High priority").length
   }));
 
   const q = normalizeName(state.studentSearch);
@@ -4738,17 +3427,14 @@ async function renderStudents(){
     <div class="card">
       <div class="section-title">
         <h2>學生列表 / Student List</h2>
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-          <button onclick="exportClassCsv()">匯出全班 CSV</button>
-          <button class="secondary" onclick="showView('progress')">班級進步比較</button>
-        </div>
+        <button onclick="exportClassCsv()">匯出全班 CSV</button>
       </div>
       <input value="${esc(state.studentSearch)}" placeholder="搜尋姓名、班別學號或電郵 / Search name, code or email" oninput="state.studentSearch=this.value; renderStudents()">
       <div style="overflow:auto;max-height:72vh;margin-top:1rem">
         <table>
           <thead>
             <tr>
-              <th>班別學號</th><th>姓名</th><th>班別</th><th>學年</th><th>整體</th><th>變化</th><th>評估記錄</th><th>問卷</th><th>高優先提示</th>
+              <th>班別學號</th><th>姓名</th><th>班別</th><th>學年</th><th>評估記錄</th><th>問卷</th><th>高優先提示</th>
             </tr>
           </thead>
           <tbody>
@@ -4758,8 +3444,6 @@ async function renderStudents(){
                 <td>${esc(s.display_name)}<br><span class="small muted">${esc(s.english_name || "")}</span></td>
                 <td>${esc(s.class_code || "")}</td>
                 <td>${esc(s.academic_year || "")}</td>
-                <td>${s.pg && s.pg.overall != null ? s.pg.overall + "%" : "—"}</td>
-                <td>${s.pg ? pgDeltaPill(s.pg.overallDelta,s.pg.overallStatus) : "—"}</td>
                 <td>${s.assessment_count}</td>
                 <td>${s.questionnaire_count}</td>
                 <td>${s.high_priority_count ? pill(s.high_priority_count + " High","red") : pill("0","green")}</td>
@@ -4883,7 +3567,6 @@ function tabLabel(t){
   return {
     overview:"總覽 Overview",
     performance:"成績時間線 Performance",
-    progress:"進步比較 Progress ↑",
     diagnosis:"認知落差 Diagnosis",
     questionnaire:"自評問卷 Questionnaire",
     notes:"教師備註 Notes",
@@ -4922,7 +3605,7 @@ async function renderStudentProfile(){
     </div>
 
     <div class="tabs">
-      ${["overview","performance","progress","diagnosis","questionnaire","notes","audit"].map(t => `
+      ${["overview","performance","diagnosis","questionnaire","notes","audit"].map(t => `
         <button class="${state.profileTab === t ? "" : "secondary"}" onclick="state.profileTab='${t}'; renderStudentProfile()">${tabLabel(t)}</button>
       `).join("")}
       <button class="ghost" onclick="showView('students')">返回學生列表</button>
@@ -4935,14 +3618,13 @@ async function renderStudentProfile(){
 
   if(state.profileTab === "overview") await renderProfileOverview(p);
   if(state.profileTab === "performance") await renderProfilePerformance(p);
-  if(state.profileTab === "progress") await renderProfileProgress(p);
   if(state.profileTab === "diagnosis") await renderProfileDiagnosis(p);
   if(state.profileTab === "questionnaire") await renderProfileQuestionnaire(p);
   if(state.profileTab === "notes") await renderProfileNotes(p);
   if(state.profileTab === "audit") await renderProfileAudit(p);
 }
 
-function areaCardHtml(a, pgArea){
+function areaCardHtml(a){
   const score = a.score == null ? "—" : Math.round(a.score);
   const width = a.score == null ? 0 : Math.max(0,Math.min(100,a.score));
   const stateKind = a.state.includes("Not Yet") ? "grey" : a.state.includes("In Progress") ? "blue" : "green";
@@ -4958,7 +3640,6 @@ function areaCardHtml(a, pgArea){
       <div class="score ${esc(a.band.class)}">${score}${a.score == null ? "" : "%"}</div>
       <div>${esc(a.band.label_zh)} / ${esc(a.band.label_en)}</div>
       <div class="bar"><span style="width:${width}%"></span></div>
-      ${pgArea ? `<div style="margin:.25rem 0">${pgDeltaPill(pgArea.delta,pgArea.status)} <span class="tiny muted">vs 上次紀錄</span></div>` : ""}
       <div class="small muted">
         評估 ${a.assessment_count}｜趨勢 ${a.trend}｜Gap ${esc(a.gap_status)}<br>
         最新證據：${esc(a.latest_evidence_date || "—")}
@@ -4971,36 +3652,14 @@ async function renderProfileOverview(p){
   const top = p.diagnoses.filter(d => d.priority === "High priority" || d.priority === "Moderate priority").slice(0,3);
   const latestResults = p.results.slice(0,5);
   const latestQ = p.questionnaires[0];
-  const pg = await getStudentProgress(p.student.student_id);
-  const pgAreaById = Object.fromEntries((pg.areas || []).map(a => [a.area_id,a]));
 
   qs("#profileTab").innerHTML = `
     <div class="grid grid-2">
       <div class="grid grid-2">
-        ${p.area_stats.map(a => areaCardHtml(a, pg.hasComparison ? pgAreaById[a.area_id] : null)).join("")}
+        ${p.area_stats.map(areaCardHtml).join("")}
       </div>
 
       <div class="grid">
-        <div class="card">
-          <div class="section-title">
-            <h2 style="margin:0">進步概況 / Progress Snapshot</h2>
-            <button class="secondary" onclick="state.profileTab='progress'; renderStudentProfile()">詳細 Details</button>
-          </div>
-          <div class="pg-kpi-grid" style="grid-template-columns:repeat(2,minmax(0,1fr))">
-            <div class="pg-kpi">
-              <div class="label">整體現況</div>
-              <div class="value">${pg.overall == null ? "—" : pg.overall + "%"}</div>
-              <div class="sub">五個範疇平均</div>
-            </div>
-            <div class="pg-kpi">
-              <div class="label">相比上次紀錄</div>
-              <div class="value ${pgDeltaClass(pg.overallStatus)}">${esc(pgDeltaText(pg.overallDelta,pg.overallStatus))}</div>
-              <div class="sub">${pg.baseline ? esc(String(pg.baseline.captured_at || "").slice(0,10)) : "未有基準"}</div>
-            </div>
-          </div>
-          <p class="small" style="margin-bottom:0">${esc(progressSummaryText(pg))}</p>
-        </div>
-
         <div class="card">
           <h2>Quest Log / 學習任務</h2>
           ${top.length ? (await Promise.all(top.map(async d => `
@@ -5051,128 +3710,6 @@ async function renderProfileOverview(p){
             <div class="small muted">${esc(p.notes[0].created_at)}</div>
           ` : `<p class="muted">未有教師備註。</p>`}
         </div>
-      </div>
-    </div>
-  `;
-}
-
-async function renderProfileProgress(p){
-  const pg = await getStudentProgress(p.student.student_id);
-  const pointsAsc = pg.points || [];
-  const timelineRows = pointsAsc.map((point,i) => ({
-    point,
-    index:i,
-    prev:i > 0 ? pointsAsc[i-1] : null
-  })).reverse();
-
-  qs("#profileTab").innerHTML = `
-    <div class="card">
-      <div class="section-title">
-        <div>
-          <h2 style="margin:0">進步比較 / Progress & Improvement</h2>
-          <div class="small muted">
-            每次老師上載新成績或自評，系統會自動建立快照。以下顯示五個範疇及整體表現的變化。
-          </div>
-        </div>
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-          <button onclick="captureSnapshotNow()">記錄快照 Snapshot now</button>
-          <button class="secondary" onclick="exportStudentProgressCsv('${esc(p.student.student_id)}')">匯出進度 CSV</button>
-          <button class="ghost" onclick="showView('progress')">班級比較</button>
-        </div>
-      </div>
-
-      <div class="pg-kpi-grid">
-        <div class="pg-kpi">
-          <div class="label">整體現況 Overall now</div>
-          <div class="value">${pg.overall == null ? "—" : pg.overall + "%"}</div>
-          <div class="sub">${pg.latest ? esc(String(pg.latest.captured_at || "").slice(0,16).replace("T"," ")) : "—"}</div>
-        </div>
-        <div class="pg-kpi">
-          <div class="label">相比上次紀錄</div>
-          <div class="value ${pgDeltaClass(pg.overallStatus)}">${esc(pgDeltaText(pg.overallDelta,pg.overallStatus))}</div>
-          <div class="sub">${pg.baseline ? esc(pg.baseline.label || "") : "未有比較基準"}</div>
-        </div>
-        <div class="pg-kpi">
-          <div class="label">相比最初紀錄</div>
-          <div class="value ${pgDeltaClass(pg.overallTotalStatus)}">${esc(pgDeltaText(pg.overallTotalDelta,pg.overallTotalStatus))}</div>
-          <div class="sub">${pg.first ? esc(String(pg.first.captured_at || "").slice(0,10)) : "—"}</div>
-        </div>
-        <div class="pg-kpi">
-          <div class="label">進步 / 下降範疇</div>
-          <div class="value"><span class="pg-up">${pg.improved.length}</span> / <span class="pg-down">${pg.declined.length}</span></div>
-          <div class="sub">快照紀錄 ${pg.snapshotCount}</div>
-        </div>
-      </div>
-
-      <div class="privacy" style="margin-top:1rem">
-        <strong>解讀提示：</strong>${esc(progressSummaryText(pg))}
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:1rem">
-      <h2>趨勢圖 / Trend of Five Areas + Overall</h2>
-      ${pgChartSvg(pg)}
-    </div>
-
-    <div class="card" style="margin-top:1rem">
-      <h2>五個範疇的改善 / Five-Area Improvement</h2>
-      <div class="grid grid-5">
-        ${pg.areas.map(a => `
-          <div class="pg-area-card">
-            <div class="pg-area-head">
-              <div>
-                <strong>${esc(a.area_id)}. ${esc(a.label_zh)}</strong>
-                <div class="tiny muted">${esc(a.label_en)}</div>
-              </div>
-              ${pgDeltaPill(a.delta,a.status)}
-            </div>
-            <div class="pg-delta-big ${pgDeltaClass(a.status)}" style="margin:.35rem 0">
-              ${a.current == null ? "—" : a.current + "%"}
-            </div>
-            ${pgCompareBars(a.previous,a.current,a.status)}
-            <div class="tiny muted" style="margin-top:.4rem">
-              自最初 ${esc(pgDeltaText(a.total_delta,a.total_status))}<br>
-              評估記錄 ${a.count}｜自評 ${a.confidence == null ? "—" : a.confidence + "/3"}
-            </div>
-          </div>
-        `).join("")}
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:1rem">
-      <h2>進度紀錄 / Progress Timeline</h2>
-      <div style="overflow:auto;max-height:60vh">
-        <table>
-          <thead>
-            <tr>
-              <th>時間</th>
-              <th>紀錄 / 來源</th>
-              <th>整體</th>
-              <th>變化</th>
-              ${AREA_LIST.map(a => `<th>${a.area_id}</th>`).join("")}
-              <th>有效成績</th>
-              <th>操作</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${timelineRows.map(row => `
-              <tr>
-                <td class="nowrap">${esc(String(row.point.captured_at || "").slice(0,16).replace("T"," "))}</td>
-                <td>
-                  ${esc(row.point.label || "")}
-                  <div class="tiny muted">${esc(row.point.trigger || "")}${row.point.is_live ? "（未儲存 live）" : ""}</div>
-                </td>
-                <td><strong>${row.point.overall == null ? "—" : row.point.overall + "%"}</strong></td>
-                <td>${pgDeltaPill(pgDelta(row.point.overall,row.prev ? row.prev.overall : null),pgDeltaStatus(row.point.overall,row.prev ? row.prev.overall : null))}</td>
-                ${AREA_LIST.map(a => `
-                  <td>${pgCell((row.point.area_scores || {})[a.area_id] ?? null, row.prev ? ((row.prev.area_scores || {})[a.area_id] ?? null) : null)}</td>
-                `).join("")}
-                <td>${row.point.valid_results || 0}</td>
-                <td>${row.point.snapshot_id ? `<button class="danger" onclick="deleteProgressSnapshot('${esc(row.point.snapshot_id)}')">刪除</button>` : `<span class="tiny muted">live</span>`}</td>
-              </tr>
-            `).join("") || `<tr><td colspan="${AREA_LIST.length + 6}" class="muted">未有進度紀錄。</td></tr>`}
-          </tbody>
-        </table>
       </div>
     </div>
   `;
@@ -5513,13 +4050,6 @@ async function renderUpload(){
         支援 CSV/XLSX。檔案只會在瀏覽器內解析，不會自動上載到 GitHub 或伺服器。
       </p>
 
-      <div class="privacy">
-        📈 <strong>自動進步比較：</strong>每次成功匯入新成績或自評資料後，系統會自動建立進度快照，
-        並彈出「上載後的變化」報告，顯示每位學生五個範疇及整體表現的升跌。可在
-        <button class="ghost" style="padding:.15rem .5rem" onclick="showView('progress')">進度比較 Progress</button>
-        隨時重看。
-      </div>
-
       <div class="form-row" style="grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:1rem">
         <div>
           <label>CSV Encoding</label>
@@ -5715,7 +4245,6 @@ function renderAssessmentReview(){
 
     <div style="height:1rem"></div>
     <button onclick="confirmAssessmentImport()">確認匯入 Confirm Import</button>
-    <p class="tiny muted">匯入後會自動比較五個範疇及整體表現的變化。</p>
   `;
 }
 
@@ -5746,8 +4275,6 @@ async function confirmAssessmentImport(){
   }
 
   try{
-    await pgEnsureBaseline(`上載前基準 Before: ${u.importRecord.original_filename}`);
-
     const summary = await importAssessmentData(u.importRecord, u.table, {
       academic_year:qs("#reviewYear").value || "2026/27",
       form_level:Number(qs("#reviewForm").value || 5),
@@ -5764,21 +4291,8 @@ async function confirmAssessmentImport(){
     await logAction("confirm_import","import",rec.import_id,summary);
     await refreshDiagnoses();
 
-    const change = await pgAutoCapture({
-      label:`成績上載 Upload: ${u.importRecord.original_filename}`,
-      trigger:"assessment_import",
-      import_id:u.importRecord.import_id
-    });
-
     toast(`匯入完成：${summary.created_assessments} assessments, ${summary.imported_results} results.`);
-
-    if(change && change.count){
-      await showView("progress");
-      showChangeReportModal(change, `成績上載 Assessment upload：${u.importRecord.original_filename}`);
-    }else{
-      toast("此次上載後，五個範疇分數未有變化。","warn");
-      showView("dashboard");
-    }
+    showView("dashboard");
   }catch(err){
     toast("匯入失敗：" + esc(err.message || err), "bad", 7000);
   }
@@ -5898,8 +4412,6 @@ async function importAssessmentData(importRecord, table, payload){
     }
   }
 
-  pgInvalidateBulk();
-
   return {
     created_assessments:createdAssessments,
     imported_results:importedResults,
@@ -5980,8 +4492,6 @@ async function confirmQuestionnaireImport(){
   }));
 
   try{
-    await pgEnsureBaseline(`上載前基準 Before: ${u.importRecord.original_filename}`);
-
     const summary = await importQuestionnaireData(u.importRecord, u.table, {
       academic_year:qs("#reviewYear").value || "2026/27",
       title:qs("#qTitle").value || u.importRecord.original_filename,
@@ -6001,18 +4511,7 @@ async function confirmQuestionnaireImport(){
     await logAction("confirm_import","import",rec.import_id,summary);
     await refreshDiagnoses();
 
-    const change = await pgAutoCapture({
-      label:`自評上載 Upload: ${u.importRecord.original_filename}`,
-      trigger:"questionnaire_import",
-      import_id:u.importRecord.import_id
-    });
-
     toast(`問卷匯入完成：matched ${summary.matched_rows}, unmatched ${summary.unmatched_rows}.`);
-
-    if(change && change.count){
-      showChangeReportModal(change, `自評問卷上載 Questionnaire upload：${u.importRecord.original_filename}`);
-    }
-
     showView("unmatched");
   }catch(err){
     toast("問卷匯入失敗：" + esc(err.message || err), "bad", 7000);
@@ -6130,8 +4629,6 @@ async function importQuestionnaireData(importRecord, table, payload){
     }
   }
 
-  pgInvalidateBulk();
-
   return {
     questionnaire_id:questionnaire.questionnaire_id,
     concept_count:conceptColumns.length,
@@ -6191,7 +4688,6 @@ async function confirmRosterImport(){
   await idbPut("imports", rec);
   await logAction("confirm_import","import",rec.import_id,summary);
 
-  pgInvalidateBulk();
   toast(`名冊匯入完成：${summary.imported_students} students.`);
   showView("students");
 }
@@ -6249,4 +4745,2064 @@ async function renderUnmatched(){
   qs("#view").innerHTML = `
     <div class="card">
       <h2>未配對問卷列 / Unmatched Questionnaire Responses</h2>
-      <p class="muted">匿名、
+      <p class="muted">匿名、只有班別如 5S、或無信心配對的問卷列不會自動連到學生。</p>
+
+      ${unresolved.length ? unresolved.map(r => `
+        <div class="card" style="margin:.75rem 0">
+          <div>${pill("Unresolved","amber")} <span class="small muted">${esc(r.row_reference)}</span></div>
+          <p>
+            <strong>Identifier:</strong> ${esc(r.original_identifier || "—")}　
+            <strong>Name:</strong> ${esc(r.original_name || "—")}　
+            <strong>Email:</strong> ${esc(r.original_email || "—")}
+          </p>
+
+          <div class="small muted">
+            Suggested:
+            ${(r.suggested_matches || []).map(s => `${esc(s.code)} ${esc(s.name)} (${esc(s.score)})`).join(" | ") || "—"}
+          </div>
+
+          <div class="form-row" style="margin-top:.75rem">
+            <div style="grid-column:span 2">
+              <label>手動連結至學生 / Manual link</label>
+              <select id="match_${esc(r.unmatched_id)}">
+                <option value="">-- select --</option>
+                ${students.map(s => `<option value="${esc(s.student_id)}">${esc(s.normalized_student_code)} ${esc(studentDisplayName(s))}</option>`).join("")}
+              </select>
+            </div>
+            <button onclick="resolveUnmatched('${esc(r.unmatched_id)}','link')">連結 Link</button>
+            <button class="danger" onclick="resolveUnmatched('${esc(r.unmatched_id)}','do_not_import')">不匯入 Skip</button>
+          </div>
+        </div>
+      `).join("") : `<p class="muted">沒有未配對資料。</p>`}
+
+      ${rows.filter(r => r.resolution_status !== "unresolved").length ? `
+        <h3>已處理 / Resolved</h3>
+        <div style="overflow:auto;max-height:300px">
+          <table>
+            <thead><tr><th>來源列</th><th>狀態</th><th>處理時間</th></tr></thead>
+            <tbody>
+              ${rows.filter(r => r.resolution_status !== "unresolved").map(r => `
+                <tr><td>${esc(r.row_reference)}</td><td>${esc(r.resolution_status)}</td><td>${esc(r.resolved_at || "")}</td></tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      ` : ""}
+    </div>
+  `;
+}
+
+async function resolveUnmatched(unmatchedId, action){
+  const r = await idbGet("unmatchedRecords", unmatchedId);
+  if(!r || r.resolution_status !== "unresolved") return;
+
+  if(action === "do_not_import"){
+    r.resolution_status = "do_not_import";
+    r.resolved_by = "local_teacher";
+    r.resolved_at = nowIso();
+    await idbPut("unmatchedRecords", r);
+    await logAction("resolve_unmatched_skip","unmatched",unmatchedId,{});
+    toast("已標記為不匯入。");
+    renderUnmatched();
+    return;
+  }
+
+  const sid = qs(`#match_${CSS.escape(unmatchedId)}`).value;
+  if(!sid){
+    toast("請選擇學生。","warn");
+    return;
+  }
+
+  const payload = r.concept_payload_json || [];
+  for(const item of payload){
+    await idbPut("questionnaireResponses", {
+      response_id:uid("qr"),
+      questionnaire_id:item.questionnaire_id,
+      concept_id:item.concept_id,
+      student_id:sid,
+      light_value:item.light_value,
+      light_score:item.light_score,
+      source_row_reference:item.source_row_reference,
+      match_method:"manual_confirmation",
+      match_confidence:1,
+      imported_at:nowIso()
+    });
+  }
+
+  r.resolution_status = "linked";
+  r.resolved_student_id = sid;
+  r.resolved_by = "local_teacher";
+  r.resolved_at = nowIso();
+  await idbPut("unmatchedRecords", r);
+  await logAction("resolve_unmatched_link","unmatched",unmatchedId,{student_id:sid});
+  await refreshDiagnoses();
+  toast("已手動連結問卷列。");
+  renderUnmatched();
+}
+
+async function renderImports(){
+  const imports = (await idbGetAll("imports")).sort((a,b) => String(b.uploaded_at).localeCompare(String(a.uploaded_at)));
+
+  qs("#view").innerHTML = `
+    <div class="card">
+      <h2>匯入紀錄 / Import History</h2>
+      <p class="muted">停用匯入不會刪除審計紀錄，只會令相關評估/問卷不再用於 dashboard 和 diagnosis。</p>
+      <div style="overflow:auto;max-height:76vh">
+        <table>
+          <thead>
+            <tr><th>時間</th><th>檔案</th><th>類型</th><th>狀態</th><th>摘要</th><th>操作</th></tr>
+          </thead>
+          <tbody>
+            ${imports.map(i => `
+              <tr>
+                <td>${esc(i.uploaded_at)}</td>
+                <td>${esc(i.original_filename)}<br><span class="small muted">hash ${esc(i.file_hash || "")}</span></td>
+                <td>${esc(i.import_type)}</td>
+                <td>${pill(i.status,i.status === "disabled" ? "red" : i.status === "imported" ? "green" : "blue")}</td>
+                <td><pre class="small">${esc(JSON.stringify(i.validation_summary || {},null,2))}</pre></td>
+                <td>
+                  ${i.status !== "disabled" ? `<button class="danger" onclick="disableImport('${esc(i.import_id)}')">停用 Disable</button>` : "—"}
+                </td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+async function disableImport(importId){
+  const ok = await confirmModal("停用匯入", "停用此匯入？相關評估/問卷將不再用於 dashboard，但資料與審計紀錄會保留。", "停用 Disable");
+  if(!ok) return;
+
+  const imp = await idbGet("imports", importId);
+  if(!imp) return;
+
+  imp.status = "disabled";
+  imp.disabled_at = nowIso();
+  await idbPut("imports", imp);
+
+  const assessments = await idbGetAll("assessments");
+  for(const a of assessments.filter(x => x.source_import_id === importId)){
+    a.active_version = 0;
+    a.disabled_at = nowIso();
+    await idbPut("assessments", a);
+  }
+
+  const questionnaires = await idbGetAll("questionnaires");
+  for(const q of questionnaires.filter(x => x.source_import_id === importId)){
+    q.active_status = "inactive";
+    q.disabled_at = nowIso();
+    await idbPut("questionnaires", q);
+  }
+
+  const unmatched = await idbGetAll("unmatchedRecords");
+  for(const u of unmatched.filter(x => x.import_id === importId && x.resolution_status === "unresolved")){
+    u.resolution_status = "disabled";
+    u.resolved_at = nowIso();
+    await idbPut("unmatchedRecords", u);
+  }
+
+  await logAction("disable_import","import",importId,{});
+  await refreshDiagnoses();
+  toast("已停用匯入。");
+  renderImports();
+}
+
+async function renderSettings(){
+  const settings = await getSettings();
+  const topics = (await idbGetAll("topics")).sort((a,b) => String(a.area_id).localeCompare(String(b.area_id)) || (a.sort_order || 0) - (b.sort_order || 0));
+  const assessments = (await idbGetAll("assessments")).filter(a => a.active_version).sort((a,b) => String(b.assessment_date || "").localeCompare(String(a.assessment_date || "")));
+
+  qs("#view").innerHTML = `
+    <div class="grid grid-2">
+      <div class="card">
+        <h2>計算設定 / Calculation Settings</h2>
+
+        <label>預設學年 Current academic year</label>
+        <input id="setYear" value="${esc(settings.current_academic_year || "2026/27")}">
+
+        <label>範疇分數計算 Area aggregation</label>
+        <select id="setAgg">
+          <option value="simple" ${settings.aggregation_method === "simple" ? "selected" : ""}>簡單平均 Simple average</option>
+          <option value="weighted" ${settings.aggregation_method === "weighted" ? "selected" : ""}>權重平均 Weighted average</option>
+          <option value="recency" ${settings.aggregation_method === "recency" ? "selected" : ""}>近期加權 Recency-weighted</option>
+        </select>
+
+        <label>Blank result rule</label>
+        <select id="setBlank">
+          <option value="no_result" ${settings.blank_result_rule === "no_result" ? "selected" : ""}>No Result / 未有成績</option>
+          <option value="absent" ${settings.blank_result_rule === "absent" ? "selected" : ""}>Absent / 缺席</option>
+        </select>
+
+        <label>Absent tokens，逗號分隔</label>
+        <input id="setAbsent" value="${esc((settings.absent_tokens || []).join(","))}">
+
+        <label>Performance bands JSON</label>
+        <textarea id="setBands">${esc(JSON.stringify(settings.performance_bands || DEFAULT_BANDS,null,2))}</textarea>
+
+        <div style="height:.75rem"></div>
+        <button onclick="saveSettings()">儲存設定 Save Settings</button>
+      </div>
+
+      <div class="card">
+        <h2>新增課題 / Add Topic</h2>
+        <label>主範疇 Area</label>
+        ${areaSelectHtml("newTopicArea","IV")}
+        <label>English label</label>
+        <input id="newTopicEn">
+        <label>中文標籤</label>
+        <input id="newTopicZh">
+        <div style="height:.75rem"></div>
+        <button onclick="addTopic()">新增 Add</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <h2>課題分類 / Topic Taxonomy</h2>
+      <div style="overflow:auto;max-height:420px">
+        <table>
+          <thead><tr><th>ID</th><th>範疇</th><th>English</th><th>中文</th><th>Active</th><th>Save</th></tr></thead>
+          <tbody>
+            ${topics.map((t,i) => `
+              <tr>
+                <td class="code">${esc(t.topic_id)}</td>
+                <td>${areaSelectHtml("topic_area_" + i,t.area_id)}</td>
+                <td><input id="topic_en_${i}" value="${esc(t.label_en || "")}"></td>
+                <td><input id="topic_zh_${i}" value="${esc(t.label_zh || "")}"></td>
+                <td>
+                  <select id="topic_active_${i}">
+                    <option value="1" ${t.active ? "selected" : ""}>active</option>
+                    <option value="0" ${!t.active ? "selected" : ""}>inactive</option>
+                  </select>
+                </td>
+                <td><button class="secondary" onclick="saveTopic('${esc(t.topic_id)}',${i})">Save</button></td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <h2>評估範疇/課題對應 / Assessment-to-Area Mapping</h2>
+      <div style="overflow:auto;max-height:560px">
+        <table>
+          <thead><tr><th>評估</th><th>日期</th><th>類型</th><th>範疇</th><th>課題 IDs/labels</th><th>權重</th><th>Save</th></tr></thead>
+          <tbody>
+            ${assessments.map((a,i) => `
+              <tr>
+                <td><input id="map_title_${i}" value="${esc(a.title)}"><div class="small code">${esc(a.assessment_id)}</div></td>
+                <td><input id="map_date_${i}" type="date" value="${esc(a.assessment_date || "")}"></td>
+                <td><input id="map_type_${i}" value="${esc(a.assessment_type || "")}"></td>
+                <td>${areaSelectHtml("map_area_" + i,a.area_id)}</td>
+                <td><input id="map_topics_${i}" value="${esc((a.topic_ids || []).join(","))}"></td>
+                <td><input id="map_weight_${i}" type="number" step="0.1" value="${esc(a.weight || 1)}"></td>
+                <td><button onclick="saveAssessmentMap('${esc(a.assessment_id)}',${i})">Save</button></td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <h2>危險操作 / Danger Zone</h2>
+      <button class="danger" onclick="clearAllData()">清除本瀏覽器所有資料 Clear all local data</button>
+    </div>
+  `;
+}
+
+async function saveSettings(){
+  let bands;
+  try{
+    bands = JSON.parse(qs("#setBands").value);
+  }catch(err){
+    toast("Performance bands JSON 格式錯誤。","bad");
+    return;
+  }
+
+  await setSetting("current_academic_year", qs("#setYear").value.trim() || "2026/27");
+  await setSetting("aggregation_method", qs("#setAgg").value);
+  await setSetting("blank_result_rule", qs("#setBlank").value);
+  await setSetting("absent_tokens", qs("#setAbsent").value.split(",").map(x => x.trim()).filter(Boolean));
+  await setSetting("performance_bands", bands);
+  await logAction("update_settings","settings","global",{});
+  await refreshDiagnoses();
+  toast("設定已儲存。");
+  renderSettings();
+}
+
+async function addTopic(){
+  const area = qs("#newTopicArea").value;
+  const en = qs("#newTopicEn").value.trim();
+  const zh = qs("#newTopicZh").value.trim();
+  if(!en && !zh){
+    toast("請輸入課題標籤。","warn");
+    return;
+  }
+
+  const id = await ensureTopic(area, en || zh);
+  const t = await idbGet("topics", id);
+  t.label_en = en;
+  t.label_zh = zh;
+  t.area_id = area;
+  t.active = 1;
+  t.updated_at = nowIso();
+  await idbPut("topics", t);
+  await logAction("add_topic","topic",id,{area,en,zh});
+  toast("已新增課題。");
+  renderSettings();
+}
+
+async function saveTopic(topicId, i){
+  const t = await idbGet("topics", topicId);
+  t.area_id = qs(`#topic_area_${i}`).value;
+  t.label_en = qs(`#topic_en_${i}`).value;
+  t.label_zh = qs(`#topic_zh_${i}`).value;
+  t.active = Number(qs(`#topic_active_${i}`).value);
+  t.updated_at = nowIso();
+  await idbPut("topics", t);
+  await logAction("update_topic","topic",topicId,{});
+  toast("課題已更新。");
+}
+
+async function saveAssessmentMap(assessmentId, i){
+  const a = await idbGet("assessments", assessmentId);
+  const area = qs(`#map_area_${i}`).value;
+  const topicIds = await topicIdsFromLabels(area, qs(`#map_topics_${i}`).value.split(",").map(x => x.trim()).filter(Boolean));
+  a.title = qs(`#map_title_${i}`).value.trim();
+  a.assessment_date = qs(`#map_date_${i}`).value;
+  a.assessment_type = qs(`#map_type_${i}`).value;
+  a.area_id = area;
+  a.topic_ids = topicIds;
+  a.weight = Number(qs(`#map_weight_${i}`).value || 1);
+  a.updated_at = nowIso();
+  await idbPut("assessments", a);
+  await logAction("update_assessment_mapping","assessment",assessmentId,{area,topicIds});
+  await refreshDiagnoses();
+  toast("評估 mapping 已更新。");
+}
+
+async function clearAllData(){
+  const ok = await confirmModal("清除所有本機資料", "這會刪除此瀏覽器內所有學生、成績、問卷、備註、審計紀錄。請先匯出備份。", "清除 Clear");
+  if(!ok) return;
+
+  for(const s of STORE_NAMES) await idbClear(s);
+  await ensureDefaults();
+  sessionStorage.removeItem("kms_unlocked");
+  toast("已清除本機資料。請重新整理頁面。","warn",6000);
+  setTimeout(() => location.reload(), 1000);
+}
+
+async function renderBackup(){
+  qs("#view").innerHTML = `
+    <div class="grid grid-2">
+      <div class="card">
+        <h2>匯出 / Export</h2>
+        <p class="muted">建議定期匯出備份。JSON 備份包含所有本機資料。</p>
+        <button onclick="exportBackupJson()">匯出 JSON 備份</button>
+
+        <h3 style="margin-top:1rem">加密備份 / Encrypted Backup</h3>
+        <label>加密密碼 Backup passphrase</label>
+        <input id="backupPass" type="password">
+        <div style="height:.75rem"></div>
+        <button onclick="exportEncryptedBackup()">匯出加密備份</button>
+      </div>
+
+      <div class="card">
+        <h2>匯入 / Restore</h2>
+        <p class="muted">可匯入 JSON 或加密 JSON。匯入會取代目前本瀏覽器資料。</p>
+        <label>選擇備份檔 Backup file</label>
+        <input id="backupFile" type="file" accept=".json,.kms">
+        <label>如為加密備份，輸入密碼</label>
+        <input id="restorePass" type="password">
+        <div style="height:.75rem"></div>
+        <button class="danger" onclick="restoreBackup()">匯入並取代 Restore</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <h2>CSV / PDF 匯出 / Exports</h2>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <button onclick="exportClassCsv()">匯出全班成績 CSV</button>
+        <button class="secondary" onclick="showView('students')">選擇個別學生匯出</button>
+        <button class="secondary" onclick="showView('reports')">Big Report PDF Export</button>
+      </div>
+    </div>
+  `;
+}
+
+async function collectBackupData(){
+  const data = {
+    app:"HKDSE Physics KMS Browser Only",
+    version:1,
+    exported_at:nowIso(),
+    stores:{}
+  };
+  for(const s of STORE_NAMES){
+    data.stores[s] = await idbGetAll(s);
+  }
+  return data;
+}
+
+function downloadText(filename, text, mime="text/plain;charset=utf-8"){
+  const blob = new Blob([text], {type:mime});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+async function exportBackupJson(){
+  const data = await collectBackupData();
+  downloadText(`physics_kms_backup_${todayIso()}.json`, JSON.stringify(data,null,2), "application/json;charset=utf-8");
+  await logAction("export_backup","backup","local",{encrypted:false});
+}
+
+function bytesToBase64(bytes){
+  let bin = "";
+  const arr = new Uint8Array(bytes);
+  for(const b of arr) bin += String.fromCharCode(b);
+  return btoa(bin);
+}
+
+function base64ToBytes(b64){
+  const bin = atob(b64);
+  const arr = new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) arr[i] = bin.charCodeAt(i);
+  return arr;
+}
+
+async function deriveKey(passphrase, salt){
+  const baseKey = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(passphrase),
+    "PBKDF2",
+    false,
+    ["deriveKey"]
+  );
+  return crypto.subtle.deriveKey(
+    {name:"PBKDF2",salt,iterations:200000,hash:"SHA-256"},
+    baseKey,
+    {name:"AES-GCM",length:256},
+    false,
+    ["encrypt","decrypt"]
+  );
+}
+
+async function encryptText(plainText, passphrase){
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const key = await deriveKey(passphrase, salt);
+  const cipher = await crypto.subtle.encrypt({name:"AES-GCM",iv}, key, new TextEncoder().encode(plainText));
+  return {
+    app:"HKDSE Physics KMS Encrypted Backup",
+    encrypted:true,
+    kdf:"PBKDF2-SHA256",
+    iterations:200000,
+    salt:bytesToBase64(salt),
+    iv:bytesToBase64(iv),
+    data:bytesToBase64(cipher),
+    exported_at:nowIso()
+  };
+}
+
+async function decryptText(payload, passphrase){
+  const salt = base64ToBytes(payload.salt);
+  const iv = base64ToBytes(payload.iv);
+  const cipher = base64ToBytes(payload.data);
+  const key = await deriveKey(passphrase, salt);
+  const plain = await crypto.subtle.decrypt({name:"AES-GCM",iv}, key, cipher);
+  return new TextDecoder().decode(plain);
+}
+
+async function exportEncryptedBackup(){
+  const pass = qs("#backupPass").value;
+  if(pass.length < 6){
+    toast("請輸入至少 6 個字元的備份密碼。","warn");
+    return;
+  }
+  const data = await collectBackupData();
+  const encrypted = await encryptText(JSON.stringify(data), pass);
+  downloadText(`physics_kms_backup_encrypted_${todayIso()}.kms`, JSON.stringify(encrypted,null,2), "application/json;charset=utf-8");
+  await logAction("export_backup","backup","local",{encrypted:true});
+  toast("已匯出加密備份。");
+}
+
+async function restoreBackup(){
+  const file = qs("#backupFile").files[0];
+  if(!file){
+    toast("請選擇備份檔。","warn");
+    return;
+  }
+
+  const ok = await confirmModal("匯入備份", "匯入會取代目前本瀏覽器所有資料。請確認已另存目前資料。", "匯入 Restore");
+  if(!ok) return;
+
+  try{
+    let text = await file.text();
+    let payload = JSON.parse(text);
+
+    if(payload.encrypted){
+      const pass = qs("#restorePass").value;
+      if(!pass) throw new Error("Encrypted backup requires passphrase.");
+      text = await decryptText(payload, pass);
+      payload = JSON.parse(text);
+    }
+
+    if(!payload.stores) throw new Error("Invalid backup format.");
+
+    for(const s of STORE_NAMES) await idbClear(s);
+    for(const s of STORE_NAMES){
+      const rows = payload.stores[s] || [];
+      if(rows.length) await idbPutMany(s, rows);
+    }
+
+    await ensureDefaults();
+    await logAction("restore_backup","backup","local",{file:file.name});
+    toast("備份已匯入。頁面將重新整理。");
+    setTimeout(() => location.reload(), 1200);
+  }catch(err){
+    toast("匯入失敗：" + esc(err.message || err), "bad", 7000);
+  }
+}
+
+function toCsv(rows){
+  return rows.map(row => row.map(value => {
+    const s = String(value ?? "");
+    if(/[",\n\r]/.test(s)) return '"' + s.replace(/"/g,'""') + '"';
+    return s;
+  }).join(",")).join("\n");
+}
+
+async function exportClassCsv(){
+  const students = (await idbGetAll("students")).filter(s => s.active_status === "active");
+  const assessments = (await idbGetAll("assessments")).filter(a => a.active_version);
+  const results = await idbGetAll("assessmentResults");
+  const sById = Object.fromEntries(students.map(s => [s.student_id,s]));
+  const aById = Object.fromEntries(assessments.map(a => [a.assessment_id,a]));
+
+  const rows = [[
+    "student_code","chinese_name","english_name","assessment","date","type","area","topics",
+    "raw_score","full_mark","percentage","attendance_status","source_row"
+  ]];
+
+  for(const r of results){
+    const s = sById[r.student_id];
+    const a = aById[r.assessment_id];
+    if(!s || !a) continue;
+    rows.push([
+      s.normalized_student_code,
+      s.chinese_name,
+      s.english_name,
+      a.title,
+      a.assessment_date,
+      a.assessment_type,
+      a.area_id,
+      (a.topic_ids || []).join("|"),
+      r.raw_score,
+      r.full_mark,
+      r.percentage,
+      r.attendance_status,
+      r.source_row_reference
+    ]);
+  }
+
+  downloadText(`physics_kms_class_export_${todayIso()}.csv`, toCsv(rows), "text/csv;charset=utf-8");
+}
+
+async function exportStudentCsv(studentId){
+  const p = await getStudentProfile(studentId);
+  const rows = [
+    ["student_code",p.student.normalized_student_code],
+    ["name",p.display_name],
+    [],
+    ["assessment","date","type","area","topics","raw_score","full_mark","percentage","attendance_status"]
+  ];
+
+  for(const r of p.results){
+    rows.push([
+      r.title,
+      r.assessment_date,
+      r.assessment_type,
+      r.area_id,
+      (r.topic_ids || []).join("|"),
+      r.raw_score,
+      r.full_mark,
+      r.percentage,
+      r.attendance_status
+    ]);
+  }
+
+  downloadText(`${p.student.normalized_student_code || "student"}_export_${todayIso()}.csv`, toCsv(rows), "text/csv;charset=utf-8");
+}
+
+/* ------------------------------------------------------------
+   Big Report PDF Export Functions
+   ------------------------------------------------------------ */
+
+function brMonthStartIso(){
+  const d = new Date();
+  d.setDate(1);
+  return d.toISOString().slice(0,10);
+}
+
+function brEnsureDefaults(students=[]){
+  if(!state.bigReport.periodStart) state.bigReport.periodStart = brMonthStartIso();
+  if(!state.bigReport.periodEnd) state.bigReport.periodEnd = todayIso();
+  if(!state.bigReport.studentId){
+    state.bigReport.studentId = state.currentStudentId || (students[0] ? students[0].student_id : "");
+  }
+  if(!students.some(s => s.student_id === state.bigReport.studentId)){
+    state.bigReport.studentId = students[0] ? students[0].student_id : "";
+  }
+}
+
+function brOptions(){
+  return {
+    studentId:state.bigReport.studentId,
+    periodStart:state.bigReport.periodStart,
+    periodEnd:state.bigReport.periodEnd,
+    theme:state.bigReport.theme || "color",
+    includeFiveAreas:state.bigReport.includeFiveAreas !== false,
+    includeBest8:state.bigReport.includeBest8 !== false,
+    includeCharacter:state.bigReport.includeCharacter !== false,
+    includeCognitive:state.bigReport.includeCognitive !== false,
+    includeRevision:state.bigReport.includeRevision !== false
+  };
+}
+
+async function renderBigReports(){
+  const students = (await idbGetAll("students"))
+    .filter(s => s.active_status === "active")
+    .sort((a,b) => String(a.normalized_student_code).localeCompare(String(b.normalized_student_code)));
+
+  brEnsureDefaults(students);
+  const options = brOptions();
+
+  if(!students.length){
+    qs("#view").innerHTML = `
+      <div class="card">
+        <h2>Big Report PDF</h2>
+        <p class="muted">暫未有學生資料。請先匯入名冊、成績或載入虛構示範資料。</p>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button onclick="showView('upload')">前往上載中心</button>
+          <button class="secondary" onclick="seedDemoData()">載入虛構示範資料</button>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  qs("#view").innerHTML = `
+    <div class="br-print-wrapper">
+      <div class="br-report-layout">
+        <section class="card br-controls br-no-print">
+          <h2>Big Report PDF</h2>
+          <p class="muted small">使用目前 IndexedDB 內的學生、評估、自評、診斷及教師備註，產生 A4 PDF 報告。</p>
+
+          <label>選擇學生 Student</label>
+          <select id="brStudentSelect" onchange="state.bigReport.studentId=this.value;brRefreshPreview()">
+            ${students.map(s => `
+              <option value="${esc(s.student_id)}" ${s.student_id === options.studentId ? "selected" : ""}>
+                ${esc(s.normalized_student_code || "")} ${esc(studentDisplayName(s))}
+              </option>
+            `).join("")}
+          </select>
+
+          <label>報告涵蓋時段 Report period</label>
+          <div class="br-inline-grid">
+            <input id="brPeriodStart" type="date" value="${esc(options.periodStart)}" onchange="state.bigReport.periodStart=this.value;brRefreshPreview()">
+            <input id="brPeriodEnd" type="date" value="${esc(options.periodEnd)}" onchange="state.bigReport.periodEnd=this.value;brRefreshPreview()">
+          </div>
+
+          <label>PDF 顏色模式</label>
+          <select id="brThemeSelect" onchange="state.bigReport.theme=this.value;brRefreshPreview()">
+            <option value="color" ${options.theme === "color" ? "selected" : ""}>彩色版 Color</option>
+            <option value="bw" ${options.theme === "bw" ? "selected" : ""}>黑白列印版 Black & White</option>
+          </select>
+
+          <label>Report Sections</label>
+          <label class="br-check">
+            <input type="checkbox" ${options.includeFiveAreas ? "checked" : ""} onchange="state.bigReport.includeFiveAreas=this.checked;brRefreshPreview()">
+            <span>包含 5 個 Area Report</span>
+          </label>
+          <label class="br-check">
+            <input type="checkbox" ${options.includeBest8 ? "checked" : ""} onchange="state.bigReport.includeBest8=this.checked;brRefreshPreview()">
+            <span>包含 Best 8 Topics Performance</span>
+          </label>
+          <label class="br-check">
+            <input type="checkbox" ${options.includeCharacter ? "checked" : ""} onchange="state.bigReport.includeCharacter=this.checked;brRefreshPreview()">
+            <span>包含遊戲角色能力表 Character Status</span>
+          </label>
+          <label class="br-check">
+            <input type="checkbox" ${options.includeCognitive ? "checked" : ""} onchange="state.bigReport.includeCognitive=this.checked;brRefreshPreview()">
+            <span>包含認知落差分析 Cognitive Gap</span>
+          </label>
+          <label class="br-check">
+            <input type="checkbox" ${options.includeRevision ? "checked" : ""} onchange="state.bigReport.includeRevision=this.checked;brRefreshPreview()">
+            <span>包含個人化溫習建議 Revision Plan</span>
+          </label>
+
+          <div class="br-button-stack">
+            <button class="secondary" onclick="brRefreshPreview()">Preview Big Report</button>
+            <button onclick="brDownloadCurrentStudentPdf()">Download Student PDF</button>
+            <button class="success" onclick="brPrintCurrentReport()">Print Current Report</button>
+            <button class="ghost" onclick="brExportWholeClassZip()">Export Whole Class ZIP</button>
+          </div>
+
+          <div class="privacy small">
+            PDF 以瀏覽器前端產生，不會自動上載學生資料。若 CDN 被學校網絡阻擋，PDF / ZIP 功能可能需要可連線狀態才可載入 library。
+          </div>
+        </section>
+
+        <section class="grid">
+          <section class="card br-quick-summary br-no-print">
+            <div class="section-title">
+              <div>
+                <h2 id="brQuickTitle" style="margin:0">Big Report Preview</h2>
+                <div id="brQuickSubtitle" class="muted small">正在載入...</div>
+              </div>
+              <span class="pill blue">A4 PDF Ready</span>
+            </div>
+            <div id="brQuickStats" class="br-quick-grid"></div>
+          </section>
+
+          <section class="br-report-stage">
+            <div class="br-stage-title br-no-print">
+              <div>
+                <h2 style="margin:.1rem 0">PDF Preview</h2>
+                <div class="small muted">以下白色 A4 頁面會直接輸出成 PDF。</div>
+              </div>
+              <span class="pill purple">Big Report</span>
+            </div>
+            <div id="brReportPreview" class="br-report-root"></div>
+          </section>
+        </section>
+      </div>
+    </div>
+  `;
+
+  await brRefreshPreview();
+}
+
+async function openBigReportForStudent(studentId){
+  state.bigReport.studentId = studentId;
+  state.currentStudentId = studentId;
+  await showView("reports");
+}
+
+async function brRefreshPreview(){
+  const root = qs("#brReportPreview");
+  if(!root) return;
+
+  const options = brOptions();
+  if(!options.studentId){
+    root.innerHTML = `<div class="br-pdf-page"><div class="br-empty">暫未有學生資料。</div></div>`;
+    return;
+  }
+
+  try{
+    const profile = await getStudentProfile(options.studentId);
+    const report = await brBuildReportData(profile, options);
+
+    const quickTitle = qs("#brQuickTitle");
+    const quickSubtitle = qs("#brQuickSubtitle");
+    const quickStats = qs("#brQuickStats");
+
+    if(quickTitle) quickTitle.textContent = `${report.displayName} — Big Report`;
+    if(quickSubtitle) quickSubtitle.textContent = `${report.student.normalized_student_code || ""}｜${report.student.academic_year || ""}｜${brPeriodLabel(options)}`;
+    if(quickStats) quickStats.innerHTML = brRenderQuickStats(report);
+
+    root.className = `br-report-root ${options.theme === "bw" ? "br-bw" : ""}`;
+    root.innerHTML = brRenderReportPages(report, options);
+  }catch(err){
+    console.error(err);
+    root.innerHTML = `
+      <div class="br-pdf-page">
+        ${brRenderPageTop("Big Report PDF", "Error")}
+        <div class="br-empty">產生 Big Report 時發生錯誤：${esc(err.message || err)}</div>
+        ${brRenderFooter("Error",1,1)}
+      </div>
+    `;
+  }
+}
+
+async function brBuildReportData(profile, options){
+  const periodResults = profile.results.filter(r => brDateInRange(r.assessment_date, options));
+  const periodQuestionnaires = profile.questionnaires.filter(q => brDateInRange(q.completion_date, options));
+  const periodDiagnosesRaw = profile.diagnoses.filter(d => {
+    const latestDate = d.latest_assessment_summary && d.latest_assessment_summary.date;
+    return !latestDate || brDateInRange(latestDate, options);
+  });
+
+  const areaStats = await brComputeAreaStatsForReport(profile, periodResults, periodQuestionnaires, periodDiagnosesRaw);
+  const presentResults = periodResults.filter(r => r.attendance_status === "present" && r.percentage != null);
+  const validScores = presentResults.map(r => Number(r.percentage)).filter(Number.isFinite);
+  const resultAverage = validScores.length ? brRound(validScores.reduce((s,x) => s + x,0) / validScores.length,1) : null;
+  const areaScores = areaStats.map(a => a.score).filter(x => x != null && Number.isFinite(Number(x)));
+  const areaAverage = areaScores.length ? brRound(areaScores.reduce((s,x) => s + Number(x),0) / areaScores.length,1) : null;
+  const overall = areaAverage != null ? Math.round(areaAverage) : resultAverage != null ? Math.round(resultAverage) : null;
+  const completionBase = periodResults.filter(r => r.attendance_status !== "invalid").length;
+  const completionRate = completionBase ? Math.round(presentResults.length / completionBase * 100) : null;
+
+  const topicStats = await brComputeTopicStats(periodResults);
+  const bestTopics = topicStats.filter(t => t.score != null).sort((a,b) => b.score - a.score || b.assessment_count - a.assessment_count).slice(0,8);
+  const weakTopics = topicStats.filter(t => t.score != null).sort((a,b) => a.score - b.score || b.assessment_count - a.assessment_count).slice(0,8);
+  const resolvedDiagnoses = await brResolveDiagnoses(periodDiagnosesRaw);
+
+  const strongestArea = areaStats.filter(a => a.score != null).sort((a,b) => b.score - a.score)[0] || null;
+  const weakestArea = areaStats.filter(a => a.score != null).sort((a,b) => a.score - b.score)[0] || null;
+  const character = brCharacterProfile(strongestArea, overall, profile.counts.assessment_records + profile.counts.questionnaire_responses);
+
+  return {
+    profile,
+    student:profile.student,
+    displayName:profile.display_name,
+    areaStats,
+    results:periodResults,
+    questionnaires:periodQuestionnaires,
+    diagnoses:resolvedDiagnoses,
+    notes:profile.notes,
+    presentResults,
+    resultAverage,
+    areaAverage,
+    overall,
+    completionRate,
+    topicStats,
+    bestTopics,
+    weakTopics,
+    strongestArea,
+    weakestArea,
+    character
+  };
+}
+
+async function brComputeAreaStatsForReport(profile, results, questionnaires, diagnoses){
+  const settings = await getSettings();
+  const qAreas = new Set(questionnaires.map(q => q.area_id));
+  const priorityRank = {"High priority":3,"Moderate priority":2,"Low priority":1,"Insufficient evidence":0};
+  const priorityByArea = {};
+
+  for(const d of diagnoses){
+    const old = priorityByArea[d.area_id] || "Insufficient evidence";
+    if((priorityRank[d.priority] || 0) > (priorityRank[old] || 0)){
+      priorityByArea[d.area_id] = d.priority;
+    }
+  }
+
+  const out = [];
+
+  for(const area of AREA_LIST){
+    const areaResults = results.filter(r => r.area_id === area.area_id);
+    const valid = areaResults.filter(r => r.attendance_status === "present" && r.percentage != null);
+    let score = null;
+
+    if(valid.length){
+      if(settings.aggregation_method === "simple"){
+        score = valid.reduce((s,r) => s + r.percentage,0) / valid.length;
+      }else if(settings.aggregation_method === "recency"){
+        const sorted = [...valid].sort((a,b) => String(b.assessment_date || "").localeCompare(String(a.assessment_date || "")));
+        score = weightedAverage(sorted.map((r,i) => ({pct:r.percentage,weight:(r.weight || 1) * Math.pow(.85,i)})));
+      }else{
+        score = weightedAverage(valid.map(r => ({pct:r.percentage,weight:r.weight || 1})));
+      }
+      score = brRound(score,1);
+    }
+
+    let stateText;
+    if(areaResults.length === 0 && !qAreas.has(area.area_id)){
+      stateText = "No period evidence / 本期未有資料";
+    }else if(valid.length){
+      stateText = "Assessed in period / 本期已評估";
+    }else{
+      stateText = "Self-assessment only / 只有自評";
+    }
+
+    const validSorted = [...valid].sort((a,b) => String(a.assessment_date || "").localeCompare(String(b.assessment_date || "")));
+    let trend = "—";
+    if(validSorted.length >= 2){
+      const diff = validSorted[validSorted.length-1].percentage - validSorted[validSorted.length-2].percentage;
+      trend = diff >= 5 ? "↑" : diff <= -5 ? "↓" : "→";
+    }
+
+    const latestDates = [];
+    areaResults.forEach(r => { if(r.assessment_date) latestDates.push(r.assessment_date); });
+    questionnaires.forEach(q => { if(q.area_id === area.area_id && q.completion_date) latestDates.push(q.completion_date); });
+
+    out.push({
+      ...area,
+      state:stateText,
+      score,
+      band:await bandFor(score),
+      assessment_count:valid.length,
+      trend,
+      gap_status:priorityByArea[area.area_id] || "Insufficient evidence",
+      latest_evidence_date:latestDates.length ? latestDates.sort().at(-1) : null,
+      original:profile.area_stats.find(x => x.area_id === area.area_id) || null
+    });
+  }
+
+  return out;
+}
+
+async function brComputeTopicStats(results){
+  const groups = new Map();
+
+  for(const r of results){
+    if(r.attendance_status !== "present" || r.percentage == null) continue;
+
+    const ids = Array.isArray(r.topic_ids) && r.topic_ids.length ? r.topic_ids : [`area:${r.area_id}`];
+
+    for(const id of ids){
+      if(!groups.has(id)){
+        groups.set(id, {
+          key:id,
+          topic_id:id.startsWith("area:") ? null : id,
+          area_id:r.area_id,
+          values:[],
+          assessment_titles:new Set(),
+          latest_date:"",
+          latest_title:""
+        });
+      }
+
+      const g = groups.get(id);
+      g.values.push({pct:Number(r.percentage), weight:Number(r.weight || 1)});
+      g.assessment_titles.add(r.title || "");
+      if(String(r.assessment_date || "") >= String(g.latest_date || "")){
+        g.latest_date = r.assessment_date || "";
+        g.latest_title = r.title || "";
+      }
+    }
+  }
+
+  const out = [];
+  for(const g of groups.values()){
+    const score = g.values.length ? brRound(weightedAverage(g.values),1) : null;
+    let label;
+    if(g.key.startsWith("area:")){
+      const areaId = g.key.split(":")[1];
+      const area = AREA_BY_ID[areaId];
+      label = area ? `${area.label_zh} / ${area.label_en}` : "Area overall";
+    }else{
+      label = await topicLabel(g.key);
+    }
+
+    out.push({
+      ...g,
+      name:label,
+      score,
+      assessment_count:g.values.length,
+      assessment_title_count:g.assessment_titles.size
+    });
+  }
+
+  return out;
+}
+
+async function brResolveDiagnoses(diagnoses){
+  const out = [];
+  for(const d of diagnoses){
+    out.push({
+      ...d,
+      topic_label:await topicLabel(d.topic_id),
+      area_label:areaLabel(d.area_id)
+    });
+  }
+  return out;
+}
+
+function brDateInRange(dateValue, options){
+  const d = String(dateValue || "").slice(0,10);
+  if(!d) return true;
+  if(options.periodStart && d < options.periodStart) return false;
+  if(options.periodEnd && d > options.periodEnd) return false;
+  return true;
+}
+
+function brRound(value, decimals=1){
+  const n = Number(value);
+  if(!Number.isFinite(n)) return null;
+  const p = Math.pow(10,decimals);
+  return Math.round(n * p) / p;
+}
+
+function brScoreText(value){
+  if(value == null || !Number.isFinite(Number(value))) return "—";
+  return `${brRound(value,1)}%`;
+}
+
+function brGrade(score){
+  const n = Number(score);
+  if(!Number.isFinite(n)) return "N/A";
+  if(n >= 90) return "A+";
+  if(n >= 80) return "A";
+  if(n >= 65) return "B";
+  if(n >= 50) return "C";
+  if(n >= 35) return "D";
+  return "E";
+}
+
+function brBadgeKindFromScore(score){
+  const n = Number(score);
+  if(!Number.isFinite(n)) return "";
+  if(n >= 80) return "green";
+  if(n >= 50) return "amber";
+  return "red";
+}
+
+function brPriorityBadgeKind(priority){
+  if(priority === "High priority") return "red";
+  if(priority === "Moderate priority") return "amber";
+  if(priority === "Low priority") return "green";
+  return "";
+}
+
+function brPeriodLabel(options){
+  return `${options.periodStart || "N/A"} 至 ${options.periodEnd || "N/A"}`;
+}
+
+function brCharacterProfile(strongestArea, overall, evidenceCount){
+  const key = strongestArea ? strongestArea.area_id : "IV";
+  const map = {
+    I:{type:"Thermal Alchemist", title:"熱學鍊金師", icon:"🔥"},
+    II:{type:"Motion Knight", title:"力學騎士", icon:"⚔️"},
+    III:{type:"Wave Ranger", title:"波動遊俠", icon:"🌊"},
+    IV:{type:"Field Mage", title:"電磁法師", icon:"⚡"},
+    V:{type:"Nuclear Guardian", title:"核能守護者", icon:"☢️"}
+  };
+  const profile = map[key] || map.IV;
+  const level = Math.max(1, Math.min(99, Math.round((Number(overall || 0) / 5) + Number(evidenceCount || 0) / 4)));
+  return {...profile, level};
+}
+
+function brRenderQuickStats(report){
+  const best = report.bestTopics[0];
+  const weak = report.weakTopics[0];
+
+  return `
+    <div class="br-quick-card">
+      <div class="label">整體掌握度</div>
+      <div class="value">${report.overall == null ? "—" : report.overall + "%"}</div>
+      <div class="sub">Grade ${brGrade(report.overall)}</div>
+    </div>
+    <div class="br-quick-card">
+      <div class="label">本期評估記錄</div>
+      <div class="value">${report.presentResults.length}</div>
+      <div class="sub">有效 assessed records</div>
+    </div>
+    <div class="br-quick-card">
+      <div class="label">最強 Topic / Area</div>
+      <div class="value" style="font-size:1rem">${esc(best ? best.name : report.strongestArea ? report.strongestArea.label_zh : "—")}</div>
+      <div class="sub">${best ? brScoreText(best.score) : report.strongestArea ? brScoreText(report.strongestArea.score) : "暫未有足夠數據"}</div>
+    </div>
+    <div class="br-quick-card">
+      <div class="label">優先改善</div>
+      <div class="value" style="font-size:1rem">${esc(weak ? weak.name : report.weakestArea ? report.weakestArea.label_zh : "—")}</div>
+      <div class="sub">${weak ? brScoreText(weak.score) : report.weakestArea ? brScoreText(report.weakestArea.score) : "暫未有足夠數據"}</div>
+    </div>
+  `;
+}
+
+function brRenderReportPages(report, options){
+  const pages = [];
+
+  pages.push({
+    cover:true,
+    title:"Student Big Report",
+    subtitle:"Overall learning evidence summary",
+    html:brRenderCoverPage(report, options)
+  });
+
+  if(options.includeFiveAreas){
+    pages.push({
+      title:"5 Area Report",
+      subtitle:"HKDSE Physics core areas — Heat, Mechanics, Waves, E&M, Nuclear",
+      html:brRenderFiveAreaPage(report)
+    });
+  }
+
+  if(options.includeCharacter || options.includeBest8){
+    pages.push({
+      title:"Character Status & Best 8 Topics",
+      subtitle:"Student-friendly strengths profile and topic performance",
+      html:brRenderCharacterBest8Page(report, options)
+    });
+  }
+
+  if(options.includeCognitive || options.includeRevision){
+    pages.push({
+      title:"Cognitive Gap & Revision Plan",
+      subtitle:"Evidence-based support signals and personalized next steps",
+      html:brRenderCognitiveRevisionPage(report, options)
+    });
+  }
+
+  return pages.map((page,index) => `
+    <article class="br-pdf-page">
+      ${page.cover ? "" : brRenderPageTop(page.title,page.subtitle)}
+      ${page.html}
+      ${brRenderFooter(report.displayName,index+1,pages.length)}
+    </article>
+  `).join("");
+}
+
+function brRenderPageTop(title, subtitle){
+  return `
+    <div class="br-page-top">
+      <div>
+        <h1 class="br-page-title">${esc(title)}</h1>
+        <p class="br-page-subtitle">${esc(subtitle || "")}</p>
+      </div>
+      <span class="br-badge">Big Report PDF</span>
+    </div>
+  `;
+}
+
+function brRenderFooter(studentName, current, total){
+  return `
+    <div class="br-footer">
+      <span>${esc(studentName)}｜HKDSE Physics KMS｜Teacher-only confidential report</span>
+      <span>Page ${current} / ${total}</span>
+    </div>
+  `;
+}
+
+function brRenderCoverPage(report, options){
+  const s = report.student;
+  const latestNote = report.notes[0];
+  const latestQ = report.questionnaires[0];
+  const best = report.bestTopics[0];
+  const weak = report.weakTopics[0];
+
+  return `
+    <div class="br-cover-hero">
+      <h1>HKDSE Physics<br>Student Big Report</h1>
+      <p>成長導向・證據連結・角色狀態表｜Teacher-only confidential report</p>
+    </div>
+
+    <div class="br-cover-grid">
+      <div class="br-card">
+        <div class="br-section-heading" style="margin-top:0">學生資料 Student Information</div>
+        <table class="br-info-table">
+          <tr><th>學生姓名</th><td>${esc(report.displayName)}</td></tr>
+          <tr><th>班別學號</th><td>${esc(s.normalized_student_code || "—")}</td></tr>
+          <tr><th>班別</th><td>${esc(s.class_code || "—")} #${esc(s.class_number || "—")}</td></tr>
+          <tr><th>學年</th><td>${esc(s.academic_year || "—")}</td></tr>
+          <tr><th>報告時段</th><td>${esc(brPeriodLabel(options))}</td></tr>
+          <tr><th>產生日期</th><td>${esc(todayIso())}</td></tr>
+        </table>
+      </div>
+
+      <div class="br-card">
+        <div class="br-big-score">
+          <div>
+            <div class="num">${report.overall == null ? "—" : report.overall}</div>
+            <div class="label">Overall Mastery</div>
+            <div class="grade">Grade ${brGrade(report.overall)}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="br-section-heading">整體學習表現 Summary</div>
+
+    <div class="br-metric-grid">
+      <div class="br-metric">
+        <div class="name">本期評估記錄</div>
+        <div class="value">${report.results.length}</div>
+      </div>
+      <div class="br-metric">
+        <div class="name">有效成績平均</div>
+        <div class="value">${brScoreText(report.resultAverage)}</div>
+      </div>
+      <div class="br-metric">
+        <div class="name">完成率</div>
+        <div class="value">${report.completionRate == null ? "—" : report.completionRate + "%"}</div>
+      </div>
+      <div class="br-metric">
+        <div class="name">本期問卷</div>
+        <div class="value">${report.questionnaires.length}</div>
+      </div>
+    </div>
+
+    <div class="br-metric-grid" style="margin-top:8px">
+      <div class="br-metric">
+        <div class="name">最強 Area</div>
+        <div class="value" style="font-size:13px">${esc(report.strongestArea ? report.strongestArea.label_zh : "—")}</div>
+      </div>
+      <div class="br-metric">
+        <div class="name">改善 Area</div>
+        <div class="value" style="font-size:13px">${esc(report.weakestArea ? report.weakestArea.label_zh : "—")}</div>
+      </div>
+      <div class="br-metric">
+        <div class="name">Best Topic</div>
+        <div class="value" style="font-size:12px">${esc(best ? best.name : "—")}</div>
+      </div>
+      <div class="br-metric">
+        <div class="name">Priority Topic</div>
+        <div class="value" style="font-size:12px">${esc(weak ? weak.name : "—")}</div>
+      </div>
+    </div>
+
+    <div class="br-comment">
+      <strong>老師摘要 Teacher Summary：</strong>
+      ${esc(brOverallComment(report))}
+      ${latestNote ? `<br><strong>最新教師備註：</strong>${esc(latestNote.note_text)}` : ""}
+      ${latestQ ? `<br><strong>最新自評：</strong>${esc(latestQ.title)}｜Green ${latestQ.summary.Green} / Yellow ${latestQ.summary.Yellow} / Red ${latestQ.summary.Red}` : ""}
+    </div>
+
+    <div class="br-section-heading">Included Sections</div>
+
+    <div class="br-metric-grid">
+      <div class="br-metric"><div class="name">5 Area Report</div><div class="value" style="font-size:14px">${options.includeFiveAreas ? "Included" : "Off"}</div></div>
+      <div class="br-metric"><div class="name">Best 8 Topics</div><div class="value" style="font-size:14px">${options.includeBest8 ? "Included" : "Off"}</div></div>
+      <div class="br-metric"><div class="name">Character Status</div><div class="value" style="font-size:14px">${options.includeCharacter ? "Included" : "Off"}</div></div>
+      <div class="br-metric"><div class="name">Revision Plan</div><div class="value" style="font-size:14px">${options.includeRevision ? "Included" : "Off"}</div></div>
+    </div>
+  `;
+}
+
+function brOverallComment(report){
+  if(report.overall == null){
+    return "本期未有足夠已評估成績產生整體掌握度。建議先安排基礎題、小測或自評問卷，以建立初步證據。";
+  }
+
+  const overall =
+    report.overall >= 80
+      ? "整體表現良好，學生在本期證據中顯示出穩定掌握。"
+      : report.overall >= 50
+        ? "學生已有部分基礎，但不同範疇及課題之間仍有差異，需要針對性鞏固。"
+        : "本期證據顯示學生需要更有結構的支援，宜先由核心概念及基本題重建信心。";
+
+  const strong = report.strongestArea ? `最強範疇為「${report.strongestArea.label_zh}」，` : "";
+  const weak = report.weakestArea ? `建議優先跟進「${report.weakestArea.label_zh}」。` : "";
+
+  return `${overall}${strong}${weak}`;
+}
+
+function brRenderFiveAreaPage(report){
+  if(!report.areaStats.length){
+    return `<div class="br-empty">暫未有足夠數據產生 5 Area Report。</div>`;
+  }
+
+  return `
+    <div class="br-section-heading" style="margin-top:0">HKDSE Physics 5 個主要範疇</div>
+    <div class="br-comment" style="margin-bottom:9px">
+      此頁根據所選報告時段內的成績及自評證據，整理五個主範疇的掌握度、證據量、趨勢及支援需要。
+      若某範疇顯示「本期未有資料」，代表該時段內未有相關評估或自評，而不是代表學生能力不足。
+    </div>
+    <div class="br-area-grid">
+      ${report.areaStats.map(a => brRenderAreaCard(a, report)).join("")}
+    </div>
+  `;
+}
+
+function brRenderAreaCard(area, report){
+  const width = area.score == null ? 0 : Math.max(0,Math.min(100,Number(area.score)));
+  const barKind = width >= 80 ? "" : width >= 50 ? "amber" : "red";
+  const areaTopics = report.topicStats.filter(t => t.area_id === area.area_id).sort((a,b) => b.score - a.score).slice(0,2);
+  const areaGaps = report.diagnoses.filter(d => d.area_id === area.area_id && d.priority !== "Low priority").slice(0,2);
+
+  return `
+    <div class="br-card br-area-card">
+      <div class="br-area-head">
+        <div>
+          <div class="br-area-name">${esc(area.area_id)}. ${esc(area.label_zh)}</div>
+          <div class="br-area-en">${esc(area.label_en)}</div>
+        </div>
+        <span class="br-badge ${brBadgeKindFromScore(area.score)}">${area.score == null ? "No Data" : brScoreText(area.score)}</span>
+      </div>
+
+      <div class="br-bar"><span class="${barKind}" style="width:${width}%"></span></div>
+
+      <div class="br-two-col">
+        <div class="br-mini-box">
+          <h4>狀態 / Evidence</h4>
+          <ul>
+            <li>${esc(area.state)}</li>
+            <li>評估記錄：${area.assessment_count}</li>
+            <li>趨勢：${esc(area.trend)}</li>
+          </ul>
+        </div>
+        <div class="br-mini-box">
+          <h4>Band / Priority</h4>
+          <ul>
+            <li>${esc(area.band.label_zh)} / ${esc(area.band.label_en)}</li>
+            <li>Gap：${esc(area.gap_status)}</li>
+            <li>最新：${esc(area.latest_evidence_date || "—")}</li>
+          </ul>
+        </div>
+        <div class="br-mini-box">
+          <h4>強項線索</h4>
+          <ul>
+            ${area.score == null ? `<li>暫未有足夠本期成績</li>` : area.score >= 80 ? `<li>本期掌握度穩定</li><li>可加入高階應用題</li>` : `<li>已有部分基礎</li><li>適合用短題鞏固</li>`}
+            ${areaTopics.length ? areaTopics.map(t => `<li>${esc(t.name)} ${brScoreText(t.score)}</li>`).join("") : ""}
+          </ul>
+        </div>
+        <div class="br-mini-box">
+          <h4>跟進建議</h4>
+          <ul>
+            ${areaGaps.length ? areaGaps.map(d => `<li>${esc(d.topic_label)}：${esc(d.priority)}</li>`).join("") : `<li>維持練習及定期重溫</li>`}
+            ${area.score != null && area.score < 50 ? `<li>先重教核心概念及基本題</li>` : `<li>用錯題簿追蹤常見失誤</li>`}
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function brRenderCharacterBest8Page(report, options){
+  const sections = [];
+
+  if(options.includeCharacter){
+    sections.push(brRenderCharacterStatus(report));
+  }
+
+  if(options.includeBest8){
+    sections.push(brRenderBest8Topics(report));
+  }
+
+  if(!sections.length){
+    return `<div class="br-empty">Character Status 及 Best 8 Topics 未有被選取。</div>`;
+  }
+
+  return sections.join("");
+}
+
+function brRenderCharacterStatus(report){
+  return `
+    <div class="br-section-heading" style="margin-top:0">Student Character Status</div>
+
+    <div class="br-character-grid">
+      <div class="br-avatar">
+        <div class="br-avatar-label">Character Class</div>
+        <div class="br-avatar-name">${esc(report.character.icon)} ${esc(report.character.title)}</div>
+        <div class="br-avatar-type">${esc(report.character.type)}</div>
+
+        <div class="br-avatar-stats">
+          <div class="br-avatar-stat">
+            <strong>Lv.${report.character.level}</strong>
+            <span>Learning Level</span>
+          </div>
+          <div class="br-avatar-stat">
+            <strong>${brGrade(report.overall)}</strong>
+            <span>Overall Rank</span>
+          </div>
+          <div class="br-avatar-stat">
+            <strong>${report.overall == null ? "—" : report.overall}</strong>
+            <span>Power Score</span>
+          </div>
+        </div>
+
+        <p style="font-size:9.8px;line-height:1.55;margin:17px 0 0;opacity:.9">
+          角色狀態表以學生最突出的物理範疇作為角色類型，幫助學生知道自己目前的強項，
+          同時看見下一步需要升級的能力。
+        </p>
+      </div>
+
+      <div class="br-ability-list">
+        ${report.areaStats.map(a => brRenderAbilityRow(a)).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function brRenderAbilityRow(area){
+  const score = area.score == null ? 0 : Math.round(area.score);
+  const barKind = score >= 80 ? "" : score >= 50 ? "amber" : "red";
+
+  return `
+    <div class="br-ability">
+      <div class="br-ability-row">
+        <div>
+          <div class="br-ability-title">${esc(area.area_id)}. ${esc(area.label_zh)} Power</div>
+          <div class="br-ability-desc">${esc(area.label_en)}｜${esc(area.state)}</div>
+          <div class="br-bar"><span class="${barKind}" style="width:${score}%"></span></div>
+        </div>
+        <div class="br-ability-score">${area.score == null ? "—" : score + "/100"}<br>${brGrade(area.score)}</div>
+      </div>
+    </div>
+  `;
+}
+
+function brRenderBest8Topics(report){
+  if(!report.bestTopics.length){
+    return `
+      <div class="br-section-heading">Best 8 Topics Performance</div>
+      <div class="br-empty">本期暫未有足夠 topic-level 成績數據產生 Best 8 Topics Performance。</div>
+    `;
+  }
+
+  return `
+    <div class="br-section-heading">Best 8 Topics Performance</div>
+
+    <div class="br-skill-grid">
+      ${report.bestTopics.map((t,i) => brRenderSkillCard(t,i)).join("")}
+    </div>
+
+    <table class="br-topic-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Topic / Area</th>
+          <th>Score</th>
+          <th>Evidence</th>
+          <th>Latest</th>
+          <th>Mastery</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${report.bestTopics.map((t,i) => `
+          <tr>
+            <td><span class="br-rank">${i+1}</span></td>
+            <td><strong>${esc(t.name)}</strong></td>
+            <td>${brScoreText(t.score)}</td>
+            <td>${t.assessment_count}</td>
+            <td>${esc(t.latest_date || "—")}<br>${esc(t.latest_title || "")}</td>
+            <td><span class="br-badge ${brBadgeKindFromScore(t.score)}">${esc(brMasteryLabel(t.score))}</span></td>
+            <td>${esc(brTopicComment(t))}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
+}
+
+function brRenderSkillCard(topic, index){
+  const meta = brSkillMeta(index);
+  const score = topic.score == null ? 0 : Math.round(topic.score);
+  const barKind = score >= 80 ? "" : score >= 50 ? "amber" : "red";
+
+  return `
+    <div class="br-card br-skill-card">
+      <div class="br-skill-icon">${meta.icon}</div>
+      <div class="br-skill-name">${esc(meta.name)}</div>
+      <div class="br-skill-topic">${esc(topic.name)}</div>
+      <div class="br-bar"><span class="${barKind}" style="width:${score}%"></span></div>
+      <span class="br-badge ${brBadgeKindFromScore(topic.score)}">${esc(brMasteryLabel(topic.score))}</span>
+    </div>
+  `;
+}
+
+function brSkillMeta(index){
+  const list = [
+    {icon:"⚡",name:"Field Control"},
+    {icon:"🧠",name:"Concept Core"},
+    {icon:"🚀",name:"Motion Boost"},
+    {icon:"🌊",name:"Wave Sense"},
+    {icon:"🔥",name:"Thermal Power"},
+    {icon:"🛡️",name:"Accuracy Shield"},
+    {icon:"🔍",name:"Evidence Vision"},
+    {icon:"☢️",name:"Nuclear Focus"}
+  ];
+  return list[index] || {icon:"⭐",name:"Physics Skill"};
+}
+
+function brMasteryLabel(score){
+  const n = Number(score);
+  if(!Number.isFinite(n)) return "No Data";
+  if(n >= 80) return "Mastery";
+  if(n >= 65) return "Secure";
+  if(n >= 50) return "Developing";
+  if(n >= 35) return "Foundation";
+  return "Priority";
+}
+
+function brTopicComment(topic){
+  const n = Number(topic.score);
+  if(!Number.isFinite(n)) return "暫未有足夠數據。";
+  if(n >= 80) return "表現穩定，可嘗試高階及跨課題題目。";
+  if(n >= 65) return "掌握大致穩定，建議加入變式題提高遷移能力。";
+  if(n >= 50) return "已有基礎，但仍需重溫概念及典型題型。";
+  return "需要重點支援，宜先由基本概念及短題開始。";
+}
+
+function brRenderCognitiveRevisionPage(report, options){
+  const sections = [];
+
+  if(options.includeCognitive){
+    sections.push(brRenderCognitiveSection(report));
+  }
+
+  if(options.includeRevision){
+    sections.push(brRenderRevisionSection(report));
+  }
+
+  if(!sections.length){
+    return `<div class="br-empty">Cognitive Gap 及 Revision Plan 未有被選取。</div>`;
+  }
+
+  return sections.join("");
+}
+
+function brRenderCognitiveSection(report){
+  const gaps = report.diagnoses
+    .filter(d => d.priority !== "Low priority" || d.gap_magnitude != null)
+    .sort((a,b) => {
+      const rank = {"High priority":1,"Moderate priority":2,"Insufficient evidence":3,"Low priority":4};
+      return (rank[a.priority] || 9) - (rank[b.priority] || 9) || Number(b.gap_magnitude || 0) - Number(a.gap_magnitude || 0);
+    })
+    .slice(0,4);
+
+  if(!gaps.length){
+    return `
+      <div class="br-section-heading" style="margin-top:0">認知落差分析 Cognitive Gap</div>
+      <div class="br-empty">本期暫未有足夠評估與自評配對證據產生認知落差分析。</div>
+    `;
+  }
+
+  return `
+    <div class="br-section-heading" style="margin-top:0">認知落差分析 Cognitive Gap</div>
+
+    <div class="br-comment" style="margin-bottom:8px">
+      系統比較學生自評信心與實際評估表現。此分析只作教學支援訊號，不是學生能力標籤，亦不代表最終 DSE 成績預測。
+    </div>
+
+    <div class="br-gap-grid">
+      ${gaps.map(d => {
+        const counts = d.confidence_counts || {Green:0,Yellow:0,Red:0};
+        const latest = d.latest_assessment_summary;
+        return `
+          <div class="br-card br-gap-card">
+            <div class="br-gap-head">
+              <div>
+                <div class="br-gap-title">${esc(d.topic_label)}</div>
+                <div class="br-area-en">${esc(d.area_label)}</div>
+              </div>
+              <span class="br-badge ${brPriorityBadgeKind(d.priority)}">${esc(d.priority)}</span>
+            </div>
+
+            <div class="br-gap-detail">
+              <div class="br-gap-mini">
+                評估表現
+                <strong>${d.performance_percentage == null ? "—" : brScoreText(d.performance_percentage)}</strong>
+              </div>
+              <div class="br-gap-mini">
+                自評信心
+                <strong>${d.confidence_score == null ? "—" : d.confidence_score + "/3"}</strong>
+              </div>
+              <div class="br-gap-mini">
+                Gap
+                <strong>${d.gap_magnitude == null ? "—" : d.gap_magnitude}</strong>
+              </div>
+            </div>
+
+            <p class="br-small-text">${esc(d.explanation)}</p>
+            <p class="br-small-text" style="margin-top:5px"><strong>建議：</strong>${esc(d.suggested_action)}</p>
+            <p class="br-small-text" style="margin-top:4px">
+              自評分佈：Green ${counts.Green || 0}｜Yellow ${counts.Yellow || 0}｜Red ${counts.Red || 0}
+              ${latest ? `｜Latest assessment: ${esc(latest.title)} (${esc(latest.date || "")})` : ""}
+            </p>
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+function brRenderRevisionSection(report){
+  const groups = brRevisionGroups(report);
+
+  return `
+    <div class="br-section-heading">個人化溫習建議 Personalized Revision Plan</div>
+
+    <div class="br-revision-grid">
+      <div class="br-card br-revision-card">
+        <span class="br-badge red">Priority 1</span>
+        <h3>必須優先處理</h3>
+        <p class="br-small-text">先處理最低掌握度或高優先診斷項目，集中重建概念及基本題步驟。</p>
+        ${brRenderChips(groups.priority1)}
+        <ul>
+          <li>每日 15–20 分鐘短練習。</li>
+          <li>先重溫核心公式、定義及單位。</li>
+          <li>每題寫出已知量、所求量、公式及代入。</li>
+          <li>重做錯題，確認錯因是否消失。</li>
+        </ul>
+      </div>
+
+      <div class="br-card br-revision-card">
+        <span class="br-badge amber">Priority 2</span>
+        <h3>需要鞏固</h3>
+        <p class="br-small-text">針對中等掌握但未穩定的課題，透過變式題及混合練習提升遷移能力。</p>
+        ${brRenderChips(groups.priority2)}
+        <ul>
+          <li>每星期 2–3 次 topic mixed practice。</li>
+          <li>加入圖像題、數據題及概念解釋題。</li>
+          <li>用限時短測改善速度及穩定度。</li>
+          <li>每星期檢查一次錯題簿。</li>
+        </ul>
+      </div>
+
+      <div class="br-card br-revision-card">
+        <span class="br-badge green">Priority 3</span>
+        <h3>保持優勢</h3>
+        <p class="br-small-text">已掌握得好的課題可作高階延伸，幫助學生由熟練走向靈活應用。</p>
+        ${brRenderChips(groups.priority3)}
+        <ul>
+          <li>每星期簡短重溫一次。</li>
+          <li>挑戰 structured questions 及跨課題題目。</li>
+          <li>嘗試向同學講解概念。</li>
+          <li>維持成功感及學習節奏。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="br-comment">
+      <strong>建議流程：</strong>
+      先完成 Priority 1 的基礎重建，再用 Priority 2 鞏固穩定性，最後透過 Priority 3 保持強項。
+      若學生出現「高信心但低表現」，建議以診斷題拆解錯因；若出現「低信心但表現不錯」，可給予具體正面回饋建立證據化自信。
+    </div>
+  `;
+}
+
+function brRevisionGroups(report){
+  const highDiag = report.diagnoses.filter(d => d.priority === "High priority").map(d => ({
+    name:d.topic_label || d.area_label,
+    score:d.performance_percentage
+  }));
+
+  const moderateDiag = report.diagnoses.filter(d => d.priority === "Moderate priority").map(d => ({
+    name:d.topic_label || d.area_label,
+    score:d.performance_percentage
+  }));
+
+  const weak = report.weakTopics.slice(0,4).map(t => ({name:t.name, score:t.score}));
+  const middle = report.topicStats.filter(t => t.score != null && t.score >= 50 && t.score < 80).slice(0,4).map(t => ({name:t.name, score:t.score}));
+  const strong = report.bestTopics.slice(0,4).map(t => ({name:t.name, score:t.score}));
+
+  return {
+    priority1:brUniqueChips([...highDiag,...weak]).slice(0,5),
+    priority2:brUniqueChips([...moderateDiag,...middle]).slice(0,5),
+    priority3:brUniqueChips(strong).slice(0,5)
+  };
+}
+
+function brUniqueChips(items){
+  const seen = new Set();
+  const out = [];
+  for(const item of items){
+    const key = item.name || "";
+    if(!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+  }
+  return out;
+}
+
+function brRenderChips(items){
+  if(!items.length){
+    return `<div class="br-chip-list"><span class="br-chip">暫未有足夠數據</span></div>`;
+  }
+
+  return `
+    <div class="br-chip-list">
+      ${items.map(item => `<span class="br-chip">${esc(item.name)}${item.score == null ? "" : " " + brScoreText(item.score)}</span>`).join("")}
+    </div>
+  `;
+}
+
+async function brDownloadCurrentStudentPdf(){
+  if(!state.bigReport.studentId){
+    toast("請先選擇學生。","warn");
+    return;
+  }
+
+  if(!window.html2canvas || !window.jspdf){
+    toast("PDF library 尚未載入完成，請稍後再試。若一直失敗，請檢查 CDN 是否被封鎖。","bad",7000);
+    return;
+  }
+
+  try{
+    brSetBusy(true,"正在產生學生 PDF","正在整理報告頁面...",8);
+    await brRefreshPreview();
+    await brWaitForRender();
+
+    const profile = await getStudentProfile(state.bigReport.studentId);
+    const blob = await brCreatePdfBlobFromPreview(progress => {
+      brSetBusy(true,"正在產生學生 PDF",`正在處理第 ${progress.current}/${progress.total} 頁...`,progress.percent);
+    });
+
+    brDownloadBlob(blob, `${brSafeFileName(profile.student.normalized_student_code || "student")}_${brSafeFileName(profile.display_name)}_Big_Report.pdf`);
+
+    brSetBusy(false);
+    toast("Big Report PDF 已成功下載。");
+  }catch(err){
+    console.error(err);
+    brSetBusy(false);
+    toast("產生 PDF 時發生錯誤：" + esc(err.message || err),"bad",7000);
+  }
+}
+
+async function brPrintCurrentReport(){
+  try{
+    await brRefreshPreview();
+    await brWaitForRender();
+    document.body.classList.add("br-printing");
+
+    const cleanup = () => document.body.classList.remove("br-printing");
+    window.addEventListener("afterprint", cleanup, {once:true});
+    window.print();
+    setTimeout(cleanup, 1600);
+  }catch(err){
+    toast("列印時發生錯誤：" + esc(err.message || err),"bad",7000);
+  }
+}
+
+async function brExportWholeClassZip(){
+  if(!window.html2canvas || !window.jspdf || !window.JSZip){
+    toast("PDF / ZIP library 尚未載入完成，請稍後再試。若一直失敗，請檢查 CDN 是否被封鎖。","bad",7000);
+    return;
+  }
+
+  const students = (await idbGetAll("students"))
+    .filter(s => s.active_status === "active")
+    .sort((a,b) => String(a.normalized_student_code).localeCompare(String(b.normalized_student_code)));
+
+  if(!students.length){
+    toast("暫未有學生資料，未能輸出全班 ZIP。","warn");
+    return;
+  }
+
+  const originalStudentId = state.bigReport.studentId;
+  const zip = new JSZip();
+
+  try{
+    brSetBusy(true,"正在輸出全班報告","準備產生每位學生的 Big Report PDF...",3);
+
+    for(let i=0;i<students.length;i++){
+      const student = students[i];
+      state.bigReport.studentId = student.student_id;
+
+      await brRefreshPreview();
+      await brWaitForRender();
+
+      const baseProgress = Math.round((i / students.length) * 92);
+      brSetBusy(true,"正在輸出全班報告",`正在產生 ${studentDisplayName(student)} (${i+1}/${students.length})...`,baseProgress);
+
+      const pdfBlob = await brCreatePdfBlobFromPreview(pageProgress => {
+        const portion = 92 / students.length;
+        const percent = Math.min(96,baseProgress + Math.round(pageProgress.percent / 100 * portion));
+        brSetBusy(true,"正在輸出全班報告",`正在處理 ${studentDisplayName(student)}：第 ${pageProgress.current}/${pageProgress.total} 頁...`,percent);
+      });
+
+      zip.file(
+        `${brSafeFileName(student.normalized_student_code || "student")}_${brSafeFileName(studentDisplayName(student))}_Big_Report.pdf`,
+        pdfBlob
+      );
+    }
+
+    brSetBusy(true,"正在輸出全班報告","正在壓縮 ZIP 檔案...",98);
+    const zipBlob = await zip.generateAsync({type:"blob"});
+    brDownloadBlob(zipBlob, `Physics_KMS_Whole_Class_Big_Reports_${todayIso()}.zip`);
+
+    state.bigReport.studentId = originalStudentId;
+    await brRefreshPreview();
+
+    brSetBusy(false);
+    toast("全班 Big Report ZIP 已成功下載。");
+  }catch(err){
+    console.error(err);
+    state.bigReport.studentId = originalStudentId;
+    await brRefreshPreview();
+    brSetBusy(false);
+    toast("輸出全班 ZIP 時發生錯誤：" + esc(err.message || err),"bad",7000);
+  }
+}
+
+async function brCreatePdfBlobFromPreview(onProgress){
+  const root = qs("#brReportPreview");
+  if(!root) throw new Error("Report preview not found.");
+
+  const pages = Array.from(root.querySelectorAll(".br-pdf-page"));
+  if(!pages.length) throw new Error("No PDF pages found.");
+
+  if(document.fonts && document.fonts.ready){
+    await document.fonts.ready;
+  }
+
+  const {jsPDF} = window.jspdf;
+  const pdf = new jsPDF({
+    orientation:"portrait",
+    unit:"mm",
+    format:"a4",
+    compress:true
+  });
+
+  for(let i=0;i<pages.length;i++){
+    const page = pages[i];
+
+    if(typeof onProgress === "function"){
+      onProgress({
+        current:i+1,
+        total:pages.length,
+        percent:Math.round((i+1) / pages.length * 100)
+      });
+    }
+
+    const canvas = await html2canvas(page, {
+      scale:2,
+      useCORS:true,
+      backgroundColor:"#ffffff",
+      logging:false,
+      windowWidth:page.scrollWidth,
+      windowHeight:page.scrollHeight
+    });
+
+    const imageData = canvas.toDataURL("image/jpeg",0.98);
+    if(i > 0) pdf.addPage();
+    pdf.addImage(imageData,"JPEG",0,0,210,297);
+  }
+
+  return pdf.output("blob");
+}
+
+function brWaitForRender(){
+  return new Promise(resolve => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  });
+}
+
+function brSetBusy(isBusy, title="", text="", percent=0){
+  const overlay = qs("#brBusyOverlay");
+  const titleEl = qs("#brBusyTitle");
+  const textEl = qs("#brBusyText");
+  const barEl = qs("#brBusyBar");
+
+  if(!overlay) return;
+
+  overlay.classList.toggle("hidden",!isBusy);
+
+  if(titleEl && title) titleEl.textContent = title;
+  if(textEl && text) textEl.textContent = text;
+  if(barEl) barEl.style.width = `${Math.max(0,Math.min(100,Number(percent || 0)))}%`;
+}
+
+function brDownloadBlob(blob, fileName){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url),1000);
+}
+
+function brSafeFileName(value){
+  return String(value || "report")
+    .trim()
+    .replace(/[\\/:*?"<>|]+/g,"_")
+    .replace(/\s+/g,"_")
+    .slice(0,90);
+}
+
+async function seedDemoData(){
+  const ok = await confirmModal("載入虛構示範資料", "這會加入 fictional students 和 demo assessments。不要與真實資料混合測試。", "載入 Load");
+  if(!ok) return;
+
+  const existing = await idbGetAll("students");
+  if(existing.length){
+    toast("已有資料。如要載入乾淨示範，請先在 Settings 清除本機資料。","warn");
+    return;
+  }
+
+  const importId = uid("imp");
+  await idbPut("imports", {
+    import_id:importId,
+    original_filename:"fictional_demo_seed.csv",
+    import_type:"demo",
+    uploaded_by:"system",
+    uploaded_at:nowIso(),
+    mapping_configuration:{fictional:true},
+    validation_summary:{fictional_demo:true},
+    status:"imported",
+    file_hash:"demo",
+    snapshot:null
+  });
+
+  const demoStudents = [
+    ["5S01","學生甲","Student Alpha"],
+    ["5S02","學生乙","Student Beta"],
+    ["5S03","學生丙","Student Gamma"],
+    ["5S04","學生丁","Student Delta"],
+    ["5S05","學生戊","Student Epsilon"],
+    ["5S06","學生己","Student Zeta"],
+    ["5S07","學生庚","Student Eta"],
+    ["5A18","學生辛","Student Theta"]
+  ];
+
+  const sidByCode = {};
+  for(const [code,zh,en] of demoStudents){
+    sidByCode[code] = await upsertStudent({
+      academic_year:"2026/27",
+      normalized_code:code,
+      chinese_name:zh,
+      english_name:en,
+      school_email:"",
+      source_name:zh
+    });
+  }
+
+  const demoAssessments = [
+    ["Gas Laws Chapter Test","2026-09-20","chapter test",24,"I",["gas_laws"],[20,18,11,15,22,12,17,10]],
+    ["Circular Motion Quiz","2026-10-08","quiz",29,"II",["circular_motion"],[24,21,17,12,26,14,18,null]],
+    ["Electrostatics Test","2026-11-05","chapter test",29,"IV",["electrostatics"],[24,18,15,9,23,14,16,20]],
+    ["Magnetic Field Quiz","2026-12-01","quiz",30,"IV",["magnetic_fields"],[28,20,12,15,27,22,19,24]],
+    ["Radioactivity Supplementary Exercise","2027-01-15","supplementary exercise",58,"V",["radioactivity"],[51,42,33,28,49,45,38,35]]
+  ];
+
+  const settings = await getSettings();
+
+  for(const [title,date,type,full,area,topics,marks] of demoAssessments){
+    const a = {
+      assessment_id:uid("ass"),
+      title,
+      assessment_date:date,
+      academic_year:"2026/27",
+      form_level:5,
+      assessment_type:type,
+      full_mark:full,
+      full_mark_source:"demo",
+      area_id:area,
+      topic_ids:topics,
+      weight:1,
+      source_import_id:importId,
+      version_number:1,
+      active_version:1,
+      created_at:nowIso()
+    };
+    await idbPut("assessments", a);
+
+    for(let i=0;i<demoStudents.length;i++){
+      const code = demoStudents[i][0];
+      const mark = marks[i];
+      const parsed = mark == null
+        ? {raw_score:null,percentage:null,attendance_status:"absent",raw_source_value:"abs"}
+        : parseResultValue(String(mark),full,settings);
+
+      await idbPut("assessmentResults", {
+        result_id:uid("res"),
+        student_id:sidByCode[code],
+        assessment_id:a.assessment_id,
+        raw_score:parsed.raw_score,
+        full_mark:full,
+        percentage:parsed.percentage,
+        attendance_status:parsed.attendance_status,
+        raw_source_value:parsed.raw_source_value,
+        source_row_reference:"fictional demo seed",
+        imported_at:nowIso()
+      });
+    }
+  }
+
+  const q = {
+    questionnaire_id:uid("q"),
+    title:"Gas Laws Self-Assessment",
+    completion_date:"2026-09-18",
+    academic_year:"2026/27",
+    area_id:"I",
+    topic_ids:["gas_laws"],
+    source_import_id:importId,
+    active_status:"active",
+    created_at:nowIso()
+  };
+  await idbPut("questionnaires", q);
+
+  const concepts = [
+    ["Boyle law","玻意耳定律"],
+    ["Pressure law","壓力定律"],
+    ["Charles law","查理定律"],
+    ["General gas law","一般氣體定律"],
+    ["Ideal gas law","理想氣體定律"]
+  ];
+  const cids = [];
+  for(let i=0;i<concepts.length;i++){
+    const c = {
+      concept_id:uid("concept"),
+      questionnaire_id:q.questionnaire_id,
+      short_label_en:concepts[i][0],
+      short_label_zh:concepts[i][1],
+      full_prompt_text:concepts[i][0] + " / " + concepts[i][1],
+      display_order:i+1
+    };
+    cids.push(c.concept_id);
+    await idbPut("questionnaireConcepts", c);
+  }
+
+  const lightSets = {
+    "5S01":["Green","Green","Green","Yellow","Green"],
+    "5S02":["Green","Green","Yellow","Yellow","Yellow"],
+    "5S03":["Green","Green","Green","Green","Green"],
+    "5S04":["Yellow","Yellow","Yellow","Red","Yellow"],
+    "5S05":["Green","Green","Green","Green","Green"],
+    "5S06":["Yellow","Yellow","Red","Yellow","Yellow"],
+    "5S07":["Yellow","Green","Yellow","Yellow","Yellow"],
+    "5A18":["Green","Green","Yellow","Green","Yellow"]
+  };
+  const scoreMap = {Green:3,Yellow:2,Red:1};
+
+  for(const [code,lights] of Object.entries(lightSets)){
+    for(let i=0;i<lights.length;i++){
+      await idbPut("questionnaireResponses", {
+        response_id:uid("qr"),
+        questionnaire_id:q.questionnaire_id,
+        concept_id:cids[i],
+        student_id:sidByCode[code],
+        light_value:lights[i],
+        light_score:scoreMap[lights[i]],
+        source_row_reference:"fictional demo seed",
+        match_method:"student_code",
+        match_confidence:1,
+        imported_at:nowIso()
+      });
+    }
+  }
+
+  await idbPut("teacherNotes", {
+    note_id:uid("note"),
+    student_id:sidByCode["5S03"],
+    note_text:"Demo note: 高信心但 Gas Laws 成績較低，可用作示範 cognitive gap。",
+    tags:["Follow-up","Reteach"],
+    next_review_date:null,
+    status:"open",
+    created_by:"system",
+    created_at:nowIso()
+  });
+
+  await logAction("seed_demo","system","demo",{fictional:true});
+  await refreshDiagnoses();
+  toast("已載入虛構示範資料。");
+  renderDashboard();
+}
+
+async function init(){
+  try{
+    db = await openKmsDb();
+    await ensureDefaults();
+    await renderLock();
+  }catch(err){
+    document.body.innerHTML = `
+      <div class="lock">
+        <div class="lock-card">
+          <h1>Cannot start app</h1>
+          <p>${esc(err.message || err)}</p>
+          <p class="muted">請確認瀏覽器支援 IndexedDB，並不要使用禁止本機儲存的私隱模式。</p>
+        </div>
+      </div>
+    `;
+  }
+}
+
+init();
+</script>
+</body>
+</html>
